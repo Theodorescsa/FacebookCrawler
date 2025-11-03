@@ -15,16 +15,26 @@ from get_comment_fb_automation import (
     hook_graphql,
 )
 import get_comment_fb_automation as _core
-from configs import (ERROR_EXCEL, INPUT_EXCEL, SHEET_NAME, STATUS_STORE_PATH, TMP_DIR,
-                    OUTPUT_NDJSON_DIR, DEDUP_CACHE_PATH)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-from logs.loging_config import logger
+DATABASE_PATH = Path(__file__).resolve().parent.parent.parent / "database"
 from util.startdriverproxy import bootstrap_auth,start_driver_with_proxy
-
-
+from logs.loging_config import logger
+COOKIES_PATH = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
+RAW_DUMS = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "raw_dump_comments"
+INPUT_EXCEL = DATABASE_PATH / "post" / "page" / "thoibaode" / "thoibao-de-last-split-sheet3.xlsx"
+SHEET_NAME = "Sheet_3"
+OUTPUT_NDJSON_DIR = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "ndjson_per_post"
+ERROR_EXCEL       = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "crawl_errors-sheet3.xlsx"  # để log lỗi
+STATUS_STORE_PATH = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "status_store_sheet3.json"
+TMP_DIR = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "tmp_comments_sheet3"
+DEDUP_CACHE_PATH = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "reply_dedup_cache_sheet3.json"
+os.makedirs(TMP_DIR, exist_ok=True)
+os.makedirs(OUTPUT_NDJSON_DIR, exist_ok=True)
+os.makedirs(RAW_DUMS, exist_ok=True)
 # =========================
 # NDJSON Helpers (per-post)
 # =========================
@@ -323,12 +333,13 @@ def crawl_from_excel_stream(
     input_path: str,
     sheet_name: str,
     output_ndjson_dir: str,
+    status_store_path: str,
     error_path: str,
     driver,
     max_retries: int = 0,
 ):
     # Load status store JSON (link -> status)
-    status_store = load_status_store(STATUS_STORE_PATH)
+    status_store = load_status_store(status_store_path)
 
     # đọc sheet (pandas)
     df = pd.read_excel(input_path, sheet_name=sheet_name)
@@ -429,16 +440,17 @@ def crawl_from_excel_stream(
             logger.info(f"[SKIP] bỏ qua bài: {postlink}")
 
         # save dần
-        save_status_store(STATUS_STORE_PATH, status_store)
+        save_status_store(status_store_path, status_store)
 
     logger.info(f"✅ DONE sheet {sheet_name} — NDJSON folder: {output_ndjson_dir} — errors: {error_path}")
-    save_status_store(STATUS_STORE_PATH, status_store)
+    save_status_store(status_store_path, status_store)
 
 
 # =========================
 # RUN
 # =========================
 if __name__ == "__main__":
+
     d = start_driver_with_proxy(
         proxy_host="142.111.48.253",
         proxy_port=7030,
@@ -453,17 +465,17 @@ if __name__ == "__main__":
         d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
     except Exception:
         pass
-    bootstrap_auth(d)
+    bootstrap_auth(d, COOKIES_PATH)
 
     # cài hook sớm (giống core)
     install_early_hook(d)
 
     # Chạy
-    os.makedirs(OUTPUT_NDJSON_DIR, exist_ok=True)
     crawl_from_excel_stream(
         str(INPUT_EXCEL),
         SHEET_NAME,
         str(OUTPUT_NDJSON_DIR),
+        str(STATUS_STORE_PATH),
         str(ERROR_EXCEL),
         driver=d,
         max_retries=0,

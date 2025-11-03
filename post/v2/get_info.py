@@ -3,7 +3,7 @@ from typing import Optional
 import re
 from urllib.parse import urlparse, parse_qs
 
-from configs import *
+from configs import POST_URL_RE
 REACTION_KEYS = {
     "LIKE": "like", "LOVE": "love", "HAHA": "haha", "WOW": "wow",
     "SAD": "sad", "ANGRY": "angry", "CARE": "care"

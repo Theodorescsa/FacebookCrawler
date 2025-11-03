@@ -398,3 +398,107 @@ Symbols not available. Dumping unresolved backtrace:
 2025-11-03 12:18:02 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTQ3MDgxOgF1JyUi... next=MToxNzYyMTQ3MDgyOgF1s5J5...
 2025-11-03 12:18:02 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02grs7lr241mwqgckev7xb9sshqwkgf21v8qshxrkvwsrvdlx8tsq93q1qyekljbrgl?comment_id=1374416666090090 -> skip
 2025-11-03 12:18:02 INFO    [crawl_sheet1] [V2] Page 2: +1/1 comments (cursor=True)
+2025-11-03 12:20:34 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 12:20:35 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 12:20:36 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 12:20:38 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 12:20:38 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 12:21:11 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 2 (new 2), total_new=2, next=True, cursor=AQHSFrxh...P4sX
+2025-11-03 12:21:14 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 1 (new 1), total_new=3, next=True, cursor=AQHSJjxu...bRIg
+2025-11-03 12:21:18 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 1 (new 1), total_new=4, next=True, cursor=AQHSXcaG...hwcz
+2025-11-03 12:21:35 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 12:21:36 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 12:21:37 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 12:21:39 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 12:21:39 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 13:49:22 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 13:49:22 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 13:49:23 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 13:49:26 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 13:49:28 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 13:49:28 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 13:49:48 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 13:49:48 INFO    [crawl_sheet1] ⏩ [1/4840] SKIP (done): https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 13:49:48 INFO    [crawl_sheet1] ⏩ [2/4840] SKIP (done): https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 13:49:48 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 13:50:03 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 13:50:07 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTUyNjA3OgF1QGqf...
+2025-11-03 13:50:07 INFO    [crawl_sheet1] [V2] Page 1: +1/1 comments (cursor=False)
+2025-11-03 13:50:08 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTUyNjA3OgF1QGqf... next=MToxNzYyMTUyNjA4OgF1NIke...
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02grs7lr241mwqgckev7xb9sshqwkgf21v8qshxrkvwsrvdlx8tsq93q1qyekljbrgl?comment_id=1374416666090090 -> skip
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [V2] Page 2: +1/1 comments (cursor=True)
+2025-11-03 13:50:08 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTUyNjA4OgF1NIke... next=MToxNzYyMTUyNjA4OgF1o98c...
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02grs7lr241mwqgckev7xb9sshqwkgf21v8qshxrkvwsrvdlx8tsq93q1qyekljbrgl?comment_id=1374416666090090 -> skip
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [V2] Page 3: +1/1 comments (cursor=True)
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [V2] DONE. Collected 3 comments → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\comments_bc1ef6ce2753db5e.ndjson. Checkpoint at E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\checkpoint_bc1ef6ce2753db5e.json.
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [VERIFY] replies fetched: 0
+2025-11-03 13:50:08 INFO    [crawl_sheet1] [WRITE:NDJSON] +3 rows (replies=0) → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\ndjson_per_post\comments_bc1ef6ce2753db5e.ndjson
+2025-11-03 13:50:08 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 3 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 13:50:08 INFO    [crawl_sheet1] === [4/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl
+2025-11-03 13:50:33 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 14:22:48 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:22:49 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:22:50 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:22:53 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:22:53 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:23:29 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:23:29 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:23:30 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:23:33 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:23:33 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:24:53 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:24:53 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:24:54 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:24:56 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:24:56 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:27:29 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:27:29 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:27:30 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:27:33 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:27:33 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:29:02 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:29:02 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:29:03 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:29:06 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:29:06 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:30:00 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:30:01 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:30:02 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:30:04 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:30:04 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:37:47 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:37:47 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:37:49 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:37:51 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:37:51 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:38:23 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSTh1u...Rcw_
+2025-11-03 14:47:27 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:47:27 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:47:28 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:47:31 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 14:47:31 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 14:48:02 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSPacc...kl99
+2025-11-03 14:59:34 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 14:59:34 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 14:59:35 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 14:59:36 INFO    [crawl_sheet1] [Chrome] ipify: <html><head>
+    <title>502 Bad Gateway</title>
+</head>
+<body>
+    <h1>502 Bad Gateway</h1>
+    <p>[WinError 1232] The network location cannot be reached. For information about network troubleshooting, see Windows Help</p>
+
+</body></html>
+2025-11-03 14:59:36 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 15:04:21 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 15:04:22 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 15:04:24 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 15:04:27 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 15:04:27 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 15:05:02 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSbzVh...uFTD
+2025-11-03 15:05:04 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 2 (new 2), total_new=3, next=True, cursor=AQHSPrOM...DHjN
+2025-11-03 15:05:07 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 1 (new 1), total_new=4, next=True, cursor=AQHSZOvq...Q1N4
+2025-11-03 15:05:10 INFO    [crawl_sheet1] [SLICE -inf→+inf] p4 got 1 (new 1), total_new=5, next=True, cursor=AQHSrshY...rbXj
+2025-11-03 15:05:12 INFO    [crawl_sheet1] [SLICE -inf→+inf] p5 got 1 (new 1), total_new=6, next=True, cursor=AQHSem7V...vmqI
+2025-11-03 15:05:15 INFO    [crawl_sheet1] [SLICE -inf→+inf] p6 got 1 (new 1), total_new=7, next=True, cursor=AQHSlNej...I4fC
+2025-11-03 15:05:18 INFO    [crawl_sheet1] [SLICE -inf→+inf] p7 got 2 (new 2), total_new=9, next=True, cursor=AQHStxNZ...d2yl

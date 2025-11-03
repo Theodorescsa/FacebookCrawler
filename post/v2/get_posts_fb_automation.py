@@ -7,8 +7,7 @@ from selenium.common.exceptions import TimeoutException as _SETimeout
 
 # ==== custom utils bạn đã có trong get_info.py (yêu cầu file này tồn tại) ====
 from get_info import _all_urls_from_text, _dig_attachment_urls, _extract_share_texts, _extract_url_digits, _looks_like_group_post, deep_get_first, extract_author, extract_created_time, extract_hashtags, extract_media, extract_reactions_and_counts, extract_share_flags, extract_share_flags_smart, filter_only_feed_posts
-
-from configs import *
+from pathlib import Path
 from automation import (fast_forward_cursor, fetch_via_wire, js_fetch_in_page,
                         reload_and_refresh_form, soft_refetch_form_and_cursor)
 from checkpoint import append_ndjson, save_checkpoint
@@ -23,14 +22,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 from logs.loging_config import logger
-from util.startdriverproxy import bootstrap_auth,start_driver_with_proxy
-os.makedirs(RAW_DUMPS_DIR, exist_ok=True)
+
 
 # =========================
 # Post collectors (ưu tiên rid + link + created_time)
 # =========================
 
-def collect_post_summaries(obj, out, group_url=GROUP_URL):
+def collect_post_summaries(obj, out, group_url):
     if isinstance(obj, dict):
         if _looks_like_group_post(obj):
             post_id_api = obj.get("post_id")
@@ -179,7 +177,10 @@ def coalesce_posts(items: List[dict]) -> List[dict]:
 # =========================
 def paginate_window(d, form, vars_template, seen_ids: set,
                     t_from: Optional[int]=None, t_to: Optional[int]=None,
-                    page_limit: Optional[int]=None) -> Tuple[int, Optional[int], bool]:
+                    group_url: Optional[str]=None,
+                    database_path: Optional[Path]=None,
+                    page_limit: Optional[int]=None,
+                    ) -> Tuple[int, Optional[int], bool]:
     last_good_cursor = current_cursor_from_form(form) or None
     cursor_stall_rounds = 0
     prev_cursor = None
@@ -187,7 +188,12 @@ def paginate_window(d, form, vars_template, seen_ids: set,
     total_new = 0
     min_created = None
     no_progress_rounds = 0
+    raw_dump_output_dir = database_path / "raw_dump_posts" 
+    raw_dump_output_dir.mkdir(parents=True, exist_ok=True)
 
+    checkpoint_path = database_path / "checkpoint.json"     
+    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+    append_json_file = database_path / "posts_all.ndjson"
     mode_str = "time" if (t_from is not None or t_to is not None) else "warmup"
     if mode_str == "time":
         logger.info(f"[MODE] Time-slice window: from={t_from} to={t_to}")
@@ -220,7 +226,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             except (_SETimeout, RuntimeError) as e:
                 last_err = e
                 if "bad_origin:" in str(e):
-                    d.get(GROUP_URL); time.sleep(1.2)
+                    d.get(group_url); time.sleep(1.2)
                     try:
                         txt = js_fetch_in_page(d, form, extra_headers={}, timeout_ms=20000)
                         break
@@ -244,7 +250,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                             form["variables"] = json.dumps(base, separators=(",", ":"))
 
                 if attempt == max_tries:
-                    form2, friendly2, docid2 = reload_and_refresh_form(d, GROUP_URL, None, vars_template)
+                    form2, friendly2, docid2 = reload_and_refresh_form(d, group_url, None, vars_template)
                     if form2:
                         form = form2
                         if (t_from is not None) or (t_to is not None):
@@ -268,7 +274,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                         raise
 
         obj = choose_best_graphql_obj(iter_json_values(_strip_xssi_prefix(txt)))
-        with open(os.path.join(RAW_DUMPS_DIR, f"slice_{t_from or '-inf'}_{t_to or '+inf'}_p{page}.json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(str(raw_dump_output_dir), f"slice_{t_from or '-inf'}_{t_to or '+inf'}_p{page}.json"), "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=False, indent=2)
 
         if not obj:
@@ -276,7 +282,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             break
 
         page_posts = []
-        collect_post_summaries(obj, page_posts)
+        collect_post_summaries(obj, page_posts, group_url)
         page_posts = coalesce_posts(filter_only_feed_posts(page_posts))
 
         written_this_round = set()
@@ -287,7 +293,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                 fresh.append(p); written_this_round.add(pk)
 
         if fresh:
-            append_ndjson(fresh)
+            append_ndjson(fresh,str(append_json_file))
             for p in fresh:
                 for k in _all_join_keys(p): seen_ids.add(k)
             total_new += len(fresh)
@@ -350,7 +356,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                     new_cursor = bc
                     logger.info(f"[FIX] lấy được cursor mới sau refetch.")
             else:
-                f2, _, _ = reload_and_refresh_form(d, GROUP_URL, (last_good_cursor or current_cursor_from_form(form)), vars_template)
+                f2, _, _ = reload_and_refresh_form(d, group_url, (last_good_cursor or current_cursor_from_form(form)), vars_template)
                 if f2:
                     form = f2
                     try:
@@ -382,7 +388,8 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             year=(datetime.datetime.utcfromtimestamp(t_to).year
                   if (t_to and mode_str == "time") else None),
             page=page,
-            min_created=min_created
+            min_created=min_created,
+            check_point_path=str(checkpoint_path)
         )
 
         MAX_NO_NEXT_ROUNDS = 3
@@ -411,7 +418,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             for attempt in range(1, 3):
                 new_form, friendly2, docid2 = reload_and_refresh_form(
                     d,
-                    GROUP_URL,
+                    group_url,
                     reload_cursor,
                     vars_template
                 )
@@ -528,11 +535,12 @@ def strip_cursors_from_form_on_form(form, vars_template=None):
     new_form["variables"] = json.dumps(cleaned, separators=(",", ":"))
     return new_form
 
-def run_cursor_only(d, form, vars_template, seen_ids, page_limit=None, resume=False):
+def run_cursor_only(d, form, vars_template, seen_ids,database_path, page_limit=None, resume=False):
     """
     Cursor-only paging. Nếu resume=True => KHÔNG boot ở head, đi thẳng từ checkpoint cursor.
     """
     total = 0
+    append_json_file = database_path / "posts_all.ndjson"
 
     # === (A) HEAD-BOOT CHỈ KHI resume=False ===
     if not resume:
@@ -549,7 +557,7 @@ def run_cursor_only(d, form, vars_template, seen_ids, page_limit=None, resume=Fa
                 if pk and pk not in seen_ids:
                     written.append(p)
                     for k in _all_join_keys(p): seen_ids.add(k)
-            append_ndjson(written)
+            append_ndjson(written, str(append_json_file))
             fresh_head = len(written)
             if fresh_head:
                 logger.info(f"[HEAD] grabbed {fresh_head} fresh at head")
@@ -563,6 +571,7 @@ def run_cursor_only(d, form, vars_template, seen_ids, page_limit=None, resume=Fa
     # Không set time window; để [-inf, +inf]
     add, _, _ = paginate_window(
         d, form, vars_template, seen_ids,
+        database_path=database_path,
         t_from=None, t_to=None,
         page_limit=page_limit
     )

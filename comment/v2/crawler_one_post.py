@@ -19,6 +19,7 @@ os.makedirs("raw_dumps", exist_ok=True)
 # =========================
 # MAIN
 # =========================
+COOKIES_PATH = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
 if __name__ == "__main__":
     # d = start_driver(CHROME_PATH, USER_DATA_DIR, PROFILE_NAME, port=REMOTE_PORT, headless=False)
     d = start_driver_with_proxy(
@@ -36,7 +37,7 @@ if __name__ == "__main__":
     except Exception:
         pass
 
-    bootstrap_auth(d)
+    bootstrap_auth(d, COOKIES_PATH)
 
     d.get(POST_URL)
     time.sleep(2)

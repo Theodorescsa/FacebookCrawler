@@ -12,15 +12,4 @@ OUT_FILE      = "comments_batch1.json"
 REMOTE_PORT  = 9222
 REPLY_DOC_ID = "25396268633304296"  
 CURSOR_KEYS = {"end_cursor","endCursor","after","afterCursor","commentsAfterCursor","feedAfterCursor","cursor"}
-RAW_DUMS = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "raw_dump_comments"
 # ========================= CONFIG crawler from ndjson (điều chỉnh theo máy bạn) =========================
-INPUT_EXCEL = DATABASE_PATH / "post" / "page" / "thoibaode" / "thoibao-de-last-split-sheet3.xlsx"
-SHEET_NAME = "Sheet_3"
-OUTPUT_NDJSON_DIR = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "ndjson_per_post"
-ERROR_EXCEL       = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "crawl_errors-sheet3.xlsx"  # để log lỗi
-STATUS_STORE_PATH = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "status_store_sheet3.json"
-TMP_DIR = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "tmp_comments_sheet3"
-DEDUP_CACHE_PATH = DATABASE_PATH / "comment" / "page" / "thoibaode" / "sheet3" / "reply_dedup_cache_sheet3.json"
-os.makedirs(TMP_DIR, exist_ok=True)
-os.makedirs(OUTPUT_NDJSON_DIR, exist_ok=True)
-os.makedirs(RAW_DUMS, exist_ok=True)

@@ -1,59 +1,6 @@
 import json, re, urllib
 from typing import Optional, List, Dict
 from configs import *
-
-def _coerce_epoch(v):
-    try:
-        vv = float(v)
-        if vv > 10_000_000_000:  # ms -> s
-            vv = vv / 1000.0
-        return int(vv)
-    except Exception:
-        return None
-
-def _normalize_cookie(c: dict) -> Optional[dict]:
-    if not isinstance(c, dict): 
-        return None
-    name  = c.get("name")
-    value = c.get("value")
-    if not name or value is None:
-        return None
-
-    domain = c.get("domain")
-    host_only = c.get("hostOnly", False)
-    if domain:
-        domain = domain.strip()
-        if host_only and domain.startswith("."):
-            domain = domain.lstrip(".")
-    if not domain:
-        domain = "facebook.com"
-
-    if not any(domain.endswith(d) or ("."+domain).endswith(d) for d in ALLOWED_COOKIE_DOMAINS):
-        return None
-
-    path = c.get("path") or "/"
-    secure    = bool(c.get("secure", True))
-    httpOnly  = bool(c.get("httpOnly", c.get("httponly", False)))
-
-    expiry = c.get("expiry", None)
-    if expiry is None:
-        expiry = c.get("expirationDate", None)
-    if expiry is None:
-        expiry = c.get("expires", None)
-    expiry = _coerce_epoch(expiry) if expiry is not None else None
-
-    out = {
-        "name": name,
-        "value": value,
-        "domain": domain,
-        "path": path,
-        "secure": secure,
-        "httpOnly": httpOnly,
-    }
-    if expiry is not None:
-        out["expiry"] = expiry
-    return out
-
 # =========================
 # Request matching / parsing
 # =========================

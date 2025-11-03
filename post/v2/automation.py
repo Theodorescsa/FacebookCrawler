@@ -1,11 +1,10 @@
 import time, json, urllib
 from urllib.parse import  urlencode
-from configs import *
 from utils import _strip_xssi_prefix, choose_best_graphql_obj, deep_collect_cursors, deep_find_has_next, is_group_feed_req, iter_json_values, merge_vars, parse_form, strip_cursors_from_vars, update_vars_for_next_cursor
 # =========================
 # Hook /api/graphql/
 # =========================
-def install_early_hook(driver, keep_last=KEEP_LAST):
+def install_early_hook(driver, keep_last=350):
     HOOK_SRC = r"""
     (function(){
       if (window.__gqlHooked) return;

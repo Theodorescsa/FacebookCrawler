@@ -530,7 +530,7 @@ def crawl_comments(driver, out_json="comments.ndjson", checkpoint_path="checkpoi
             else:
                 json_resp = json.loads(stripped)
                 cleaned = stripped
-            logger.warning(f"[WARN] page {pages} parse fail:", e)
+            logger.warning(f"[WARN] page {pages} parse fail:")
 
         # # lưu JSON sạch để trace (optional)
         with open(f"{RAW_DUMS}/page{pages}.json", "w", encoding="utf-8") as f:

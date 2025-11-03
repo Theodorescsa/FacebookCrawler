@@ -13,14 +13,10 @@ from selenium.webdriver.chrome.options import Options
 import logging
 # ------------------ CONFIG ------------------
 ALLOWED_COOKIE_DOMAINS = {".facebook.com", "facebook.com", "m.facebook.com", "web.facebook.com"}
-
-GROUP_URL     = "https://www.facebook.com/thoibao.de"
 COOKIES_PATH         = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
-
 MITM_PORT = 8899  
 UPSTREAM_PROXY = "142.111.48.253:7030"  
 UPSTREAM_AUTH = "ycycsdtq:ka0d32hzsydi" 
-CHROME_HEADLESS = False
 MITM_WAIT_TIMEOUT = 12.0
 # --------------------------------------------
 
@@ -95,13 +91,13 @@ def _add_cookies_safely(driver, cookies_path: Path):
             pass
     return added
 
-def bootstrap_auth(d):
+def bootstrap_auth(d,cookie_path):
     d.get("https://www.facebook.com/")
     time.sleep(1.0)
     print("[AUTH] Bootstrapping auth...")
-    if COOKIES_PATH and os.path.exists(COOKIES_PATH):
+    if cookie_path and os.path.exists(cookie_path):
         try:
-            count = _add_cookies_safely(d, Path(COOKIES_PATH))
+            count = _add_cookies_safely(d, Path(cookie_path))
             d.get("https://www.facebook.com/")
             time.sleep(1.0)
             print(f"[AUTH] Added cookies: {count}")
@@ -261,7 +257,7 @@ if __name__ == "__main__":
         mitm_port=8899,
         headless=False
     )
-    bootstrap_auth(driver)
+    bootstrap_auth(driver,COOKIES_PATH)
     # Test: mở Facebook group / crawl gì đó
     time.sleep(3)
     driver.get("https://api.ipify.org/?format=json")
