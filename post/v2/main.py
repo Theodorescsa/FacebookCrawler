@@ -5,11 +5,15 @@
 import urllib, time, sys
 from datetime import datetime
 from configs import *
-from automation import bootstrap_auth,  install_early_hook, start_driver_with_proxy, wait_next_req
+from automation import install_early_hook, wait_next_req
 from checkpoint import load_checkpoint, normalize_seen_ids, save_checkpoint
 from get_posts_fb_automation import paginate_window, run_cursor_only
 from utils import   get_vars_from_form, is_group_feed_req, make_vars_template, parse_form, update_vars_for_next_cursor
-# from get_posts_fb_automation import start_driver
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from logs.loging_config import logger
+from util.startdriverproxy import bootstrap_auth,start_driver_with_proxy
 if __name__ == "__main__":
     import argparse
 
@@ -38,7 +42,7 @@ if __name__ == "__main__":
     try:
         install_early_hook(d, keep_last=KEEP_LAST)
     except Exception as e:
-        print("[WARN] install_early_hook:", e)
+        logger.error("[WARN] install_early_hook:", e)
 
     d.get(GROUP_URL); time.sleep(1.2)
     for _ in range(6):
@@ -59,7 +63,7 @@ if __name__ == "__main__":
     vars_template = state.get("vars_template") or template_now
     effective_template = vars_template or template_now
     if args.backfill and args.year and args.from_month and args.to_month:
-        print(f"[MODE] Backfill từ tháng {args.from_month}/{args.year} → {args.to_month}/{args.year}")
+        logger.info(f"[MODE] Backfill từ tháng {args.from_month}/{args.year} → {args.to_month}/{args.year}")
         cur = args.from_month
         while cur >= args.to_month:
             start = datetime.datetime(args.year, cur, 1)
@@ -71,28 +75,28 @@ if __name__ == "__main__":
             t_from = int(end.timestamp())
             t_to = int(start.timestamp())
 
-            print(f"\n🕰️ Crawling trước {start.strftime('%Y-%m-%d')} ...")
+            logger.info(f"\n🕰️ Crawling trước {start.strftime('%Y-%m-%d')} ...")
             total_new, min_created, has_next = paginate_window(
                 d, form, effective_template, seen_ids=set(),
                 t_from=t_from,
                 t_to=t_to,
                 page_limit=args.page_limit
             )
-            print(f"✅ Done {start.strftime('%Y-%m')} → {total_new} posts | min_created={min_created}")
+            logger.info(f"✅ Done {start.strftime('%Y-%m')} → {total_new} posts | min_created={min_created}")
             save_checkpoint(cursor=None, seen_ids=list(seen_ids),
                             vars_template=effective_template,
                             mode="time", slice_from=None, slice_to=t_to, year=args.year)
             time.sleep(2)
             cur -= 1
 
-        print("\n🎉 [DONE] Backfill completed.")
+        logger.info("\n🎉 [DONE] Backfill completed.")
         d.quit()
         sys.exit(0)
 
     # ✅ Resume đúng vị trí (nếu có --resume và có cursor trong checkpoint)
     if args.resume and cursor_ckpt:
         form = update_vars_for_next_cursor(form, cursor_ckpt, vars_template=effective_template)
-        print(f"[RESUME] Dùng lại cursor từ checkpoint: {str(cursor_ckpt)[:40]}...")
+        logger.info(f"[RESUME] Dùng lại cursor từ checkpoint: {str(cursor_ckpt)[:40]}...")
 
     # 🔁 Chạy crawl theo cursor-only (không time-slice)
     total_got = run_cursor_only(
@@ -104,4 +108,4 @@ if __name__ == "__main__":
     # Lưu checkpoint cuối (giữ seen_ids & template; cursor đã được cập nhật trong quá trình paginate)
     save_checkpoint(cursor=None, seen_ids=list(seen_ids), vars_template=effective_template,
                     mode=None, slice_from=None, slice_to=None, year=None)
-    print(f"[DONE] total new written (cursor-only) = {total_got} → {OUT_NDJSON}")
+    logger.info(f"[DONE] total new written (cursor-only) = {total_got} → {OUT_NDJSON}")

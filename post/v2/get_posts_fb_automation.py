@@ -1,5 +1,4 @@
-import argparse
-import os, re, json, time, random, datetime, urllib.parse
+import os, re, json, time, random, datetime, sys
 from typing import List, Optional, Tuple
 from urllib.parse import urlparse, urlunparse
 
@@ -17,8 +16,14 @@ from utils import (
                    _strip_xssi_prefix, choose_best_graphql_obj, 
                     current_cursor_from_form, deep_collect_cursors, 
                     deep_collect_timestamps, deep_find_has_next, 
-                    iter_json_values, merge_vars, 
+                    iter_json_values, merge_vars, short_cursor, 
                     strip_cursors_from_vars, update_vars_for_next_cursor)
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from logs.loging_config import logger
+from util.startdriverproxy import bootstrap_auth,start_driver_with_proxy
 os.makedirs(RAW_DUMPS_DIR, exist_ok=True)
 
 # =========================
@@ -185,7 +190,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
 
     mode_str = "time" if (t_from is not None or t_to is not None) else "warmup"
     if mode_str == "time":
-        print(f"[MODE] Time-slice window: from={t_from} to={t_to}")
+        logger.info(f"[MODE] Time-slice window: from={t_from} to={t_to}")
 
     if (t_from is not None) or (t_to is not None):
         # không dùng trong cursor-only, nhưng giữ để tái sử dụng
@@ -197,7 +202,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
         if t_from is not None:  base[cand_after]  = int(t_from)
         if t_to   is not None:  base[cand_before] = int(t_to)
         if "count" in base and isinstance(base["count"], int):
-            base["count"] = max(base["count"], 10)
+            base["count"] = max(base["count"], 30)
         form["variables"] = json.dumps(base, separators=(",", ":"))
 
     page = 0
@@ -221,7 +226,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                         break
                     except Exception:
                         pass
-                print(f"[WARN] fetch page try {attempt}/{max_tries} failed: {e}")
+                logger.warning(f"[WARN] fetch page try {attempt}/{max_tries} failed: {e}")
                 time.sleep(random.uniform(0.8, 1.6))
 
                 if attempt == 2:
@@ -263,11 +268,11 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                         raise
 
         obj = choose_best_graphql_obj(iter_json_values(_strip_xssi_prefix(txt)))
-        with open(os.path.join(RAW_DUMPS_DIR, f"slice_{t_from or 'None'}_{t_to or 'None'}_p{page}.json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(RAW_DUMPS_DIR, f"slice_{t_from or '-inf'}_{t_to or '+inf'}_p{page}.json"), "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=False, indent=2)
 
         if not obj:
-            print(f"[SLICE {t_from}->{t_to}] parse fail → stop slice.")
+            logger.warning(f"[SLICE {t_from}->{t_to}] parse fail → stop slice.")
             break
 
         page_posts = []
@@ -303,7 +308,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
         else:
             cursor_stall_rounds = 0
         if cursor_stall_rounds >= 6:
-            print("[STALL] next=True & fresh=0 nhiều vòng → fast-forward 2 hops")
+            logger.warning("[STALL] next=True & fresh=0 nhiều vòng → fast-forward 2 hops")
             ff_form, ff_cursor = fast_forward_cursor(d, form, vars_template, hops=2)
             if ff_form:
                 form = ff_form
@@ -337,13 +342,13 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             cursor_for_reload = current_cursor_from_form(form)
 
         if new_cursor and prev_cursor == new_cursor:
-            print(f"[WARN] cursor lặp lại → thử soft-refetch")
+            logger.warning(f"[WARN] cursor lặp lại → thử soft-refetch")
             nf, bc, bh, _ = soft_refetch_form_and_cursor(d, form, vars_template)
             if nf and (bc or bh):
                 form = nf
                 if bc:
                     new_cursor = bc
-                    print(f"[FIX] lấy được cursor mới sau refetch.")
+                    logger.info(f"[FIX] lấy được cursor mới sau refetch.")
             else:
                 f2, _, _ = reload_and_refresh_form(d, GROUP_URL, (last_good_cursor or current_cursor_from_form(form)), vars_template)
                 if f2:
@@ -363,8 +368,10 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             last_good_cursor = new_cursor
             prev_cursor = new_cursor
 
-        print(f"[SLICE {t_from or '-inf'}→{t_to or '+inf'}] p{page} got {len(page_posts)} (new {len(fresh)}), total_new={total_new}, next={has_next}")
-
+        logger.info(f"[SLICE {t_from or '-inf'}→{t_to or '+inf'}] "
+            f"p{page} got {len(page_posts)} (new {len(fresh)}), "
+            f"total_new={total_new}, next={has_next}, "
+            f"cursor={short_cursor(last_good_cursor)}")
         save_checkpoint(
             cursor=last_good_cursor,
             seen_ids=list(seen_ids),
@@ -380,7 +387,7 @@ def paginate_window(d, form, vars_template, seen_ids: set,
 
         MAX_NO_NEXT_ROUNDS = 3
         if not has_next and no_progress_rounds >= MAX_NO_NEXT_ROUNDS:
-            print(f"[PAGE#{page}] next=False x{no_progress_rounds} → reload trang & bắt lại feed")
+            logger.warning(f"[PAGE#{page}] next=False x{no_progress_rounds} → reload trang & bắt lại feed")
 
             # cursor để bơm lại sau reload
             reload_cursor = cursor_for_reload or last_good_cursor or current_cursor_from_form(form)
@@ -415,13 +422,13 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                     form = new_form
                     no_progress_rounds = 0
                     cursor_stall_rounds = 0
-                    print(f"[PAGE#{page}] reload OK (attempt {attempt}) → tiếp tục từ cursor={str(reload_cursor)[:28] if reload_cursor else None}")
+                    logger.info(f"[PAGE#{page}] reload OK (attempt {attempt}) → tiếp tục từ cursor={str(reload_cursor)[:28] if reload_cursor else None}")
                     reloaded_ok = True
                     break
                 time.sleep(random.uniform(1.0, 2.0))
 
             if not reloaded_ok:
-                print(f"[PAGE#{page}] reload thất bại → dừng pagination.")
+                logger.warning(f"[PAGE#{page}] reload thất bại → dừng pagination.")
                 break
 
             # đã reload xong thì quay lại vòng while để fetch trang kế tiếp
@@ -545,12 +552,12 @@ def run_cursor_only(d, form, vars_template, seen_ids, page_limit=None, resume=Fa
             append_ndjson(written)
             fresh_head = len(written)
             if fresh_head:
-                print(f"[HEAD] grabbed {fresh_head} fresh at head")
+                logger.info(f"[HEAD] grabbed {fresh_head} fresh at head")
         except Exception:
             pass 
         total += fresh_head
     else:
-        print("[RESUME] Skip head-probe; continue strictly from checkpoint cursor.")
+        logger.info("[RESUME] Skip head-probe; continue strictly from checkpoint cursor.")
 
     # === (B) CHẠY PAGINATION THEO CURSOR ===
     # Không set time window; để [-inf, +inf]

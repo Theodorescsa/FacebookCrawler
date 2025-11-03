@@ -244,3 +244,8 @@ def update_vars_for_next_cursor(form: dict, next_cursor: str, vars_template: dic
     form["variables"] = json.dumps(base, separators=(",", ":"))
     return form
 
+def short_cursor(c):
+    if not c:
+        return "None"
+    return f"{c[:8]}...{c[-4:]}" if len(c) > 20 else c
+

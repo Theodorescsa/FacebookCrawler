@@ -1,3 +1,5 @@
+from pathlib import Path
+import sys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
@@ -8,7 +10,10 @@ from selenium.common.exceptions import (
 from selenium.common.exceptions import NoSuchElementException
 
 import time, os, json, urllib, re
-
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from logs.loging_config import logger
 from configs import CURSOR_KEYS
 def _iter_all_dicts(o):
     if isinstance(o, dict):
@@ -135,7 +140,7 @@ ALL_COMMENTS_TEXTS = [
 ]
 
 def _button_with_span_text_xpath(texts):
-    print("Đang tìm xpath button với span text...", texts)
+    logger.info("Đang tìm xpath button với span text...", texts)
     # .//div[@role='button'][.//span[normalize-space()='...']]
     parts = [f".//div[@role='button'][.//span[normalize-space()='{t}']]" for t in texts]
     # fallback contains (ít ưu tiên hơn)
@@ -302,7 +307,7 @@ def set_sort_to_all_comments_unified(driver, max_retry=2):
     1) Find global Sort button (any surface), click.
     2) Select 'All comments' from the body-mounted menu.
     """
-    print("[SORT] Set to 'All comments' (unified)…")
+    logger.info("[SORT] Set to 'All comments' (unified)…")
     last_err = None
     for _ in range(max_retry):
         try:
@@ -722,6 +727,6 @@ def collect_reply_tokens_from_json(json_resp, out_map):
 
     walk(json_resp)
 def _normalize_id(item: dict) -> str | None:
-    print(item)
+    logger.debug(item)
     cid = item.get("id") or item.get("id")
     return str(cid).strip() if cid else None

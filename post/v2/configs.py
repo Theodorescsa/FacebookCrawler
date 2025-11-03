@@ -2,16 +2,17 @@
 # CONFIG — chỉnh theo máy bạn
 # =========================
 from pathlib import Path
-import re
+import re, os
 HERE = Path(__file__).resolve().parent
+DATABASE_PATH = Path(__file__).resolve().parent.parent.parent / "database"
 
 # Page/Group/Profile gốc bạn muốn crawl
 GROUP_URL     = "https://www.facebook.com/thoibao.de"
 
 # (Optional) Nếu muốn nạp login thủ công từ file, set path 2 hằng dưới; nếu không, để None:
-COOKIES_PATH         = HERE / "authen" / "cookies.json"
-LOCALSTORAGE_PATH    = HERE / "authen" / "localstorage.json"
-SESSIONSTORAGE_PATH  = HERE / "authen" / "sessionstorage.json"
+COOKIES_PATH         = DATABASE_PATH / "facebookaccount" / "authen" / "cookies.json"
+LOCALSTORAGE_PATH    = DATABASE_PATH / "facebookaccount" / "authen" / "localstorage.json"
+SESSIONSTORAGE_PATH  = DATABASE_PATH / "facebookaccount" / "authen" / "sessionstorage.json"
 
 # Proxy tuỳ chọn cho selenium-wire (để trống nếu không dùng)
 PROXY_URL = ""
@@ -20,10 +21,10 @@ ALLOWED_COOKIE_DOMAINS = {".facebook.com", "facebook.com", "m.facebook.com", "we
 
 # Lưu trữ
 KEEP_LAST     = 350
-OUT_NDJSON    = HERE / "database" / "posts_all.ndjson"
-RAW_DUMPS_DIR = HERE / "database" / "raw_dumps"
-CHECKPOINT    = HERE / "database" / "checkpoint.json"
-
+OUT_NDJSON    = DATABASE_PATH / "post" /  "page" /  "thoibaode" / "posts_all.ndjson"
+RAW_DUMPS_DIR = DATABASE_PATH / "post" /  "page" /  "thoibaode" / "raw_dump_posts"
+CHECKPOINT    = DATABASE_PATH / "post" /  "page" /  "thoibaode" / "checkpoint.json"
+os.makedirs(RAW_DUMPS_DIR, exist_ok=True)
 # Cursor
 CURSOR_KEYS = {"end_cursor","endCursor","after","afterCursor","feedAfterCursor","cursor"}
 

@@ -1,0 +1,1130 @@
+{
+  "data": {
+    "node": {
+      "__typename": "Feedback",
+      "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+      "should_always_show_composer_on_top": false,
+      "comment_rendering_instance_for_feed_location": {
+        "selected_intent": {
+          "intent_token": "RANKED_UNFILTERED_CHRONOLOGICAL_REPLIES_INTENT_V1"
+        },
+        "comments": {
+          "created_comment_insertion_position": "TOP",
+          "filtering_footer_string": "",
+          "count": 1,
+          "page_size": 10,
+          "total_count": 1,
+          "should_auto_scroll": null,
+          "edges": [
+            {
+              "node": {
+                "id": "Y29tbWVudDoxMzc0Mzg5OTM5NDI2MDk2XzEzNzQ0MTY2NjYwOTAwOTA=",
+                "feedback": {
+                  "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                  "expansion_info": {
+                    "expansion_token": "MjoxNzYyMTQ3MDgyOgF1bXPIHl_DvOPBxS8IaBLeBrxu7VgWcLpFGlozNUZzSvGmFcXx5xuZjsBLacUh3-5rQwFKc1gzkFNdgTDZF0njavFloplA8b-YOLy1TrO5c9WZXP20uqrFuuWeIwBmDrnUg9CDQbxIbzbxjatloWbZN0GdpPnlIuBEg6FJ6F1mvvrzMe7rNhksWC40Qb7Mj7REIe2dqOt6J2gKFENqv0ozMByr01BfaeaHC5019jjpy2vGxiCzup5XZDPAZrCtE5tlgIZDts1CtwO0Q5WaRkWFrcNfn-TdTMC6kMULNHguCKQpUdYCnHPsHKKdskYWDMgWN4HP7hd4yhtnt4djPn20BmnjbRMlsbn5mTBK2_iM8yCew9I006cqVpjGPXramdtdpEt5sA_Zym2ZgAxslpZ47vHfpFCAL4qBgXsYkaANF8VQDx7gLyQmzcY69dGdxkga1ZAna-OvE-nMYiLrjgaxO_42m4uYX5BBXs2jH7bxDgb8QiL1pyCg7PByUsaw4b7lF2nlzfonMozTVg",
+                    "should_show_reply_count": true
+                  },
+                  "replies_fields": {
+                    "filtering_footer_string": "",
+                    "count": 0,
+                    "total_count": 0
+                  },
+                  "viewer_actor": {
+                    "__typename": "User",
+                    "id": "100016719512529"
+                  },
+                  "url": "https://www.facebook.com/thoibao.de/posts/pfbid02GRS7LR241mWQGckEv7Xb9sShqWkGf21V8QSHXRkVWSRVdLx8TSq93Q1QYEKLJbrGl?comment_id=1374416666090090",
+                  "__typename": "Feedback",
+                  "if_viewer_can_comment_anonymously": null,
+                  "actor_provider": {
+                    "__typename": "Feedback",
+                    "current_actor": {
+                      "__typename": "User",
+                      "id": "100016719512529",
+                      "__isActor": "User",
+                      "name": "Trần Hoàng Đình Nam",
+                      "profile_picture_depth_0": {
+                        "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/453191027_1622576191643016_8640886266837996352_n.jpg?stp=cp0_dst-jpg_s32x32_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFsvH0CjAUiW2hccRTdNPfbZpejNbIA33tml6M1sgDfezuheM_enIXWsjlHKInbOdHg8UUfOn-ovEJWmEiypd9e&_nc_ohc=MG3NfPO3n5sQ7kNvwEblxm4&_nc_oc=Adlv7xXzgy-WIxchGKs728IrUNXzUG3iRo5OCEUJtCjyVnJuUdFW-HhmPpj5QDD7FWM&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_Afh2vyc4iO55Pkx3lYZEESy3BWqoxDpcIO5g_Gw08jLZrw&oe=690E1C0D"
+                      },
+                      "profile_picture_depth_1": {
+                        "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/453191027_1622576191643016_8640886266837996352_n.jpg?stp=cp0_dst-jpg_s24x24_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFsvH0CjAUiW2hccRTdNPfbZpejNbIA33tml6M1sgDfezuheM_enIXWsjlHKInbOdHg8UUfOn-ovEJWmEiypd9e&_nc_ohc=MG3NfPO3n5sQ7kNvwEblxm4&_nc_oc=Adlv7xXzgy-WIxchGKs728IrUNXzUG3iRo5OCEUJtCjyVnJuUdFW-HhmPpj5QDD7FWM&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_AfgL8kXx3dkE1HLhKiYlq6_gU6Pw0ZdprlRug0kOylwlHQ&oe=690E1C0D"
+                      },
+                      "gender": "MALE"
+                    },
+                    "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw"
+                  },
+                  "plugins": [
+                    {
+                      "__typename": "CommentComposerMentionsPlugin",
+                      "context_id": null,
+                      "post_id": "1374389939426096",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerMentionsPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerMentionsPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerAvatarPlugin",
+                      "has_avatar": false,
+                      "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                      "avatar_style_version": null,
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerAvatarPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerAvatarPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerHashtagPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerHashtagPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerHashtagPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerEmojiPlugin",
+                      "emoji_size": 16,
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerEmojiPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerEmojiPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerGIFPlugin",
+                      "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerGIFPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerGIFPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CometComposerCometizedStickersPlugin",
+                      "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                      "owning_profile_id": "100006292059283",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerStickersPlugin.next"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerEmoticonPlugin",
+                      "emoji_size": 16,
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerEmoticonPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerPrefillMentionPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerPrefillMentionPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerAssociateReplyWithParentPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerAssociateReplyWithParentPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerSetReplyClickedPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerSetReplyClickedPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerStateSnapshotPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerStateSnapshotPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerLiveTypingBroadcastPlugin",
+                      "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                      "viewer_actor": {
+                        "__typename": "User",
+                        "id": "100016719512529"
+                      },
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerLiveTypingBroadcastPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerCommentCharacterLimitPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerCommentCharacterLimitPlugin"
+                      }
+                    },
+                    {
+                      "__typename": "CommentComposerWriteToComposerPlugin",
+                      "__module_operation_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql"
+                      },
+                      "__module_component_useCometUFIComposerPlugins_feedback": {
+                        "__dr": "cometUFIComposerWriteToComposerPlugin"
+                      }
+                    }
+                  ],
+                  "comment_composer_placeholder": "Trả lời Chánh Tín",
+                  "constituent_badge_banner_renderer": null,
+                  "associated_group": null,
+                  "have_comments_been_disabled": false,
+                  "are_live_video_comments_disabled": false,
+                  "is_viewer_muted": false,
+                  "comment_rendering_instance": null,
+                  "comments_disabled_notice_renderer": {
+                    "__typename": "GeneralCommentDisableNotice",
+                    "notice_message": {
+                      "delight_ranges": [],
+                      "image_ranges": [],
+                      "inline_style_ranges": [],
+                      "aggregated_ranges": [],
+                      "ranges": [],
+                      "color_ranges": [],
+                      "text": "Bình luận đã bị tắt cho bài viết này."
+                    },
+                    "__module_operation_CometUFICommentDisabledNotice_feedback": {
+                      "__dr": "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql"
+                    },
+                    "__module_component_CometUFICommentDisabledNotice_feedback": {
+                      "__dr": "CometGenericCommentDisableNotice.react"
+                    }
+                  },
+                  "replies_connection": {
+                    "should_auto_scroll": null,
+                    "edges": [],
+                    "page_info": {
+                      "end_cursor": null,
+                      "has_next_page": false,
+                      "has_previous_page": false,
+                      "start_cursor": null
+                    }
+                  },
+                  "parent_object_ent": {
+                    "__typename": "Comment",
+                    "feedback": {
+                      "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw"
+                    },
+                    "inline_replies_expander_renderer": null,
+                    "id": "Y29tbWVudDoxMzc0Mzg5OTM5NDI2MDk2XzEzNzQ0MTY2NjYwOTAwOTA="
+                  },
+                  "viewer_feedback_reaction_info": null,
+                  "top_reactions": {
+                    "edges": []
+                  },
+                  "reactors": {
+                    "count_reduced": "0"
+                  }
+                },
+                "legacy_fbid": "1374416666090090",
+                "depth": 0,
+                "body": {
+                  "text": "Vn hôm nay lên tiếng chống TQ tập trận tại Hoàng sa, vn  là một “lực sĩ “ người hùng chống TQ, ko còn là tàu lạ, tàu nước ngoài, sợ TQ nghiến răng, trợn mắt ",
+                  "ranges": []
+                },
+                "attachments": [],
+                "is_markdown_enabled": false,
+                "community_comment_signal_renderer": null,
+                "comment_menu_tooltip": "Ẩn hoặc báo cáo bình luận này",
+                "should_show_comment_menu": true,
+                "author": {
+                  "__typename": "User",
+                  "id": "100006292059283",
+                  "name": "Chánh Tín",
+                  "__isActor": "User",
+                  "profile_picture_depth_0": {
+                    "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/542096787_4223830234503337_3062147111562594895_n.jpg?stp=cp0_dst-jpg_s32x32_tt6&_nc_cat=106&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeEhaUVb7ktos1J6tMDvBpzLpAGWgApdiAakAZaACl2IBgRwIvDarU79nxGvsj7y7M6KMwGF-vUX8igwdYLrS7HF&_nc_ohc=eH9lDcYhjMMQ7kNvwGB3UQm&_nc_oc=AdmCRk54loltUictcVesxkGFeLVoVg7vfmlQAaE8DXAAPEQwLeiGyxjAQIO9dEpqtfY&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_AfjzwMrYq17in8HO5D2IHsiEmFIjMQir64w2WC0JJ72WJg&oe=690E0D56"
+                  },
+                  "profile_picture_depth_1": {
+                    "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/542096787_4223830234503337_3062147111562594895_n.jpg?stp=cp0_dst-jpg_s24x24_tt6&_nc_cat=106&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeEhaUVb7ktos1J6tMDvBpzLpAGWgApdiAakAZaACl2IBgRwIvDarU79nxGvsj7y7M6KMwGF-vUX8igwdYLrS7HF&_nc_ohc=eH9lDcYhjMMQ7kNvwGB3UQm&_nc_oc=AdmCRk54loltUictcVesxkGFeLVoVg7vfmlQAaE8DXAAPEQwLeiGyxjAQIO9dEpqtfY&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_Afj2jzJDujoGx_BvbnKuEg1cGmaHIFARxCEF0piHf0170A&oe=690E0D56"
+                  },
+                  "gender": "MALE",
+                  "__isEntity": "User",
+                  "url": "https://www.facebook.com/waters.le",
+                  "work_info": null,
+                  "is_verified": false,
+                  "short_name": "Chánh",
+                  "subscribe_status": "CAN_SUBSCRIBE"
+                },
+                "is_author_weak_reference": false,
+                "comment_action_links": [
+                  {
+                    "__typename": "XFBCommentTimeStampActionLink",
+                    "comment": {
+                      "id": "Y29tbWVudDoxMzc0Mzg5OTM5NDI2MDk2XzEzNzQ0MTY2NjYwOTAwOTA=",
+                      "created_time": 1593776774,
+                      "url": "https://www.facebook.com/thoibao.de/posts/pfbid02GRS7LR241mWQGckEv7Xb9sShqWkGf21V8QSHXRkVWSRVdLx8TSq93Q1QYEKLJbrGl?comment_id=1374416666090090"
+                    },
+                    "__module_operation_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentTimeStampActionLink_commentActionLink$normalization.graphql"
+                    },
+                    "__module_component_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentTimeStampActionLink.react"
+                    }
+                  },
+                  {
+                    "__typename": "XFBCommentReactionActionLink",
+                    "comment": {
+                      "id": "Y29tbWVudDoxMzc0Mzg5OTM5NDI2MDk2XzEzNzQ0MTY2NjYwOTAwOTA=",
+                      "is_live_video_comment": false,
+                      "feedback": {
+                        "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw",
+                        "viewer_feedback_reaction_info": null,
+                        "viewer_actor": {
+                          "__typename": "User",
+                          "id": "100016719512529"
+                        },
+                        "supported_reaction_infos": [
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An_NYk94x95Kypus5FJQ4k1oKEtko7-rUveEhwXytks318UoxoopBczHucoGDTjX4YcuAmIDkUw9SWBKhz7XYoAsQO_zxmWdkseO4YNdrvYmnIdmeAk.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeHA1gEUIpeixr48Ho4g9EfSm3XPy8HxGZCbdc_LwfEZkCZkc55ayF0QrVLIx8uRMh6sdMaBxWfW2bCVdfiveD-C&_nc_oc=AdmySH2vVNo32DOdtvdE2JnLfmIjNkuRH24mllFMPdExp5gcx_oCTNCsB5UP-wcv2-Q&ccb=10-5&oh=00_AfjrF9Zl6_2V7nIL128fJUVJEL7tX0ViufYgVFLRP14aQg&oe=692FBA78&_nc_sid=7da55a"
+                            },
+                            "id": "1635855486666999"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An9Tph7xL5aYi3BTTpVl2ow-l1vEv0-qYrBxereq6t6fWgcNnxeyJLsd3DuGnbCLdLFmcvvxn5ivo85wlrIv-EZhT1EucYZ-qoMW0ahYWHGpBBoqSjw.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeF8TXXoar_54GSWp-a99zMxmHliwuU3ORaYeWLC5Tc5FqPVfD2KYqVvt5AJyXqfk-wF9qbzmDCZvlkVwk0amYwq&_nc_oc=AdlKP1XjVZxQTmMJ2jkBZnnhgcZ2h8UKtkjEoTyF92BmAlA8YRBSMUOLwAWR2x25FQQ&ccb=10-5&oh=00_AfgV7CEReUyYV_kPSIe50EmevJYvb5-8OGRuB1_cIWEbcg&oe=692F97C1&_nc_sid=7da55a"
+                            },
+                            "id": "1678524932434102"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An-iEpi04A6D-3XVq3wsUCtKdkB4w6IdurXeouCv4FsHYljtXw-fLrmbfC8B8zH5fPrckxLdEzR7V7dfidlNcrNoGsJWxiPDnzyNK-npl_KrJieMlg.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeEjhVviu5a27RCWq5yau6qcbIM4paB40i9sgziloHjSL73CsLnABvp7hzjm9mvnBcryGO5MZqCpTKXzgnp0XG10&_nc_oc=Admw2edJmTbWwNdWXWdwt7v-MweBtO4eeZCTxn9_HDJVn1mQgwQPyS8o5yjk4MBc3Vc&ccb=10-5&oh=00_AfgISd_iuYOkd-tgKyg5DGh11SgdLncDK7EjY53-NaSK1Q&oe=692FBFEE&_nc_sid=7da55a"
+                            },
+                            "id": "613557422527858"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An9yyyXsW_c8BzV1_m0x9WqIPc7IKsshuStlldoUJeshdwMKRkmQmdPEGGwMopV9sH85YDKihkJ8DjNhx1wb2IaUuEOGzE_ji5F9MEXs_50bbA-IXQ.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeGJNb9i6lbVHgXXcq5Fjq9Hxw-UX61NzU_HD5RfrU3NTwETvcpsn3RS1lXcsc5ejP9knvHyKgw2jYGqQ9NXhoZu&_nc_oc=AdmeoqdPwTUEpiOA3sCDH_o81KoLjz59m-JWYdFJqgAvsQ5LVWbm-oitras2yU4Gats&ccb=10-5&oh=00_AfjP82i3Bjc6sGkGDeuptObehCN6suIWG34mU3gr7fAVjw&oe=692F9EE5&_nc_sid=7da55a"
+                            },
+                            "id": "115940658764963"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An9Ob_EAguyCtqplSNOuikWQ6JjlxIh8vYoEgMXvR0CwneLvNdYwV-1NZgwJfR4aZ4QXhIpQUZxunwGdGubGw20jp-9DikfLbRVh-i4tobncZg9LGpE.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeHNfAjG3z5ot4wnsLKJKzMCql7T_TSGB4OqXtP9NIYHg8Sit5Sr4N6mrH_VyY9v2O1h9TuPJUEHf1wmtGRr3qMr&_nc_oc=AdmkaeejwiskN0dYNfcLUnjMI5Qt5oGR59dztNN9yohHqWfh3dLFx0iswOOtcVFfG40&ccb=10-5&oh=00_Afgp7dXQTQs9cmTvdlVZHIr4jLBpRbelPTIwt9OYdFpITA&oe=692FC3F1&_nc_sid=7da55a"
+                            },
+                            "id": "478547315650144"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An9UFu6eXdDopP-SnPAhX-9SngOH_VeoYgHIGK6re6qbARX_PMcNl8Z14QPPFnVzbcfOQwxJxX5q-H5Fy3602EbOrVHhr1m4VSMXypn3fj2NSJongRg.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeGUbPPy7QKhLyu3xCWvf8vG5ClFfBhAubbkKUV8GEC5tk_5sjNbemqh8CTg_s--fzJwxioflNPew_TUgYTqor5K&_nc_oc=Adk7LLk0ddyBbHnb0UR1cC7N76Jg_P84U5-G6NOuldQPCXU0U3gs7DSFYSSivV2dElQ&ccb=10-5&oh=00_AfgiTREsROdl17hOJ_1USwfnOUpdlUmsls3gvFsUpfZA1Q&oe=692FB208&_nc_sid=7da55a"
+                            },
+                            "id": "908563459236466"
+                          },
+                          {
+                            "animation": {
+                              "uri_keyframes2": "https://scontent-lax3-2.xx.fbcdn.net/m1/v/t6/An919EwtdC17ceBi2men2TIR0UhNUwitUvpE61_Jbs44ggFt3mvLWkKiHP_CSmw72ohKdyEscSIBof6y1FeS57I3kGfh5tg96jndT5mnnEuJlpXuvuUj.kf?_nc_gid=x0njAEblocG3xSa25qn6jg&_nc_eui2=AeEXopHwIXvc-S5Op5Et_0QF8-xfGYpfKBPz7F8Zil8oE04bFDa3_SDk748dEIrMNHMwLsO54M7qrhPSA1Kb_pgd&_nc_oc=AdnD4l7TY4xmQU16Wwz6kZw-4Jh_ZFxgGwZlbaAqPo3dZFEEyZBGBCbC6d864MKDChs&ccb=10-5&oh=00_Afj4JJ5kpR2hsopgx3-DL5iS9GAAqoXkRtLcRf1BAQmYvQ&oe=692FAFE4&_nc_sid=7da55a"
+                            },
+                            "id": "444813342392137"
+                          }
+                        ],
+                        "comet_ufi_reaction_icon_renderer": {
+                          "__typename": "XFBCometUFIAnimatedReactionIconRenderer",
+                          "__module_operation_CometUFIReactionStrategy_feedback": {
+                            "__dr": "CometAnimatedReactionIconRenderer_renderer$normalization.graphql"
+                          },
+                          "__module_component_CometUFIReactionStrategy_feedback": {
+                            "__dr": "CometAnimatedReactionIconRenderer.react"
+                          }
+                        },
+                        "associated_video": null,
+                        "top_reactions": {
+                          "edges": []
+                        },
+                        "unified_reactors": {
+                          "count": 0
+                        },
+                        "reactors": {
+                          "count": 0,
+                          "is_empty": true
+                        },
+                        "url": "https://www.facebook.com/thoibao.de/posts/pfbid02GRS7LR241mWQGckEv7Xb9sShqWkGf21V8QSHXRkVWSRVdLx8TSq93Q1QYEKLJbrGl?comment_id=1374416666090090",
+                        "__typename": "Feedback",
+                        "if_viewer_can_comment_anonymously": null
+                      }
+                    },
+                    "__module_operation_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentReactionActionLink_commentActionLink$normalization.graphql"
+                    },
+                    "__module_component_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentReactionActionLink.react"
+                    }
+                  },
+                  {
+                    "__typename": "XFBCommentReplyActionLink",
+                    "comment": {
+                      "id": "Y29tbWVudDoxMzc0Mzg5OTM5NDI2MDk2XzEzNzQ0MTY2NjYwOTAwOTA=",
+                      "comment_parent": null,
+                      "is_author_weak_reference": false,
+                      "legacy_fbid": "1374416666090090",
+                      "url": "https://www.facebook.com/thoibao.de/posts/pfbid02GRS7LR241mWQGckEv7Xb9sShqWkGf21V8QSHXRkVWSRVdLx8TSq93Q1QYEKLJbrGl?comment_id=1374416666090090",
+                      "author": {
+                        "__typename": "User",
+                        "id": "100006292059283",
+                        "name": "Chánh Tín",
+                        "url": "https://www.facebook.com/waters.le"
+                      },
+                      "feedback": {
+                        "comment_composer_placeholder": "Trả lời Chánh Tín",
+                        "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Nl8xMzc0NDE2NjY2MDkwMDkw"
+                      },
+                      "is_live_video_comment": false
+                    },
+                    "__module_operation_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentReplyActionLink_commentActionLink$normalization.graphql"
+                    },
+                    "__module_component_CometUFICommentActionLinks_comment": {
+                      "__dr": "CometUFICommentReplyActionLink.react"
+                    }
+                  }
+                ],
+                "preferred_body": {
+                  "__typename": "TextWithEntities",
+                  "delight_ranges": [],
+                  "image_ranges": [],
+                  "inline_style_ranges": [],
+                  "aggregated_ranges": [],
+                  "ranges": [],
+                  "color_ranges": [],
+                  "text": "Vn hôm nay lên tiếng chống TQ tập trận tại Hoàng sa, vn  là một “lực sĩ “ người hùng chống TQ, ko còn là tàu lạ, tàu nước ngoài, sợ TQ nghiến răng, trợn mắt ",
+                  "translation_type": "ORIGINAL"
+                },
+                "body_renderer": {
+                  "__typename": "TextWithEntities",
+                  "delight_ranges": [],
+                  "image_ranges": [],
+                  "inline_style_ranges": [],
+                  "aggregated_ranges": [],
+                  "ranges": [],
+                  "color_ranges": [],
+                  "text": "Vn hôm nay lên tiếng chống TQ tập trận tại Hoàng sa, vn  là một “lực sĩ “ người hùng chống TQ, ko còn là tàu lạ, tàu nước ngoài, sợ TQ nghiến răng, trợn mắt ",
+                  "__module_operation_CometUFICommentTextBodyRenderer_comment": {
+                    "__dr": "CometUFICommentBodyTextWithEntities_textWithEntities$normalization.graphql"
+                  },
+                  "__module_component_CometUFICommentTextBodyRenderer_comment": {
+                    "__dr": "CometUFICommentBodyTextWithEntities.react"
+                  }
+                },
+                "comment_parent": null,
+                "is_declined_by_group_admin_assistant": false,
+                "is_gaming_video_comment": false,
+                "timestamp_in_video": null,
+                "translatability_for_viewer": {
+                  "source_dialect": "vi_VN"
+                },
+                "written_while_video_was_live": false,
+                "group_comment_info": null,
+                "bizweb_comment_info": null,
+                "has_constituent_badge": false,
+                "can_viewer_see_subsribe_button": false,
+                "can_see_constituent_badge_upsell": false,
+                "legacy_token": "1374389939426096_1374416666090090",
+                "parent_feedback": {
+                  "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+                  "share_fbid": "1374389939426096",
+                  "political_figure_data": null,
+                  "owning_profile": {
+                    "__typename": "User",
+                    "name": "thoibao.de",
+                    "id": "100064567130626"
+                  }
+                },
+                "question_and_answer_type": null,
+                "author_user_signals_renderer": null,
+                "author_badge_renderers": [],
+                "identity_badges_web": [],
+                "can_show_multiple_identity_badges": false,
+                "discoverable_identity_badges_web": [
+                  {
+                    "grey_badge_asset": "/images/assets_DO_NOT_HARDCODE/facebook_icons/star-tip_filled_24_fds-spectrum-blue-gray.png",
+                    "dark_mode_badge_asset": "/images/assets_DO_NOT_HARDCODE/facebook_user_signals_icons/gaming-star-send-one_24_fds-yellow-60.png",
+                    "light_mode_badge_asset": "/images/assets_DO_NOT_HARDCODE/facebook_user_signals_icons/gaming-star-send-one_24_fds-yellow-50.png",
+                    "is_earned": false,
+                    "information_title": "Người tặng sao",
+                    "information_description": "Bạn sẽ nhận được huy hiệu này bằng cách tặng Sao. Bạn càng tặng nhiều Sao thì cấp độ càng cao.",
+                    "is_enabled": true,
+                    "is_manageable": true,
+                    "serialized": "{\"type\":\"tipper\",\"actor_id\":100006292059283,\"target_id\":100064567130626,\"surface\":\"comment\",\"media_id\":1374389939426096,\"comment_id\":1374416666090090}",
+                    "identity_badge_type": "tipper",
+                    "information_button_enabled": false,
+                    "information_button_uri": "",
+                    "information_button_text": "Tặng Sao",
+                    "tier_info": {
+                      "__typename": "TipperBadgeTierInfo",
+                      "tier_name": "Người tặng Sao cấp 0",
+                      "stars_sent_this_week": 0,
+                      "stars_threshold_for_next_tier": 1
+                    }
+                  }
+                ],
+                "user": {
+                  "name": "Chánh Tín",
+                  "profile_picture": {
+                    "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/542096787_4223830234503337_3062147111562594895_n.jpg?stp=cp0_dst-jpg_s50x50_tt6&_nc_cat=106&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeEhaUVb7ktos1J6tMDvBpzLpAGWgApdiAakAZaACl2IBgRwIvDarU79nxGvsj7y7M6KMwGF-vUX8igwdYLrS7HF&_nc_ohc=eH9lDcYhjMMQ7kNvwGB3UQm&_nc_oc=AdmCRk54loltUictcVesxkGFeLVoVg7vfmlQAaE8DXAAPEQwLeiGyxjAQIO9dEpqtfY&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_Afj6PREvx2jVS665wZRBJPqpwqF0Tdcag70Q6A3dnLM1Kw&oe=690E0D56"
+                  },
+                  "id": "100006292059283"
+                },
+                "is_viewer_comment_poster": false,
+                "parent_post_story": {
+                  "attachments": [
+                    {
+                      "media": {
+                        "__typename": "GenericAttachmentMedia",
+                        "id": "1374389942759429"
+                      }
+                    }
+                  ],
+                  "id": "UzpfSTEwMDA2NDU2NzEzMDYyNjoxMzc0Mzg5OTM5NDI2MDk2OjEzNzQzODk5Mzk0MjYwOTY="
+                },
+                "gen_ai_content_transparency_label_renderer": null,
+                "work_ama_answer_status": null,
+                "work_knowledge_inline_annotation_comment_badge_renderer": null,
+                "business_comment_attributes": [],
+                "is_live_video_comment": false,
+                "created_time": 1593776774,
+                "translation_available_for_viewer": false,
+                "inline_survey_config": null,
+                "spam_display_mode": "none",
+                "attached_story": null,
+                "comment_direct_parent": null,
+                "if_viewer_can_see_member_page_tooltip": null,
+                "is_disabled": false,
+                "work_answered_event_comment_renderer": null,
+                "comment_upper_badge_renderer": null,
+                "elevated_comment_data": null,
+                "__typename": "Comment"
+              },
+              "cursor": null
+            }
+          ],
+          "page_info": {
+            "end_cursor": "MToxNzYyMTQ3MDgyOgF1s5J5o5zksYtg5XS5Du_efmp-i7xe1bF9tpvFgGh6LYrJ0HILxJDOdwV1VkdZK3WA4NOwzSzFXTk2CbWhpynLLoVtN3lNTbveeGtp5ZPbSje15F3yHJcnso-N5BC0gLgqmbluoOQwYIVdBG-UgdQQ1KBMO9SXOMoqympQb5Wq1MzhdR8drYZL7D2TWJgvDjSd1WYvrvS4MzsgKUmcwsU75zPL_0gIQZrJh7PqjCWQIipmKkw6pCb9VTH2FeZJXebMcv-JUEAMrGP2A6KR",
+            "has_next_page": false,
+            "has_previous_page": false,
+            "start_cursor": "MToxNzYyMTQ3MDgyOgF1kcrulkHHYFGyc6T89WeWsDpdK0OJBI0BoWlfdNkNwj0AZUtWr3xk6NJZcmqy1nlvoKrxhDkJKW0DKDUWakaxZslSIn2wXXKizygMBCrpvmBF38EobYgaMOp1w4P5l13KGeWzPz7wjDmNUGi07Fzok7EJSqoBDpxYwkLRJpWg11z6SmkCff8Y2mekApYfIJDHiQ3X1rwWEwi9lwGrFC-lLMoYu5wOmM0URZXxY4mtVAXa7f1qN9DSHNLBoPVMmP3LQg5io5vsS2amL-q-"
+          }
+        }
+      },
+      "typing_indicator_renderer": null,
+      "can_viewer_comment": true,
+      "viewer_actor": {
+        "__typename": "User",
+        "id": "100016719512529"
+      },
+      "url": "https://www.facebook.com/thoibao.de/posts/pfbid02GRS7LR241mWQGckEv7Xb9sShqWkGf21V8QSHXRkVWSRVdLx8TSq93Q1QYEKLJbrGl",
+      "if_viewer_can_comment_anonymously": null,
+      "actor_provider": {
+        "__typename": "Feedback",
+        "current_actor": {
+          "__typename": "User",
+          "id": "100016719512529",
+          "__isActor": "User",
+          "name": "Trần Hoàng Đình Nam",
+          "profile_picture_depth_0": {
+            "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/453191027_1622576191643016_8640886266837996352_n.jpg?stp=cp0_dst-jpg_s32x32_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFsvH0CjAUiW2hccRTdNPfbZpejNbIA33tml6M1sgDfezuheM_enIXWsjlHKInbOdHg8UUfOn-ovEJWmEiypd9e&_nc_ohc=MG3NfPO3n5sQ7kNvwEblxm4&_nc_oc=Adlv7xXzgy-WIxchGKs728IrUNXzUG3iRo5OCEUJtCjyVnJuUdFW-HhmPpj5QDD7FWM&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_Afh2vyc4iO55Pkx3lYZEESy3BWqoxDpcIO5g_Gw08jLZrw&oe=690E1C0D"
+          },
+          "profile_picture_depth_1": {
+            "uri": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-1/453191027_1622576191643016_8640886266837996352_n.jpg?stp=cp0_dst-jpg_s24x24_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFsvH0CjAUiW2hccRTdNPfbZpejNbIA33tml6M1sgDfezuheM_enIXWsjlHKInbOdHg8UUfOn-ovEJWmEiypd9e&_nc_ohc=MG3NfPO3n5sQ7kNvwEblxm4&_nc_oc=Adlv7xXzgy-WIxchGKs728IrUNXzUG3iRo5OCEUJtCjyVnJuUdFW-HhmPpj5QDD7FWM&_nc_zt=24&_nc_ht=scontent-lax3-2.xx&_nc_gid=x0njAEblocG3xSa25qn6jg&oh=00_AfgL8kXx3dkE1HLhKiYlq6_gU6Pw0ZdprlRug0kOylwlHQ&oe=690E1C0D"
+          },
+          "gender": "MALE"
+        },
+        "id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng=="
+      },
+      "plugins": [
+        {
+          "__typename": "CommentComposerMentionsPlugin",
+          "context_id": null,
+          "post_id": "1374389939426096",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerMentionsPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerMentionsPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerAvatarPlugin",
+          "has_avatar": false,
+          "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+          "avatar_style_version": null,
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerAvatarPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerAvatarPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerHashtagPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerHashtagPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerHashtagPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerEmojiPlugin",
+          "emoji_size": 16,
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerEmojiPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerEmojiPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerGIFPlugin",
+          "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerGIFPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerGIFPlugin"
+          }
+        },
+        {
+          "__typename": "CometComposerCometizedStickersPlugin",
+          "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+          "owning_profile_id": "100064567130626",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerStickersPlugin.next"
+          }
+        },
+        {
+          "__typename": "CommentComposerEmoticonPlugin",
+          "emoji_size": 16,
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerEmoticonPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerPrefillMentionPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerPrefillMentionPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerAssociateReplyWithParentPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerAssociateReplyWithParentPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerSetReplyClickedPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerSetReplyClickedPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerStateSnapshotPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerStateSnapshotPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerLiveTypingBroadcastPlugin",
+          "feedback_id": "ZmVlZGJhY2s6MTM3NDM4OTkzOTQyNjA5Ng==",
+          "viewer_actor": {
+            "__typename": "User",
+            "id": "100016719512529"
+          },
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerLiveTypingBroadcastPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerCommentCharacterLimitPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerCommentCharacterLimitPlugin"
+          }
+        },
+        {
+          "__typename": "CommentComposerWriteToComposerPlugin",
+          "__module_operation_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql"
+          },
+          "__module_component_useCometUFIComposerPlugins_feedback": {
+            "__dr": "cometUFIComposerWriteToComposerPlugin"
+          }
+        }
+      ],
+      "comment_composer_placeholder": "Bình luận dưới tên Trần Hoàng Đình Nam",
+      "constituent_badge_banner_renderer": null,
+      "associated_group": null,
+      "have_comments_been_disabled": false,
+      "are_live_video_comments_disabled": false,
+      "is_viewer_muted": false,
+      "comment_rendering_instance": {
+        "comments": {
+          "total_count": 1
+        }
+      },
+      "comments_disabled_notice_renderer": {
+        "__typename": "GeneralCommentDisableNotice",
+        "notice_message": {
+          "delight_ranges": [],
+          "image_ranges": [],
+          "inline_style_ranges": [],
+          "aggregated_ranges": [],
+          "ranges": [],
+          "color_ranges": [],
+          "text": "Bình luận đã bị tắt cho bài viết này."
+        },
+        "__module_operation_CometUFICommentDisabledNotice_feedback": {
+          "__dr": "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql"
+        },
+        "__module_component_CometUFICommentDisabledNotice_feedback": {
+          "__dr": "CometGenericCommentDisableNotice.react"
+        }
+      }
+    }
+  },
+  "extensions": {
+    "server_metadata": {
+      "request_start_time_ms": 1762147082328,
+      "time_at_flush_ms": 1762147082470
+    },
+    "is_final": true,
+    "sr_payload": {
+      "ddd": {
+        "hsrp": {
+          "hblp": {
+            "consistency": {
+              "rev": 1029292362
+            },
+            "rsrcMap": {
+              "csr:_y_0_Ov": {
+                "type": "csr",
+                "src": ":1,20,62,8,7,3,4,9,12,10,13,17,37,2,35,5,16,273,55,11,23,36,24,38,162,14,30",
+                "c": 1
+              }
+            },
+            "indexUpgrades": {}
+          }
+        },
+        "jsmods": {
+          "require": [
+            [
+              "CometGenericCommentDisableNotice.react"
+            ],
+            [
+              "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerMentionsPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerMentionsPlugin"
+            ],
+            [
+              "cometUFIComposerAvatarPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerAvatarPlugin"
+            ],
+            [
+              "cometUFIComposerHashtagPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerHashtagPlugin"
+            ],
+            [
+              "cometUFIComposerEmojiPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerEmojiPlugin"
+            ],
+            [
+              "cometUFIComposerGIFPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerGIFPlugin"
+            ],
+            [
+              "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerStickersPlugin.next"
+            ],
+            [
+              "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerEmoticonPlugin"
+            ],
+            [
+              "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerPrefillMentionPlugin"
+            ],
+            [
+              "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerAssociateReplyWithParentPlugin"
+            ],
+            [
+              "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerSetReplyClickedPlugin"
+            ],
+            [
+              "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerStateSnapshotPlugin"
+            ],
+            [
+              "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerLiveTypingBroadcastPlugin"
+            ],
+            [
+              "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerCommentCharacterLimitPlugin"
+            ],
+            [
+              "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql"
+            ],
+            [
+              "cometUFIComposerWriteToComposerPlugin"
+            ],
+            [
+              "CometUFICommentBodyTextWithEntities_textWithEntities$normalization.graphql"
+            ],
+            [
+              "CometUFICommentBodyTextWithEntities.react"
+            ],
+            [
+              "CometUFICommentTimeStampActionLink_commentActionLink$normalization.graphql"
+            ],
+            [
+              "CometUFICommentTimeStampActionLink.react"
+            ],
+            [
+              "CometAnimatedReactionIconRenderer_renderer$normalization.graphql"
+            ],
+            [
+              "CometAnimatedReactionIconRenderer.react"
+            ],
+            [
+              "CometUFICommentReactionActionLink_commentActionLink$normalization.graphql"
+            ],
+            [
+              "CometUFICommentReactionActionLink.react"
+            ],
+            [
+              "CometUFICommentReplyActionLink_commentActionLink$normalization.graphql"
+            ],
+            [
+              "CometUFICommentReplyActionLink.react"
+            ],
+            [
+              "emptyFunction",
+              "thatReturns",
+              [
+                "RequireDeferredReference"
+              ],
+              [
+                [
+                  {
+                    "__dr": "CometGenericCommentDisableNotice.react"
+                  },
+                  {
+                    "__dr": "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerMentionsPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerMentionsPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerAvatarPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerAvatarPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerHashtagPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerHashtagPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerEmojiPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerEmojiPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerGIFPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerGIFPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerStickersPlugin.next"
+                  },
+                  {
+                    "__dr": "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerEmoticonPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerPrefillMentionPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerAssociateReplyWithParentPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerSetReplyClickedPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerStateSnapshotPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerLiveTypingBroadcastPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerCommentCharacterLimitPlugin"
+                  },
+                  {
+                    "__dr": "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql"
+                  },
+                  {
+                    "__dr": "cometUFIComposerWriteToComposerPlugin"
+                  },
+                  {
+                    "__dr": "CometUFICommentBodyTextWithEntities_textWithEntities$normalization.graphql"
+                  },
+                  {
+                    "__dr": "CometUFICommentBodyTextWithEntities.react"
+                  },
+                  {
+                    "__dr": "CometUFICommentTimeStampActionLink_commentActionLink$normalization.graphql"
+                  },
+                  {
+                    "__dr": "CometUFICommentTimeStampActionLink.react"
+                  },
+                  {
+                    "__dr": "CometAnimatedReactionIconRenderer_renderer$normalization.graphql"
+                  },
+                  {
+                    "__dr": "CometAnimatedReactionIconRenderer.react"
+                  },
+                  {
+                    "__dr": "CometUFICommentReactionActionLink_commentActionLink$normalization.graphql"
+                  },
+                  {
+                    "__dr": "CometUFICommentReactionActionLink.react"
+                  },
+                  {
+                    "__dr": "CometUFICommentReplyActionLink_commentActionLink$normalization.graphql"
+                  },
+                  {
+                    "__dr": "CometUFICommentReplyActionLink.react"
+                  }
+                ]
+              ]
+            ],
+            [
+              "RequireDeferredReference",
+              "unblock",
+              [],
+              [
+                [
+                  "CometGenericCommentDisableNotice.react",
+                  "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql",
+                  "cometUFIComposerMentionsPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerMentionsPlugin",
+                  "cometUFIComposerAvatarPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerAvatarPlugin",
+                  "cometUFIComposerHashtagPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerHashtagPlugin",
+                  "cometUFIComposerEmojiPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerEmojiPlugin",
+                  "cometUFIComposerGIFPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerGIFPlugin",
+                  "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql",
+                  "cometUFIComposerStickersPlugin.next",
+                  "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerEmoticonPlugin",
+                  "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerPrefillMentionPlugin",
+                  "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerAssociateReplyWithParentPlugin",
+                  "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerSetReplyClickedPlugin",
+                  "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerStateSnapshotPlugin",
+                  "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerLiveTypingBroadcastPlugin",
+                  "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerCommentCharacterLimitPlugin",
+                  "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerWriteToComposerPlugin",
+                  "CometUFICommentBodyTextWithEntities_textWithEntities$normalization.graphql",
+                  "CometUFICommentBodyTextWithEntities.react",
+                  "CometUFICommentTimeStampActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentTimeStampActionLink.react",
+                  "CometAnimatedReactionIconRenderer_renderer$normalization.graphql",
+                  "CometAnimatedReactionIconRenderer.react",
+                  "CometUFICommentReactionActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentReactionActionLink.react",
+                  "CometUFICommentReplyActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentReplyActionLink.react"
+                ],
+                "sd"
+              ]
+            ],
+            [
+              "RequireDeferredReference",
+              "unblock",
+              [],
+              [
+                [
+                  "CometGenericCommentDisableNotice.react",
+                  "CometGenericCommentDisableNotice_commentDisableNotice$normalization.graphql",
+                  "cometUFIComposerMentionsPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerMentionsPlugin",
+                  "cometUFIComposerAvatarPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerAvatarPlugin",
+                  "cometUFIComposerHashtagPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerHashtagPlugin",
+                  "cometUFIComposerEmojiPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerEmojiPlugin",
+                  "cometUFIComposerGIFPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerGIFPlugin",
+                  "cometUFIComposerStickersPlugin_next_plugin$normalization.graphql",
+                  "cometUFIComposerStickersPlugin.next",
+                  "cometUFIComposerEmoticonPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerEmoticonPlugin",
+                  "cometUFIComposerPrefillMentionPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerPrefillMentionPlugin",
+                  "cometUFIComposerAssociateReplyWithParentPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerAssociateReplyWithParentPlugin",
+                  "cometUFIComposerSetReplyClickedPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerSetReplyClickedPlugin",
+                  "cometUFIComposerStateSnapshotPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerStateSnapshotPlugin",
+                  "cometUFIComposerLiveTypingBroadcastPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerLiveTypingBroadcastPlugin",
+                  "cometUFIComposerCommentCharacterLimitPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerCommentCharacterLimitPlugin",
+                  "cometUFIComposerWriteToComposerPlugin_plugin$normalization.graphql",
+                  "cometUFIComposerWriteToComposerPlugin",
+                  "CometUFICommentBodyTextWithEntities_textWithEntities$normalization.graphql",
+                  "CometUFICommentBodyTextWithEntities.react",
+                  "CometUFICommentTimeStampActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentTimeStampActionLink.react",
+                  "CometAnimatedReactionIconRenderer_renderer$normalization.graphql",
+                  "CometAnimatedReactionIconRenderer.react",
+                  "CometUFICommentReactionActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentReactionActionLink.react",
+                  "CometUFICommentReplyActionLink_commentActionLink$normalization.graphql",
+                  "CometUFICommentReplyActionLink.react"
+                ],
+                "css"
+              ]
+            ]
+          ]
+        },
+        "allResources": [
+          "csr:_y_0_Ov"
+        ],
+        "tieredResources": {
+          "r": [
+            "csr:_y_0_Ov"
+          ],
+          "rdfds": [],
+          "rds": []
+        }
+      }
+    }
+  }
+}

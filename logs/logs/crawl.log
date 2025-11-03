@@ -1,0 +1,400 @@
+2025-11-03 11:10:27 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:10:27 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:10:28 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:10:29 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:10:32 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:10:32 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:10:40 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:10:40 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:10:51 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 11:10:56 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): [Errno 2] No such file or directory: 'raw_dumps/page1.json'
+2025-11-03 11:10:57 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:10:57 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:10:57 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:11:53 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:11:53 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:11:54 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:11:55 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:11:58 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:11:58 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:12:20 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:12:20 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:12:53 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 11:13:32 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:13:32 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:13:33 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:13:35 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:13:37 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:13:37 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:13:44 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:13:44 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:13:49 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=142.0.7444.59)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21a8e01
+	0x7ff7d225a0be
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:15:39 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:15:39 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:15:40 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:15:41 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:15:44 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:15:44 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:15:51 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:15:51 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:16:00 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=142.0.7444.59); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21bd1c5
+	0x7ff7d21e2a5a
+	0x7ff7d225a306
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:16:01 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:16:01 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:16:01 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:16:01 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/nguoidalatxua/videos/301634951217949/ (attempt 1/1): Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d14b5
+	0x7ff7d221a141
+	0x7ff7d2252882
+	0x7ff7d224d0ef
+	0x7ff7d224c2ea
+	0x7ff7d219acb5
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d219977b
+	0x7ff7d284b848
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:17:09 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:17:09 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:17:10 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:17:11 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:17:13 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:17:13 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:17:21 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:17:21 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:17:27 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 11:17:32 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): Replay GraphQL failed: None
+2025-11-03 11:17:33 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:17:33 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:17:33 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:17:33 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/nguoidalatxua/videos/301634951217949/ (attempt 1/1): Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=142.0.7444.59)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21a8e01
+	0x7ff7d225a0be
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:17:34 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:17:34 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:17:34 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 11:17:34 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl (attempt 1/1): Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=142.0.7444.59)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21a8e01
+	0x7ff7d225a0be
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:19:32 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:19:32 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:19:33 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:19:34 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:19:37 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:19:37 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:19:44 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:19:44 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:20:39 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:20:39 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:20:40 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:20:41 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:20:44 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:20:44 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:20:51 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:20:51 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:21:56 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:21:56 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:21:57 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:21:58 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:22:01 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:22:01 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:22:08 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:22:08 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:22:13 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=142.0.7444.59); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21bd1c5
+	0x7ff7d21e2a5a
+	0x7ff7d225a306
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:22:14 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:22:14 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:22:14 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:22:14 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/nguoidalatxua/videos/301634951217949/ (attempt 1/1): Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d14b5
+	0x7ff7d221a141
+	0x7ff7d2252882
+	0x7ff7d224d0ef
+	0x7ff7d224c2ea
+	0x7ff7d219acb5
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d219977b
+	0x7ff7d284b848
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:24:10 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:24:10 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:24:11 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:24:12 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:24:15 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:24:15 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:24:22 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:24:22 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:48:11 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:48:50 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:49:19 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:49:40 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:49:40 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:49:42 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=142.0.7444.59)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d21a8e01
+	0x7ff7d225a0be
+	0x7ff7d227b222
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 11:52:04 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:55:55 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:55:55 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:55:56 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:55:58 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:56:00 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:56:00 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:56:19 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:56:19 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:56:33 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 11:56:38 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): [Errno 2] No such file or directory: 'raw_dumps/page1.json'
+2025-11-03 11:56:39 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 11:56:39 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 11:56:39 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 11:59:34 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 11:59:34 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 11:59:35 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 11:59:36 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 11:59:39 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 11:59:39 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 11:59:57 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 11:59:57 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 12:00:10 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:00:14 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): [Errno 2] No such file or directory: 'E:\\NCS\\fb-selenium\\database\\comment\\page\\thoibaode\\sheet3\\raw_dump_comments/page1.json'
+2025-11-03 12:00:15 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 12:00:15 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:00:15 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 12:00:26 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:00:31 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/nguoidalatxua/videos/301634951217949/ (attempt 1/1): [Errno 2] No such file or directory: 'E:\\NCS\\fb-selenium\\database\\comment\\page\\thoibaode\\sheet3\\raw_dump_comments/page1.json'
+2025-11-03 12:00:32 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 12:00:32 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:00:32 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 12:00:40 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:00:44 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl (attempt 1/1): [Errno 2] No such file or directory: 'E:\\NCS\\fb-selenium\\database\\comment\\page\\thoibaode\\sheet3\\raw_dump_comments/page1.json'
+2025-11-03 12:00:45 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 12:00:45 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 3 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:00:45 INFO    [crawl_sheet1] === [4/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl
+2025-11-03 12:00:57 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:01:20 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl (attempt 1/1): Message: no such element: Unable to locate element: {"method":"xpath","selector":"(//div[@role='dialog'])[last()]//div[@role='button'][.//span][last()]"}
+  (Session info: chrome=142.0.7444.59); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7d2457a35
+	0x7ff7d2457a90
+	0x7ff7d21d16ad
+	0x7ff7d222a13e
+	0x7ff7d222a44c
+	0x7ff7d227ebe7
+	0x7ff7d227b8fb
+	0x7ff7d221b068
+	0x7ff7d221be93
+	0x7ff7d27129d0
+	0x7ff7d270ce50
+	0x7ff7d272cc45
+	0x7ff7d24730ce
+	0x7ff7d247adbf
+	0x7ff7d2460c14
+	0x7ff7d2460dcf
+	0x7ff7d2446828
+	0x7fffd38ae8d7
+	0x7fffd4f6c53c
+
+2025-11-03 12:01:21 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl
+2025-11-03 12:01:21 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 4 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:01:21 INFO    [crawl_sheet1] === [5/4840] Crawl: https://www.facebook.com/VOATiengViet/videos/747792002661307/
+2025-11-03 12:01:29 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:01:35 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/VOATiengViet/videos/747792002661307/ (attempt 1/1): [Errno 2] No such file or directory: 'E:\\NCS\\fb-selenium\\database\\comment\\page\\thoibaode\\sheet3\\raw_dump_comments/page1.json'
+2025-11-03 12:01:36 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/VOATiengViet/videos/747792002661307/
+2025-11-03 12:01:36 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 5 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:01:36 INFO    [crawl_sheet1] === [6/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl
+2025-11-03 12:01:46 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:01:51 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl (attempt 1/1): [Errno 2] No such file or directory: 'E:\\NCS\\fb-selenium\\database\\comment\\page\\thoibaode\\sheet3\\raw_dump_comments/page1.json'
+2025-11-03 12:01:52 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl
+2025-11-03 12:01:52 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 6 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:01:52 INFO    [crawl_sheet1] === [7/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02qUBHmGB2daKwWV61AANRoM7MPoinnV749WCv3jpxaTnR5qJDxrPrwjAW3X4USkf5l
+2025-11-03 12:16:46 INFO    [crawl_sheet1] [PATCH] Installed replies de-dup (no changes in core files).
+2025-11-03 12:16:46 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 12:16:47 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 12:16:48 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 12:16:55 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 12:16:55 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 12:17:13 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 12:17:13 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 12:17:28 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:17:33 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTQ3MDUzOgF1iWhh...
+2025-11-03 12:17:33 WARNING [crawl_sheet1] [REPLIES] comment Y29tbWVudDox… có 2 replies nhưng KHÔNG thấy expansionToken/feedback_id → skip
+2025-11-03 12:17:33 INFO    [crawl_sheet1] [V2] Page 1: +2/2 comments (cursor=False)
+2025-11-03 12:17:35 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTQ3MDUzOgF1iWhh... next=MToxNzYyMTQ3MDUzOgF1069v...
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02hd5lalmf56tacu9rrh7ykycs3b2btgyqc94qjqg1jwetstryma7inaqgu7kdzljvl?comment_id=1374839952714428 -> skip
+2025-11-03 12:17:35 WARNING [crawl_sheet1] [REPLIES] comment Y29tbWVudDox… có 2 replies nhưng KHÔNG thấy expansionToken/feedback_id → skip
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02hd5lalmf56tacu9rrh7ykycs3b2btgyqc94qjqg1jwetstryma7inaqgu7kdzljvl?comment_id=1374449356086821 -> skip
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [V2] Page 2: +2/2 comments (cursor=True)
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [V2] DONE. Collected 4 comments → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\comments_21a10c01475a14ba.ndjson. Checkpoint at E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\checkpoint_21a10c01475a14ba.json.
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [VERIFY] replies fetched: 0
+2025-11-03 12:17:35 INFO    [crawl_sheet1] [WRITE:NDJSON] +4 rows (replies=0) → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\ndjson_per_post\comments_21a10c01475a14ba.ndjson
+2025-11-03 12:17:35 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:17:35 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 12:17:43 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:17:47 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTQ3MDY3OgF1nz_H...
+2025-11-03 12:17:47 INFO    [crawl_sheet1] [V2] Page 1: +2/2 comments (cursor=False)
+2025-11-03 12:17:48 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTQ3MDY3OgF1nz_H... next=MToxNzYyMTQ3MDY4OgF10ucw...
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/nguoidalatxua/videos/301634951217949/?comment_id=186056896213486 -> skip
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/nguoidalatxua/videos/301634951217949/?comment_id=189055092580333 -> skip
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [V2] Page 2: +2/2 comments (cursor=True)
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [V2] DONE. Collected 4 comments → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\comments_18fee3ed70fae063.ndjson. Checkpoint at E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\tmp_comments_sheet3\checkpoint_18fee3ed70fae063.json.
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [VERIFY] replies fetched: 0
+2025-11-03 12:17:48 INFO    [crawl_sheet1] [WRITE:NDJSON] +4 rows (replies=0) → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\ndjson_per_post\comments_18fee3ed70fae063.ndjson
+2025-11-03 12:17:48 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet3\status_store_sheet3.json
+2025-11-03 12:17:48 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 12:17:57 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 12:18:02 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTQ3MDgxOgF1JyUi...
+2025-11-03 12:18:02 INFO    [crawl_sheet1] [V2] Page 1: +1/1 comments (cursor=False)
+2025-11-03 12:18:02 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTQ3MDgxOgF1JyUi... next=MToxNzYyMTQ3MDgyOgF1s5J5...
+2025-11-03 12:18:02 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02grs7lr241mwqgckev7xb9sshqwkgf21v8qshxrkvwsrvdlx8tsq93q1qyekljbrgl?comment_id=1374416666090090 -> skip
+2025-11-03 12:18:02 INFO    [crawl_sheet1] [V2] Page 2: +1/1 comments (cursor=True)
