@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from collections import deque
 from pathlib import Path
 from extract_comment_utils import extract_full_posts_from_resptext, extract_replies_from_depth1_resp
-from configs import RAW_DUMS, REPLY_DOC_ID
+from configs import REPLY_DOC_ID
 from get_comment_fb_utils import (
                                  _split_top_level_json_objects,
                                  _strip_xssi_globally,
@@ -431,7 +431,7 @@ def crawl_replies_for_parent_expansion(
 
         current_token = next_token
 
-def crawl_comments(driver, out_json="comments.ndjson", checkpoint_path="checkpoint_comments.json", max_pages=None):
+def crawl_comments(driver,raw_dump_path, out_json="comments.ndjson", checkpoint_path="checkpoint_comments.json", max_pages=None):
 
     # 1) ensure one lightweight scroll to produce first request
     baseline = driver.execute_script("return (window.__gqlReqs||[]).length")
@@ -533,7 +533,7 @@ def crawl_comments(driver, out_json="comments.ndjson", checkpoint_path="checkpoi
             logger.warning(f"[WARN] page {pages} parse fail:")
 
         # # lưu JSON sạch để trace (optional)
-        with open(f"{RAW_DUMS}/page{pages}.json", "w", encoding="utf-8") as f:
+        with open(f"{raw_dump_path}/page{pages}.json", "w", encoding="utf-8") as f:
             json.dump(json_resp, f, ensure_ascii=False, indent=2)
 
         # extract
