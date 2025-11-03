@@ -502,3 +502,339 @@ Symbols not available. Dumping unresolved backtrace:
 2025-11-03 15:05:12 INFO    [crawl_sheet1] [SLICE -inf→+inf] p5 got 1 (new 1), total_new=6, next=True, cursor=AQHSem7V...vmqI
 2025-11-03 15:05:15 INFO    [crawl_sheet1] [SLICE -inf→+inf] p6 got 1 (new 1), total_new=7, next=True, cursor=AQHSlNej...I4fC
 2025-11-03 15:05:18 INFO    [crawl_sheet1] [SLICE -inf→+inf] p7 got 2 (new 2), total_new=9, next=True, cursor=AQHStxNZ...d2yl
+2025-11-03 15:13:59 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 15:14:00 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 15:14:01 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 15:14:04 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 15:14:04 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 15:14:37 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSv9nx...Ahtu
+2025-11-03 15:14:40 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 2 (new 2), total_new=3, next=True, cursor=AQHSIsPh...udcM
+2025-11-03 15:14:42 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 1 (new 1), total_new=4, next=True, cursor=AQHSEmsA...5zDG
+2025-11-03 15:14:44 INFO    [crawl_sheet1] [SLICE -inf→+inf] p4 got 1 (new 1), total_new=5, next=True, cursor=AQHSR0Gu...tRe8
+2025-11-03 15:14:50 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 15:14:51 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 15:14:52 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 15:14:55 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 15:14:55 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 15:15:27 INFO    [crawl_sheet1] [RESUME] Dùng lại cursor từ checkpoint: AQHSR0GupnSLNPePRvIELMuVo-QaZdpX6NeOCFrM...
+2025-11-03 15:15:27 INFO    [crawl_sheet1] [RESUME] Skip head-probe; continue strictly from checkpoint cursor.
+2025-11-03 15:15:31 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHShslk...Mv8S
+2025-11-03 15:15:33 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 1 (new 1), total_new=2, next=True, cursor=AQHSV4kC...efn4
+2025-11-03 15:15:36 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 2 (new 2), total_new=4, next=True, cursor=AQHShSDs...EmRw
+2025-11-03 15:49:19 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=E:\NCS\fb-selenium\database
+2025-11-03 15:49:19 INFO    [crawl_sheet1] [PATH] DB=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01 | OUT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\posts_all.ndjson | CKPT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\checkpoint.json
+2025-11-03 15:49:19 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 15:49:20 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 15:49:21 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 15:49:24 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 15:49:24 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 15:50:00 INFO    [crawl_sheet1] [RESUME] Skip head-probe; continue strictly from checkpoint cursor.
+2025-11-03 15:50:02 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSEGpo...LPd8
+2025-11-03 15:50:05 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 2 (new 2), total_new=3, next=True, cursor=AQHS-14S...i6zF
+2025-11-03 15:50:07 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 1 (new 1), total_new=4, next=True, cursor=AQHS7O0U...5gTQ
+2025-11-03 15:50:10 INFO    [crawl_sheet1] [SLICE -inf→+inf] p4 got 1 (new 1), total_new=5, next=True, cursor=AQHSoYpc...VFnh
+2025-11-03 15:50:13 INFO    [crawl_sheet1] [SLICE -inf→+inf] p5 got 1 (new 1), total_new=6, next=True, cursor=AQHSaAKy...M5T4
+2025-11-03 15:50:16 INFO    [crawl_sheet1] [SLICE -inf→+inf] p6 got 1 (new 1), total_new=7, next=True, cursor=AQHS_vys...zS7c
+2025-11-03 15:50:19 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:06:12 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:06:12 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:06:12 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:06:12 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:06:14 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:06:16 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"142.111.48.253"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 09:06:16 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:06:48 INFO    [crawl_sheet1] [RESUME] Skip head-probe; continue strictly from checkpoint cursor.
+2025-11-03 09:06:50 INFO    [crawl_sheet1] [SLICE -inf→+inf] p1 got 1 (new 1), total_new=1, next=True, cursor=AQHSd1NV...8Bh5
+2025-11-03 09:06:53 INFO    [crawl_sheet1] [SLICE -inf→+inf] p2 got 2 (new 2), total_new=3, next=True, cursor=AQHSE8yS...16lg
+2025-11-03 09:06:55 INFO    [crawl_sheet1] [SLICE -inf→+inf] p3 got 1 (new 1), total_new=4, next=True, cursor=AQHSfkUe...3wvP
+2025-11-03 09:06:58 INFO    [crawl_sheet1] [SLICE -inf→+inf] p4 got 1 (new 1), total_new=5, next=True, cursor=AQHSYJ4P...1iqu
+2025-11-03 09:07:00 INFO    [crawl_sheet1] [SLICE -inf→+inf] p5 got 1 (new 1), total_new=6, next=True, cursor=AQHSSU_A...FN3b
+2025-11-03 09:07:03 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:07:04 INFO    [crawl_sheet1] [SLICE -inf→+inf] p6 got 1 (new 1), total_new=7, next=True, cursor=AQHSIohO...FiKi
+2025-11-03 09:07:05 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:07:07 INFO    [crawl_sheet1] [SLICE -inf→+inf] p7 got 2 (new 2), total_new=9, next=True, cursor=AQHS_xt7...ddXv
+2025-11-03 09:07:10 INFO    [crawl_sheet1] [SLICE -inf→+inf] p8 got 2 (new 2), total_new=11, next=True, cursor=AQHSjW2L...3CXt
+2025-11-03 09:07:12 INFO    [crawl_sheet1] [SLICE -inf→+inf] p9 got 1 (new 1), total_new=12, next=True, cursor=AQHSXQKg...-l8m
+2025-11-03 09:07:13 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:22:28 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:22:28 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:22:28 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:22:29 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:22:31 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:22:32 INFO    [crawl_sheet1] [Chrome] ipify: <html><head>
+    <title>502 Bad Gateway</title>
+</head>
+<body>
+    <h1>502 Bad Gateway</h1>
+    <p>Upstream proxy 142.111.48.253:7030 refused HTTP CONNECT request: 402 Payment Required</p>
+
+</body></html>
+2025-11-03 09:22:32 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:23:02 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:23:03 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:26:12 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:26:12 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:26:12 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:26:13 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:26:13 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:26:16 INFO    [crawl_sheet1] [Chrome] ipify: <html><head>
+    <title>502 Bad Gateway</title>
+</head>
+<body>
+    <h1>502 Bad Gateway</h1>
+    <p>Upstream proxy 142.111.48.253:7030 refused HTTP CONNECT request: 402 Payment Required</p>
+
+</body></html>
+2025-11-03 09:26:16 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:26:51 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:26:51 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:26:51 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:26:52 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:26:52 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:26:54 INFO    [crawl_sheet1] [Chrome] ipify: <html><head>
+    <title>502 Bad Gateway</title>
+</head>
+<body>
+    <h1>502 Bad Gateway</h1>
+    <p>Upstream proxy 142.111.48.253:7030 refused HTTP CONNECT request: 402 Payment Required</p>
+
+</body></html>
+2025-11-03 09:26:54 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:27:30 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:27:30 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:27:30 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:27:31 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:27:31 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:27:53 INFO    [crawl_sheet1] [Chrome] ipify: <html><head>
+    <title>502 Bad Gateway</title>
+</head>
+<body>
+    <h1>502 Bad Gateway</h1>
+    <p>[Errno 111] Connect call failed ('142.111.48.253', 7030)</p>
+
+</body></html>
+2025-11-03 09:27:53 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:28:26 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:28:26 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:28:26 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:28:40 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:28:40 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:28:40 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:28:53 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:28:53 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:28:53 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:29:06 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:29:06 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:29:06 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:29:20 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:29:20 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:29:20 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:29:20 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:30:40 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:30:40 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:30:40 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:30:53 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:30:53 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:30:53 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:30:57 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:31:13 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:31:13 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:31:13 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:31:26 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:31:26 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:31:26 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:31:39 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:31:39 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:31:39 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:31:53 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:31:53 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:31:53 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:32:06 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:32:06 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:32:06 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:32:19 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:32:19 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:32:19 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:32:33 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:32:33 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:32:33 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:32:46 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:32:46 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:32:46 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:33:00 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:33:00 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:33:00 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:33:06 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:33:09 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:33:11 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 09:33:11 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:33:54 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:33:54 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:33:54 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:34:07 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:34:07 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:34:07 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:34:20 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:34:20 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:34:20 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:34:34 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:34:34 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:34:34 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:34:47 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:34:47 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:34:47 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:34:56 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 09:39:40 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | MITM=8899 | DATA_ROOT=/app/database
+2025-11-03 09:39:40 INFO    [crawl_sheet1] [PATH] DB=/app/database/post/page/thoibaode/ACC_acc01 | OUT=/app/database/post/page/thoibaode/ACC_acc01/posts_all.ndjson | CKPT=/app/database/post/page/thoibaode/ACC_acc01/checkpoint.json
+2025-11-03 09:39:40 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 09:39:41 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 09:39:43 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 09:39:44 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 09:39:44 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 09:39:47 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-03 17:12:28 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:12:28 INFO    [crawl_sheet1] [PATH] INPUT=\app\database\post\page\thoibaode\thoibao-de-last-split-Sheet_3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:12:28 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:12:29 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:12:33 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:12:34 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:12:34 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:12:34 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: \app\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:13:59 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:13:59 INFO    [crawl_sheet1] [PATH] INPUT=\app\database\post\page\thoibaode\thoibao-de-last-split-Sheet_3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:13:59 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:13:59 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:14:00 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:14:02 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:14:02 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:14:02 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: \app\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:14:41 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:14:41 INFO    [crawl_sheet1] [PATH] INPUT=\app\database\post\page\thoibaode\thoibao-de-last-split-Sheet_3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:14:41 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:14:41 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:14:42 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:14:44 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:14:44 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:14:44 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: \app\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:15:30 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:15:30 INFO    [crawl_sheet1] [PATH] INPUT=\database\post\page\thoibaode\thoibao-de-last-split-Sheet_3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:15:30 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:15:30 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:15:31 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:15:33 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:15:33 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:15:33 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: \database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:16:11 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:16:11 INFO    [crawl_sheet1] [PATH] INPUT=database\post\page\thoibaode\thoibao-de-last-split-sheet3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:16:11 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:16:11 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:16:12 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:16:14 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:16:14 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:16:14 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:17:21 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:17:21 INFO    [crawl_sheet1] [PATH] INPUT=\database\post\page\thoibaode\thoibao-de-last-split-sheet3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:17:21 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:17:21 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:17:22 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:17:24 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:17:24 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:17:24 WARNING [crawl_sheet1] [AUTH] Cookie path not found or not provided: \database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-03 17:19:03 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:19:03 INFO    [crawl_sheet1] [PATH] INPUT=E:\NCS\fb-selenium\database\post\page\thoibaode\thoibao-de-last-split-sheet3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:19:03 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:19:03 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:19:04 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:19:06 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:19:06 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:20:05 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:20:05 INFO    [crawl_sheet1] [PATH] INPUT=E:\NCS\fb-selenium\database\post\page\thoibaode\thoibao-de-last-split-sheet3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:20:05 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:20:06 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:20:07 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:20:09 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:20:09 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:20:19 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 17:20:19 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 17:20:19 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:20 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 17:20:20 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:20 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 17:20:20 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/nguoidalatxua/videos/301634951217949/ (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:21 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 17:20:21 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:21 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 17:20:21 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:22 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl
+2025-11-03 17:20:22 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 3 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:22 INFO    [crawl_sheet1] === [4/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl
+2025-11-03 17:20:22 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:23 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02kShM4LnYpAgpQ3DwuzvNUwSpChSuqhpwgYzhSiVqyG5NWaKjUGqrLmEH4XEmZpQwl
+2025-11-03 17:20:23 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 4 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:23 INFO    [crawl_sheet1] === [5/4840] Crawl: https://www.facebook.com/VOATiengViet/videos/747792002661307/
+2025-11-03 17:20:23 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/VOATiengViet/videos/747792002661307/ (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:24 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/VOATiengViet/videos/747792002661307/
+2025-11-03 17:20:24 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 5 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:24 INFO    [crawl_sheet1] === [6/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl
+2025-11-03 17:20:24 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:25 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid032N4tfu52BNiapYji6GMjM4nhUSUjdHfpWYujuNHgbM8CuQj8yvJZZFm5ai9KhE6kl
+2025-11-03 17:20:25 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 6 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:25 INFO    [crawl_sheet1] === [7/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02qUBHmGB2daKwWV61AANRoM7MPoinnV749WCv3jpxaTnR5qJDxrPrwjAW3X4USkf5l
+2025-11-03 17:20:25 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02qUBHmGB2daKwWV61AANRoM7MPoinnV749WCv3jpxaTnR5qJDxrPrwjAW3X4USkf5l (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:26 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02qUBHmGB2daKwWV61AANRoM7MPoinnV749WCv3jpxaTnR5qJDxrPrwjAW3X4USkf5l
+2025-11-03 17:20:26 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 7 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:26 INFO    [crawl_sheet1] === [8/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02xS9SkvwNfwZRHd9dUx6NNxkBLgriWXDF8cBfBptRHfY9k8FFUBLzSKrioqwQbPapl
+2025-11-03 17:20:26 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02xS9SkvwNfwZRHd9dUx6NNxkBLgriWXDF8cBfBptRHfY9k8FFUBLzSKrioqwQbPapl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:27 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02xS9SkvwNfwZRHd9dUx6NNxkBLgriWXDF8cBfBptRHfY9k8FFUBLzSKrioqwQbPapl
+2025-11-03 17:20:27 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 8 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:27 INFO    [crawl_sheet1] === [9/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02sbuvUtHgUXGyVdKEiRXXYnHybk9PqDbu7CZ24oq77eNi6Qz2f92ygUQUXRBZ8Bjkl
+2025-11-03 17:20:27 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid02sbuvUtHgUXGyVdKEiRXXYnHybk9PqDbu7CZ24oq77eNi6Qz2f92ygUQUXRBZ8Bjkl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:28 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid02sbuvUtHgUXGyVdKEiRXXYnHybk9PqDbu7CZ24oq77eNi6Qz2f92ygUQUXRBZ8Bjkl
+2025-11-03 17:20:28 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 9 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:28 INFO    [crawl_sheet1] === [10/4840] Crawl: https://www.facebook.com/truongson.nk/posts/pfbid02jpSPy4DNbNgNzbnjKYzHj5KnzS2pUbtZPbJuvtGW9zd2fqUvZns19mQsrcuC336Cl
+2025-11-03 17:20:28 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/truongson.nk/posts/pfbid02jpSPy4DNbNgNzbnjKYzHj5KnzS2pUbtZPbJuvtGW9zd2fqUvZns19mQsrcuC336Cl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:29 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/truongson.nk/posts/pfbid02jpSPy4DNbNgNzbnjKYzHj5KnzS2pUbtZPbJuvtGW9zd2fqUvZns19mQsrcuC336Cl
+2025-11-03 17:20:29 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 10 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:29 INFO    [crawl_sheet1] === [11/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid0364fZt98ARVvex4bY25aSRVtMS62EW4Ci2coWmqaJQQPGK236F7HPeH1mJEvSobCql
+2025-11-03 17:20:29 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/thoibao.de/posts/pfbid0364fZt98ARVvex4bY25aSRVtMS62EW4Ci2coWmqaJQQPGK236F7HPeH1mJEvSobCql (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:20:30 INFO    [crawl_sheet1] [SKIP] bỏ qua bài: https://www.facebook.com/thoibao.de/posts/pfbid0364fZt98ARVvex4bY25aSRVtMS62EW4Ci2coWmqaJQQPGK236F7HPeH1mJEvSobCql
+2025-11-03 17:20:30 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 11 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:20:30 INFO    [crawl_sheet1] === [12/4840] Crawl: https://www.facebook.com/hongly.vo.5059/posts/pfbid02fxzekQ2V9i1cCxpG3QgFfRJE6KA9y715PbWJqV16r15b61aroJ9qXXeJq69Wqqvjl
+2025-11-03 17:20:30 ERROR   [crawl_sheet1] [WARN] crawl fail https://www.facebook.com/hongly.vo.5059/posts/pfbid02fxzekQ2V9i1cCxpG3QgFfRJE6KA9y715PbWJqV16r15b61aroJ9qXXeJq69Wqqvjl (attempt 1/1): unsupported operand type(s) for /: 'str' and 'str'
+2025-11-03 17:22:02 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | SHEET=Sheet_3 | MITM=8899 | DATABASE=E:\NCS\fb-selenium\database
+2025-11-03 17:22:02 INFO    [crawl_sheet1] [PATH] INPUT=E:\NCS\fb-selenium\database\post\page\thoibaode\thoibao-de-last-split-sheet3.xlsx | OUT_DIR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post | STATUS=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json | ERR=E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\crawl_errors-Sheet_3.xlsx
+2025-11-03 17:22:02 DEBUG   [crawl_sheet1] mitmdump started with stdout suppressed (DEVNULL)
+2025-11-03 17:22:03 INFO    [crawl_sheet1] MITM ready at 127.0.0.1:8899 (quiet=False)
+2025-11-03 17:22:04 INFO    [crawl_sheet1] [Chrome] started, checking IP...
+2025-11-03 17:22:06 INFO    [crawl_sheet1] [Chrome] ipify: <html><head><meta name="color-scheme" content="light dark"><meta charset="utf-8"></head><body><pre>{"ip":"171.253.242.16"}</pre><div class="json-formatter-container"></div></body></html>
+2025-11-03 17:22:06 INFO    [crawl_sheet1] [Driver] Ready.
+2025-11-03 17:22:15 INFO    [crawl_sheet1] ▶️ Bắt đầu crawl (sheet=Sheet_3), tổng 4840 dòng
+2025-11-03 17:22:15 INFO    [crawl_sheet1] === [1/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02h5RpbyKWtWZJevDvSWSCW1VNHWWcLVEyMTPTDE5PHDKFzmet3sAijG45dx3vkujXl
+2025-11-03 17:22:29 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 17:22:35 WARNING [crawl_sheet1] [WARN] page 1 parse fail:
+2025-11-03 17:22:35 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTY1MzUzOgF1lSM0...
+2025-11-03 17:22:35 WARNING [crawl_sheet1] [REPLIES] comment Y29tbWVudDox… có 2 replies nhưng KHÔNG thấy expansionToken/feedback_id → skip
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [V2] Page 1: +2/2 comments (cursor=False)
+2025-11-03 17:22:35 WARNING [crawl_sheet1] [WARN] page 2 parse fail:
+2025-11-03 17:22:35 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTY1MzUzOgF1lSM0... next=MToxNzYyMTY1MzU1OgF143kM...
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02hd5lalmf56tacu9rrh7ykycs3b2btgyqc94qjqg1jwetstryma7inaqgu7kdzljvl?comment_id=1374839952714428 -> skip
+2025-11-03 17:22:35 WARNING [crawl_sheet1] [REPLIES] comment Y29tbWVudDox… có 2 replies nhưng KHÔNG thấy expansionToken/feedback_id → skip
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/thoibao.de/posts/pfbid02hd5lalmf56tacu9rrh7ykycs3b2btgyqc94qjqg1jwetstryma7inaqgu7kdzljvl?comment_id=1374449356086821 -> skip
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [V2] Page 2: +2/2 comments (cursor=True)
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [V2] DONE. Collected 4 comments → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\tmp_comments_Sheet_3\comments_21a10c01475a14ba.ndjson. Checkpoint at E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\tmp_comments_Sheet_3\checkpoint_21a10c01475a14ba.json.
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [VERIFY] replies fetched: 0
+2025-11-03 17:22:35 INFO    [crawl_sheet1] [WRITE:NDJSON] +4 rows (replies=0) → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post\comments_21a10c01475a14ba.ndjson
+2025-11-03 17:22:35 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 1 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:22:35 INFO    [crawl_sheet1] === [2/4840] Crawl: https://www.facebook.com/nguoidalatxua/videos/301634951217949/
+2025-11-03 17:22:45 INFO    [crawl_sheet1] [SORT] Set to 'All comments' (unified)…
+2025-11-03 17:22:49 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=None... next=MToxNzYyMTY1MzY5OgF1HhPA...
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [V2] Page 1: +2/2 comments (cursor=False)
+2025-11-03 17:22:49 DEBUG   [crawl_sheet1] [DBG] cursor_key=commentsAfterCursor current=MToxNzYyMTY1MzY5OgF1HhPA... next=MToxNzYyMTY1MzY5OgF1qb54...
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/nguoidalatxua/videos/301634951217949/?comment_id=186056896213486 -> skip
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [SKIP] trùng comment https://www.facebook.com/nguoidalatxua/videos/301634951217949/?comment_id=189055092580333 -> skip
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [V2] Page 2: +2/2 comments (cursor=True)
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [V2] DONE. Collected 4 comments → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\tmp_comments_Sheet_3\comments_18fee3ed70fae063.ndjson. Checkpoint at E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\tmp_comments_Sheet_3\checkpoint_18fee3ed70fae063.json.
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [VERIFY] replies fetched: 0
+2025-11-03 17:22:49 INFO    [crawl_sheet1] [WRITE:NDJSON] +4 rows (replies=0) → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\ndjson_per_post\comments_18fee3ed70fae063.ndjson
+2025-11-03 17:22:49 INFO    [crawl_sheet1] Function: save_status_store - ✅ Saved status: 2 items → E:\NCS\fb-selenium\database\comment\page\thoibaode\Sheet_3\status_store_Sheet_3.json
+2025-11-03 17:22:49 INFO    [crawl_sheet1] === [3/4840] Crawl: https://www.facebook.com/thoibao.de/posts/pfbid02GHnbN3zKqK8gMRbvCPsyct7C9Uocy5mzyywRmGNwewf6gGc94Atug299y7LU32VKl

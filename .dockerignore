@@ -1,0 +1,14 @@
+venv
+.env
+*.pyc
+__pycache__
+node_modules
+.git
+.gitignore
+.database
+*.sqlite3
+*.log
+.DS_Store
+data
+output
+*.pem

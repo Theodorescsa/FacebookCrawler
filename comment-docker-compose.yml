@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  comment_crawler_acc01:
+    build:
+      context: .
+      dockerfile: comment-Dockerfile
+    environment:
+      - 

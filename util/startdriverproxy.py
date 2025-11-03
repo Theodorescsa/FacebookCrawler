@@ -1,3 +1,4 @@
+# startdriverproxy.py (PATCHED)
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import json, time, os
@@ -11,12 +12,11 @@ from urllib.parse import urlparse
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import logging
+
 # ------------------ CONFIG ------------------
 ALLOWED_COOKIE_DOMAINS = {".facebook.com", "facebook.com", "m.facebook.com", "web.facebook.com"}
 COOKIES_PATH         = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
-MITM_PORT = 8899  
-UPSTREAM_PROXY = "142.111.48.253:7030"  
-UPSTREAM_AUTH = "ycycsdtq:ka0d32hzsydi" 
+MITM_PORT = 8899
 MITM_WAIT_TIMEOUT = 12.0
 # --------------------------------------------
 
@@ -28,8 +28,9 @@ def _coerce_epoch(v):
         return int(vv)
     except Exception:
         return None
+
 def _normalize_cookie(c: dict) -> Optional[dict]:
-    if not isinstance(c, dict): 
+    if not isinstance(c, dict):
         return None
     name  = c.get("name")
     value = c.get("value")
@@ -91,7 +92,7 @@ def _add_cookies_safely(driver, cookies_path: Path):
             pass
     return added
 
-def bootstrap_auth(d,cookie_path):
+def bootstrap_auth(d, cookie_path):
     d.get("https://www.facebook.com/")
     time.sleep(1.0)
     print("[AUTH] Bootstrapping auth...")
@@ -110,7 +111,6 @@ def bootstrap_auth(d,cookie_path):
         print(f"[AUTH] c_user={has_cuser}, xs={has_xs}")
     except Exception as e:
         print("[WARN] bootstrap cookies:", e)
-
 
 def find_mitmdump_executable():
     # 1) try PATH
@@ -158,11 +158,12 @@ def safe_kill_process(proc):
                 proc.kill()
     except Exception as e:
         print("[cleanup] error killing mitmdump:", e)
+
 def start_driver_with_proxy(
-    proxy_host: str,
-    proxy_port: int,
-    proxy_user: str,
-    proxy_pass: str,
+    proxy_host: Optional[str],
+    proxy_port: Optional[int],
+    proxy_user: Optional[str],
+    proxy_pass: Optional[str],
     mitm_port: int = 8899,
     headless: bool = False,
     cookies_path: Optional[Path] = COOKIES_PATH,
@@ -173,24 +174,37 @@ def start_driver_with_proxy(
     if logger is None:
         logger = logging.getLogger("crawl_sheet1")  # fallback to your main logger
 
-    upstream = f"{proxy_host}:{proxy_port}"
-    upstream_auth = f"{proxy_user}:{proxy_pass}"
+    # Build upstream strings safely (but only use them if proxy provided)
+    upstream = None
+    upstream_auth = None
+    if proxy_host and proxy_port:
+        upstream = f"{proxy_host}:{int(proxy_port)}"
+    if proxy_user and proxy_pass:
+        upstream_auth = f"{proxy_user}:{proxy_pass}"
 
     # find mitmdump
     mitmdump_bin = find_mitmdump_executable()
     if not mitmdump_bin:
         raise RuntimeError("Không tìm thấy mitmdump, hãy cài pip install mitmproxy")
 
+    # Base args
     args = [
         mitmdump_bin,
         "-p", str(mitm_port),
         "--set", "connection_strategy=lazy",
         "--ssl-insecure",
-        "--mode", f"upstream:http://{upstream}",
-        "--upstream-auth", upstream_auth,
     ]
 
-    stdout_target = subprocess.DEVNULL
+    # Only add upstream mode if proxy is provided
+    if upstream:
+        args += ["--mode", f"upstream:http://{upstream}"]
+        if upstream_auth:
+            args += ["--upstream-auth", upstream_auth]
+
+    # Debug: if MITM_DEBUG=1 in env then stream mitmdump stdout for easier debugging
+    mitm_debug = os.environ.get("MITM_DEBUG", "0") in ("1", "true", "True")
+
+    stdout_target = subprocess.PIPE if mitm_debug else subprocess.DEVNULL
 
     proc = subprocess.Popen(
         args,
@@ -199,18 +213,17 @@ def start_driver_with_proxy(
         text=True,
         bufsize=1,
     )
+
     def _log_stream():
         try:
             for line in proc.stdout:
-                logger.debug("[mitm:%s] %s", mitm_port, line.rstrip("\n"))
+                logger.info("[mitm:%s] %s", mitm_port, line.rstrip("\n"))
         except Exception:
-            # if we couldn't read stdout (e.g. DEVNULL), just ignore
-            logger.debug("mitmdump logging thread ended or not available", exc_info=True)
+            logger.exception("mitmdump logging thread ended")
 
     if stdout_target is subprocess.PIPE:
         threading.Thread(target=_log_stream, daemon=True).start()
     else:
-        # no thread started; mitmdump output suppressed
         logger.debug("mitmdump started with stdout suppressed (DEVNULL)")
 
     # wait for mitmdump port
@@ -238,7 +251,6 @@ def start_driver_with_proxy(
         driver.get("https://api.ipify.org/?format=json")
         time.sleep(1.0)
         ip_html = (driver.page_source or "").strip()
-        # Only log at debug if quiet, otherwise info
         if quiet:
             logger.debug("[Chrome] ipify: %s", ip_html)
         else:
@@ -248,7 +260,9 @@ def start_driver_with_proxy(
 
     logger.info("[Driver] Ready.")
     return driver
+
 if __name__ == "__main__":
+    # Example standalone run
     driver = start_driver_with_proxy(
         proxy_host="142.111.48.253",
         proxy_port=7030,
@@ -257,8 +271,7 @@ if __name__ == "__main__":
         mitm_port=8899,
         headless=False
     )
-    bootstrap_auth(driver,COOKIES_PATH)
-    # Test: mở Facebook group / crawl gì đó
+    bootstrap_auth(driver, COOKIES_PATH)
     time.sleep(3)
     driver.get("https://api.ipify.org/?format=json")
     print(driver.page_source)
