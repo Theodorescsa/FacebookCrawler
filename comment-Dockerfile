@@ -7,8 +7,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-# ---- System deps (Chromium + chromedriver + fonts + basics)
+# Thêm bash + dos2unix (khuyến nghị) để tránh CRLF
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    dos2unix \
     chromium \
     chromium-driver \
     xvfb \
@@ -20,35 +22,30 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     tini \
-    && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
 
-# Non-root user
 ARG USER=app
 ARG UID=1000
 RUN useradd -m -u ${UID} ${USER} || true
 
 WORKDIR /app
 
-# ---- Python deps
-# (Dùng đúng versions cậu cung cấp)
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Env để Selenium tìm chromium/chromedriver
 ENV CHROME_BIN=/usr/bin/chromium \
     CHROMIUM_FLAGS="--no-sandbox --disable-dev-shm-usage --disable-gpu --headless=new"
 
-# Copy toàn bộ source vào /app
 COPY . /app
 
-# Tạo sẵn folders cho DB & logs (đồng thời vẫn mount từ host)
-RUN mkdir -p /app/database /app/logs/logs && chown -R ${USER}:${USER} /app
+# Chuyển EOL về LF để tránh lỗi khi edit trên Windows
+RUN dos2unix /app/comment-entrypoint.sh || true
 
-# Entrypoint script
+RUN mkdir -p /app/database /app/logs/logs && chown -R ${USER}:${USER} /app
 RUN chmod +x /app/comment-entrypoint.sh
 
 USER ${USER}
 
-# tini giúp gửi tín hiệu chuẩn (graceful SIGTERM)
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["/app/comment-entrypoint.sh"]
+# Gọi trực tiếp bằng bash để chắc chắn dùng bash, không phải /bin/sh
+CMD ["/bin/bash", "/app/comment-entrypoint.sh"]

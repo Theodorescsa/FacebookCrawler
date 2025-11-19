@@ -6,4 +6,23 @@ services:
       context: .
       dockerfile: comment-Dockerfile
     environment:
-      - 
+      - PAGE_NAME=thoibaode
+      - SHEET_NAME=Sheet_3
+      - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
+      - MITM_PORT=8899
+      - INPUT_EXCEL=/app/database/post/page/thoibaode/thoibao-de-last-split-sheet3.xlsx
+      # - PROXY_HOST=142.111.48.253
+      # - PROXY_PORT=7030
+      # - PROXY_USER=ycycsdtq
+      # - PROXY_PASS=ka0d32hzsydi
+      # - PAGE_LIMIT=100
+      # BẬT headless: dùng flag CLI dưới; hoặc thêm HEADLESS=1 rồi sửa entrypoint đọc biến
+    volumes:
+      - ./comment:/app/comment
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    ports:
+      - "8899:8899"
+    restart: unless-stopped
+    shm_size: 1gb
