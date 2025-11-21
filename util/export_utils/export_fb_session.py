@@ -33,9 +33,8 @@ ALLOWED_COOKIE_DOMAINS = [
 ]
 
 # File output
-OUT_COOKIES_PATH       = r"cookies.json"
-OUT_LOCALSTORAGE_PATH  = r"localstorage.json"
-OUT_SESSIONSTORAGE_PATH= r"sessionstorage.json"
+OUT_COOKIES_PATH       = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
+
 
 # ----------------------------
 # Utils
@@ -66,7 +65,6 @@ def start_driver() -> webdriver.Chrome:
         '--disable-default-apps',
         '--disable-infobars',
         '--window-size=1280,900',
-        # KHÔNG dùng --headless khi export storage: 1 số site cần non-headless để init storage
     ]
     subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     if not _wait_port('127.0.0.1', REMOTE_PORT, timeout=20):
@@ -147,11 +145,7 @@ def dump_storage(driver: webdriver.Chrome, origins: List[str]):
     return local_map, session_map
 
 def smart_merge_storage(storage_by_origin: Dict[str, Dict[str, str]]) -> Dict[str, str]:
-    """
-    Một số key (AB test, device info) bị lặp giữa origins → gộp đơn giản:
-    - ưu tiên origin chính https://www.facebook.com/
-    - các origin khác chỉ add key chưa có
-    """
+
     merged: Dict[str, str] = {}
     priority = [
         "https://www.facebook.com/",
@@ -179,21 +173,6 @@ def main():
     with open(OUT_COOKIES_PATH, "w", encoding="utf-8") as f:
         json.dump(fb_cookies, f, ensure_ascii=False, indent=2)
     print(f"[WRITE] {OUT_COOKIES_PATH}")
-
-    # 2) Dump localStorage & sessionStorage theo origin
-    local_map, session_map = dump_storage(driver, ORIGINS)
-
-    # 3) Gộp lại thành 1 dict (ưu tiên www) cho tiện dùng lại
-    local_merged = smart_merge_storage(local_map)
-    session_merged = smart_merge_storage(session_map)
-
-    with open(OUT_LOCALSTORAGE_PATH, "w", encoding="utf-8") as f:
-        json.dump(local_merged, f, ensure_ascii=False, indent=2)
-    print(f"[WRITE] {OUT_LOCALSTORAGE_PATH} (total keys={len(local_merged)})")
-
-    with open(OUT_SESSIONSTORAGE_PATH, "w", encoding="utf-8") as f:
-        json.dump(session_merged, f, ensure_ascii=False, indent=2)
-    print(f"[WRITE] {OUT_SESSIONSTORAGE_PATH} (total keys={len(session_merged)})")
 
     # Done
     driver.quit()

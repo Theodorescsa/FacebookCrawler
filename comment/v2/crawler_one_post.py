@@ -5,8 +5,10 @@ from get_comment_fb_utils import (
                                 open_reel_comments_if_present,
                                 )
 from get_comment_fb_automation import (
+                                RateLimitError,
                                 crawl_comments,
                                 hook_graphql,
+                                install_early_hook,
                                 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -20,17 +22,19 @@ os.makedirs("raw_dumps", exist_ok=True)
 # MAIN
 # =========================
 COOKIES_PATH = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
-if __name__ == "__main__":
-    # d = start_driver(CHROME_PATH, USER_DATA_DIR, PROFILE_NAME, port=REMOTE_PORT, headless=False)
+def make_driver():
     d = start_driver_with_proxy(
-        proxy_host="142.111.48.253",
-        proxy_port=7030,
-        proxy_user="ycycsdtq",
-        proxy_pass="ka0d32hzsydi",
+        proxy_host="",
+        proxy_port="",
+        proxy_user="",
+        proxy_pass="",
         mitm_port=8899,
         headless=False
-    )    
+    )
     d.set_script_timeout(40)
+
+    install_early_hook(d)
+
     try:
         d.execute_cdp_cmd("Network.enable", {})
         d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
@@ -41,14 +45,41 @@ if __name__ == "__main__":
 
     d.get(POST_URL)
     time.sleep(2)
+
     hook_graphql(d)
-    time.sleep(0.5)
-    if "reel" in POST_URL:
-        open_reel_comments_if_present(d)
-    time.sleep(0.8)
-    texts = crawl_comments(
-        d,
-        out_json="comments.ndjson",
-        checkpoint_path="checkpoint_comments.json",
-        max_pages=None  
-    )
+    try:
+        d.execute_script("window.__gqlReqs = window.__gqlReqs || []; window.__gqlReqs.length = 0;")
+    except Exception:
+        pass
+    return d
+
+if __name__ == "__main__":
+    checkpoint_path = "checkpoint_comments.json"
+    raw_dump_path = "raw_dumps"
+    out_json = "comments.ndjson"
+
+
+    texts = []
+
+    while True:
+        d = make_driver()
+        try:
+            texts = crawl_comments(
+                d,
+                raw_dump_path=raw_dump_path,
+                out_json=out_json,
+                checkpoint_path=checkpoint_path,
+                max_pages=None
+            )
+            d.quit()
+            break   # done ok
+        except RateLimitError as e:
+            logger.warning(f"[MAIN] Rate limited (429). . Restarting driver…")
+            d.quit()
+            continue
+        except Exception as e:
+            logger.exception("[MAIN] Unexpected error")
+            d.quit()
+            break
+
+    logger.info(f"[MAIN] Finished with {len(texts)} comments.")

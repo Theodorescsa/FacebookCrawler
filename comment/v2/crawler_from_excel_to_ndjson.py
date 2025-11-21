@@ -574,7 +574,8 @@ if __name__ == "__main__":
 
     COOKIE_PATH = Path(args.cookies_path) if args.cookies_path else DEFAULT_COOKIE_PATH
     MITM_PORT   = int(args.mitm_port)
-    HEADLESS    = bool(args.headless)
+    # HEADLESS    = bool(args.headless)
+    HEADLESS    = False
 
     PROXY_HOST  = args.proxy_host
     PROXY_PORT  = args.proxy_port
