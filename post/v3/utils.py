@@ -1,5 +1,5 @@
-import json, re, urllib
-from typing import Optional, List, Dict
+import json, re
+from typing import List
 from configs import *
 
 

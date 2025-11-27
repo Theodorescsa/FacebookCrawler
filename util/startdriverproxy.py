@@ -166,7 +166,6 @@ def start_driver_with_proxy(
     proxy_pass: Optional[str],
     mitm_port: int = 8899,
     headless: bool = False,
-    cookies_path: Optional[Path] = COOKIES_PATH,
     quiet: bool = False,
     logger: Optional[logging.Logger] = None,
 ) -> webdriver.Chrome:
