@@ -1,10 +1,12 @@
-# === replace / thêm các helper sau ===
-import re, sys
+# post/v3/graphql/extractors.py
+import re
 from typing import List, Optional
-from urllib.parse import urlparse, urlunparse
 from urllib.parse import urlparse, parse_qs
-from utils import deep_collect_timestamps
-from configs import POST_URL_RE
+
+from ..config import POST_URL_RE
+from .parser import deep_collect_timestamps
+from ..utils import _norm_link 
+
 REACTION_KEYS = {
     "LIKE": "like", "LOVE": "love", "HAHA": "haha", "WOW": "wow",
     "SAD": "sad", "ANGRY": "angry", "CARE": "care"
@@ -615,19 +617,6 @@ def collect_post_summaries(obj, out, group_url):
 # =========================
 # Dedupe/merge (rid + normalized link)
 # =========================
-def _norm_link(u: str) -> Optional[str]:
-    if not u or not isinstance(u, str):
-        return None
-    try:
-        p = urlparse(u)
-        host = p.netloc.lower()
-        if host.endswith("facebook.com"): host = "facebook.com"
-        path = (p.path or "").rstrip("/")
-        if re.search(r"/(?:reel|posts|permalink)/\d+$", path.lower()):
-            return urlunparse(("https", host, path.lower(), "", "", ""))
-        return None
-    except Exception:
-        return None
 
 def _all_join_keys(it: dict) -> List[str]:
     keys, seen = [], set()

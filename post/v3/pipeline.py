@@ -1,0 +1,84 @@
+# post/v3/pipeline.py
+from pathlib import Path
+from typing import Dict, Any, Set, List, Optional
+
+from logs.loging_config import logger
+from .graphql.parser import parse_fb_graphql_payload
+from .graphql.extractors import (
+    collect_post_summaries,
+    coalesce_posts,
+    _best_primary_key,
+)
+from .storage.ndjson import append_ndjson
+
+
+LATEST_CREATED_TS: Optional[int] = None
+
+
+def process_single_gql_rec(
+    rec: Dict[str, Any],
+    group_url: str,
+    seen_ids: Set[str],
+    out_path: Path,
+    log_prefix: str = "",
+) -> int:
+    global LATEST_CREATED_TS
+
+    text = rec.get("responseText")
+    if not text:
+        return 0
+
+    payload = parse_fb_graphql_payload(text)
+    if payload is None:
+        logger.debug("[GQL%s] responseText parse fail (no JSON payload)", log_prefix)
+        return 0
+
+    raw_items: List[Dict[str, Any]] = []
+
+    if isinstance(payload, dict):
+        collect_post_summaries(payload, raw_items, group_url)
+    elif isinstance(payload, list):
+        for obj in payload:
+            collect_post_summaries(obj, raw_items, group_url)
+
+    if not raw_items:
+        logger.debug("[GQL%s] collect_post_summaries -> 0 items", log_prefix)
+        return 0
+
+    logger.debug(
+        "[GQL%s] collect_post_summaries -> %d items", log_prefix, len(raw_items)
+    )
+
+    page_posts = coalesce_posts(raw_items)
+    logger.debug("[GQL%s] coalesce_posts -> %d items", log_prefix, len(page_posts))
+
+    if not page_posts:
+        return 0
+
+    written_this_round: Set[str] = set()
+    fresh: List[Dict[str, Any]] = []
+    for p in page_posts:
+        pk = _best_primary_key(p)
+        if pk and (pk not in seen_ids) and (pk not in written_this_round):
+            fresh.append(p)
+            written_this_round.add(pk)
+
+    if not fresh:
+        logger.debug("[GQL%s] no fresh posts after dedup", log_prefix)
+        return 0
+
+    for p in fresh:
+        ts = p.get("created_time")
+        if isinstance(ts, (int, float)):
+            if LATEST_CREATED_TS is None or ts > LATEST_CREATED_TS:
+                LATEST_CREATED_TS = int(ts)
+
+    append_ndjson(fresh, out_path)
+
+    for p in fresh:
+        pk = _best_primary_key(p)
+        if pk:
+            seen_ids.add(pk)
+
+    logger.info("[GQL%s] wrote %d fresh posts", log_prefix, len(fresh))
+    return len(fresh)
