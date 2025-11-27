@@ -141,6 +141,7 @@ def js_fetch_in_page(driver, form_dict, extra_headers=None, timeout_ms=20000):
         raise RuntimeError(f"js_fetch_in_page: bad_return {raw!r}")
 
     if not obj.get("ok"):
+        print("DEBUG js_fetch_in_page error:", obj)
         raise RuntimeError(f"js_fetch_in_page: {obj.get('error')}")
     return obj.get("text", "")
 

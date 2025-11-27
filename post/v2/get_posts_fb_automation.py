@@ -265,7 +265,8 @@ def paginate_window(d, form, vars_template, seen_ids: set,
                     try:
                         txt = js_fetch_in_page(d, form, extra_headers={}, timeout_ms=25000)
                         break
-                    except Exception:
+                    except Exception as e:
+                        print()
                         try:
                             txt = fetch_via_wire(d, form)
                             if txt: break
@@ -278,8 +279,9 @@ def paginate_window(d, form, vars_template, seen_ids: set,
             json.dump(obj, f, ensure_ascii=False, indent=2)
 
         if not obj:
+            print("No data found",obj)
             logger.warning(f"[SLICE {t_from}->{t_to}] parse fail → stop slice.")
-            break
+            continue
 
         page_posts = []
         collect_post_summaries(obj, page_posts, group_url)

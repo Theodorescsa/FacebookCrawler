@@ -508,6 +508,7 @@ def crawl_replies_for_parent_expansion(
 
     while True:
         pages += 1
+        time.sleep(2)
         if max_reply_pages and pages > max_reply_pages:
             break
 
@@ -666,8 +667,11 @@ def crawl_comments(driver, raw_dump_path, out_json="comments.ndjson",
 
     ck = load_checkpoint(checkpoint_path)
     if ck and ck.get("doc_id") == doc_id and ck.get("friendly") == friendly:
+        logger.info(f"Load checkpoint from {checkpoint_path}")
         saved_template = ck.get("vars_template") or {}
         saved_cursor_key = ck.get("cursor_key") or cursor_key
+        logger.info(f"Using checkpoint: {cursor_key} → {saved_cursor_key}")
+
         if saved_template:
             vars_template = saved_template
         if saved_cursor_key:
@@ -690,6 +694,7 @@ def crawl_comments(driver, raw_dump_path, out_json="comments.ndjson",
 
     while True:
         pages += 1
+        time.sleep(2)
         if max_pages and pages > max_pages:
             break
 

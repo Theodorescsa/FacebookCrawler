@@ -255,16 +255,23 @@ def _patched_crawl_replies_for_parent_expansion(
     out_json,
     extract_fn,
     clean_fn,
-    max_reply_pages=None
+    max_reply_pages=None,
+    level=1,
+    max_level=2,
+    **kwargs,
 ):
     global _reply_cache
     post_key = str(getattr(driver, "current_url", "") or url)
     seen_for_post = _reply_cache.setdefault(post_key, {})
 
     if parent_id in seen_for_post:
-        logger.info(f"Function: _patched_crawl_replies_for_parent_expansion - [PATCH] Skip replies for parent={str(parent_id)[:12]}… (already processed for this post)")
+        logger.info(
+            "Function: _patched_crawl_replies_for_parent_expansion - "
+            f"[PATCH] Skip replies for parent={str(parent_id)[:12]}… (already processed for this post)"
+        )
         return
 
+    # gọi hàm gốc, nhớ truyền lại level / max_level
     __orig_crawl_replies(
         driver,
         url,
@@ -275,13 +282,13 @@ def _patched_crawl_replies_for_parent_expansion(
         out_json,
         extract_fn,
         clean_fn,
-        max_reply_pages=max_reply_pages
+        max_reply_pages=max_reply_pages,
+        level=level,
+        max_level=max_level,
+        **kwargs,
     )
 
     seen_for_post[parent_id] = int(time.time())
-    # path for cache will be injected from main after env resolved
-    # (_dedup_cache_path) is available via closure or passed; we’ll save in main flow
-    # we just leave in-memory update here.
 
 # =========================
 # Helpers: NDJSON per-post temp + loader

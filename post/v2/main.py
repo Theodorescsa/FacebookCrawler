@@ -101,6 +101,49 @@ signal.signal(signal.SIGINT, _handle_sigterm)
 # MAIN
 # ---------------------------
 if __name__ == "__main__":
+    CLEANUP_JS = r"""
+        (function(keep) {
+        try {
+            // Ưu tiên các selector đặc trưng cho feed, tuỳ giao diện mà chỉnh lại
+            const selectors = [
+            "div[data-pagelet^='FeedUnit_']", // nhiều page dùng
+            "div[role='article']",
+            "div[aria-posinset]"              // đôi khi feed dùng aria-posinset
+            ];
+
+            let posts = [];
+            for (const sel of selectors) {
+            posts = Array.from(document.querySelectorAll(sel));
+            if (posts.length >= 10) {  // đủ "tín hiệu" thì dùng selector này
+                break;
+            }
+            }
+
+            const total = posts.length;
+            const k = keep || 30;  // keep = số post giữ lại gần nhất
+
+            if (total > k) {
+            const removeCount = total - k;
+            for (let i = 0; i < removeCount; i++) {
+                const el = posts[i];
+                if (!el) continue;
+
+                // Nếu post nằm trong wrapper lớn hơn thì xóa wrapper luôn cho sạch
+                const story = el.closest("[data-testid='fbfeed_story']");
+                if (story) {
+                story.remove();
+                } else {
+                el.remove();
+                }
+            }
+            // console.log("Cleanup DOM: removed", removeCount, "posts, keep", k);
+            }
+        } catch (e) {
+            // console.error("Cleanup error", e);
+        }
+        })(arguments[0]);
+        """
+
     import argparse
     ap = argparse.ArgumentParser("FB Post Crawler (multi-container safe)")
     add_common_args(ap)
@@ -129,7 +172,7 @@ if __name__ == "__main__":
         proxy_user=args.proxy_user or None,
         proxy_pass=args.proxy_pass or None,
         mitm_port=MITM_PORT,
-        headless=headless
+        headless=False
     )
     d.set_script_timeout(40)
 
@@ -154,97 +197,148 @@ if __name__ == "__main__":
 
     # Load trang & bắt request feed
     d.get(GROUP_URL)
-    time.sleep(1.2)
-    for _ in range(6):
-        if _SHOULD_STOP: break
-        d.execute_script("window.scrollBy(0, Math.floor(window.innerHeight*0.9));")
-        time.sleep(0.6)
+    time.sleep(1.5)
 
-    nxt = wait_next_req(d, 0, is_group_feed_req, timeout=25, poll=0.25)
-    if not nxt:
-        d.quit()
-        raise RuntimeError("Không bắt được request feed. Hãy cuộn thêm/kiểm tra quyền.")
+    # Tham số điều chỉnh
+    MAX_SCROLLS       = 10000        # upper bound
+    CLEANUP_EVERY     = 25           # sau mỗi 25 lần scroll thì dọn DOM 1 lần
+    STALL_THRESHOLD   = 8            # nếu scrollHeight không đổi 8 lần liên tiếp -> coi như hết bài
 
-    _, first_req = nxt
-    form         = parse_form(first_req.get("body", ""))
-    friendly     = urllib.parse.parse_qs(first_req.get("body","")).get("fb_api_req_friendly_name", [""])[0]
-    vars_now     = get_vars_from_form(form)
-    template_now = make_vars_template(vars_now)
+    prev_height       = None
+    stall_count       = 0
 
-    # Checkpoint riêng (theo PAGE + TAG)
-    state = load_checkpoint(CHECKPOINT)
-    seen_ids      = normalize_seen_ids(state.get("seen_ids"))
-    cursor_ckpt   = state.get("cursor")
-    vars_template = state.get("vars_template") or template_now
-    effective_template = vars_template or template_now
+    for i in range(MAX_SCROLLS):
+        if _SHOULD_STOP:
+            logger.info("[STOP] Received stop flag, breaking scroll loop.")
+            break
 
-    # ---- BACKFILL MODE ----
-    if args.backfill and args.year and args.from_month and args.to_month:
-        logger.info(f"[MODE] Backfill {args.from_month:02d}/{args.year} → {args.to_month:02d}/{args.year}")
-        cur = args.from_month
-        while cur >= args.to_month:
-            start_dt = datetime(args.year, cur, 1)
-            if cur == 1:
-                end_dt = datetime(args.year - 1, 12, 1)
+        # Scroll thêm ~0.9 màn hình
+        try:
+            d.execute_script("window.scrollBy(0, Math.floor(window.innerHeight * 0.9));")
+        except Exception as e:
+            logger.warning("[SCROLL] execute_script error: %s", e)
+            break
+
+        time.sleep(1.0)  # cho FB load thêm
+
+        # Định kỳ dọn DOM để tránh phình to
+        if i > 0 and (i % CLEANUP_EVERY == 0):
+            try:
+                d.execute_script(CLEANUP_JS, KEEP_LAST)
+                logger.debug("[CLEANUP] DOM cleanup executed at scroll #%d", i)
+            except Exception as e:
+                logger.debug("[CLEANUP] error: %s", e)
+
+        # Check xem có còn load thêm content không bằng scrollHeight
+        try:
+            cur_height = d.execute_script("return document.body.scrollHeight;")
+        except Exception as e:
+            logger.debug("[HEIGHT] error: %s", e)
+            cur_height = None
+
+        if prev_height is not None and cur_height is not None:
+            if cur_height <= prev_height:
+                stall_count += 1
             else:
-                end_dt = datetime(args.year, cur - 1, 1)
+                stall_count = 0
+                prev_height = cur_height
+        else:
+            prev_height = cur_height
+            stall_count = 0
 
-            t_from = int(end_dt.timestamp())
-            t_to   = int(start_dt.timestamp())
-
-            logger.info(f"🕰️ Crawling trước {start_dt.strftime('%Y-%m-%d')} ...")
-            total_new, min_created, has_next = paginate_window(
-                d, form, effective_template,
-                seen_ids=set(),               # backfill theo slice -> không dùng seen chung
-                t_from=t_from,
-                t_to=t_to,
-                group_url=GROUP_URL,
-                database_path=DATABASE_PATH,
-                page_limit=args.page_limit
+        if stall_count >= STALL_THRESHOLD:
+            logger.info(
+                "[END] No new content after %d consecutive scrolls (last height=%s). Stop.",
+                stall_count, cur_height
             )
-            logger.info(f"✅ Done {start_dt.strftime('%Y-%m')} → {total_new} posts | min_created={min_created}")
-            save_checkpoint(
-                cursor=None,
-                seen_ids=list(seen_ids),
-                vars_template=effective_template,
-                mode="time",
-                slice_from=None,
-                slice_to=t_to,
-                year=args.year,
-                check_point_path=CHECKPOINT
-            )
-            if _SHOULD_STOP:
-                logger.warning("[STOP] Nhận tín hiệu dừng giữa backfill — thoát an toàn.")
-                break
-            time.sleep(2)
-            cur -= 1
+            break
 
-        logger.info("🎉 [DONE] Backfill completed.")
-        d.quit()
-        sys.exit(0)
 
-    # ---- RESUME cursor-only ----
-    if args.resume and cursor_ckpt:
-        form = update_vars_for_next_cursor(form, cursor_ckpt, vars_template=effective_template)
-        logger.info(f"[RESUME] Dùng lại cursor: {str(cursor_ckpt)[:40]}...")
+    # nxt = wait_next_req(d, 0, is_group_feed_req, timeout=25, poll=0.25)
+    # if not nxt:
+    #     d.quit()
+    #     raise RuntimeError("Không bắt được request feed. Hãy cuộn thêm/kiểm tra quyền.")
 
-    total_got = run_cursor_only(
-        d,
-        form,
-        effective_template,
-        seen_ids,
-        database_path=DATABASE_PATH,
-        page_limit=args.page_limit,
-        resume=args.resume
-    )
+    # _, first_req = nxt
+    # form         = parse_form(first_req.get("body", ""))
+    # friendly     = urllib.parse.parse_qs(first_req.get("body","")).get("fb_api_req_friendly_name", [""])[0]
+    # vars_now     = get_vars_from_form(form)
+    # template_now = make_vars_template(vars_now)
 
-    # Lưu checkpoint cuối (per PAGE+TAG)
-    save_checkpoint(
-        cursor=None,
-        seen_ids=list(seen_ids),
-        vars_template=effective_template,
-        mode=None, slice_from=None, slice_to=None, year=None,
-        check_point_path=CHECKPOINT
-    )
-    logger.info(f"[DONE] total new written (cursor-only) = {total_got} → {OUT_NDJSON}")
-    d.quit()
+    # # Checkpoint riêng (theo PAGE + TAG)
+    # state = load_checkpoint(CHECKPOINT)
+    # seen_ids      = normalize_seen_ids(state.get("seen_ids"))
+    # cursor_ckpt   = state.get("cursor")
+    # vars_template = state.get("vars_template") or template_now
+    # effective_template = vars_template or template_now
+
+    # # ---- BACKFILL MODE ----
+    # if args.backfill and args.year and args.from_month and args.to_month:
+    #     logger.info(f"[MODE] Backfill {args.from_month:02d}/{args.year} → {args.to_month:02d}/{args.year}")
+    #     cur = args.from_month
+    #     while cur >= args.to_month:
+    #         start_dt = datetime(args.year, cur, 1)
+    #         if cur == 1:
+    #             end_dt = datetime(args.year - 1, 12, 1)
+    #         else:
+    #             end_dt = datetime(args.year, cur - 1, 1)
+
+    #         t_from = int(end_dt.timestamp())
+    #         t_to   = int(start_dt.timestamp())
+
+    #         logger.info(f"🕰️ Crawling trước {start_dt.strftime('%Y-%m-%d')} ...")
+    #         total_new, min_created, has_next = paginate_window(
+    #             d, form, effective_template,
+    #             seen_ids=set(),               # backfill theo slice -> không dùng seen chung
+    #             t_from=t_from,
+    #             t_to=t_to,
+    #             group_url=GROUP_URL,
+    #             database_path=DATABASE_PATH,
+    #             page_limit=args.page_limit
+    #         )
+    #         logger.info(f"✅ Done {start_dt.strftime('%Y-%m')} → {total_new} posts | min_created={min_created}")
+    #         save_checkpoint(
+    #             cursor=None,
+    #             seen_ids=list(seen_ids),
+    #             vars_template=effective_template,
+    #             mode="time",
+    #             slice_from=None,
+    #             slice_to=t_to,
+    #             year=args.year,
+    #             check_point_path=CHECKPOINT
+    #         )
+    #         if _SHOULD_STOP:
+    #             logger.warning("[STOP] Nhận tín hiệu dừng giữa backfill — thoát an toàn.")
+    #             break
+    #         time.sleep(2)
+    #         cur -= 1
+
+    #     logger.info("🎉 [DONE] Backfill completed.")
+    #     d.quit()
+    #     sys.exit(0)
+
+    # # ---- RESUME cursor-only ----
+    # if args.resume and cursor_ckpt:
+    #     form = update_vars_for_next_cursor(form, cursor_ckpt, vars_template=effective_template)
+    #     logger.info(f"[RESUME] Dùng lại cursor: {str(cursor_ckpt)[:40]}...")
+
+    # total_got = run_cursor_only(
+    #     d,
+    #     form,
+    #     effective_template,
+    #     seen_ids,
+    #     database_path=DATABASE_PATH,
+    #     page_limit=args.page_limit,
+    #     resume=args.resume
+    # )
+
+    # # Lưu checkpoint cuối (per PAGE+TAG)
+    # save_checkpoint(
+    #     cursor=None,
+    #     seen_ids=list(seen_ids),
+    #     vars_template=effective_template,
+    #     mode=None, slice_from=None, slice_to=None, year=None,
+    #     check_point_path=CHECKPOINT
+    # )
+    # logger.info(f"[DONE] total new written (cursor-only) = {total_got} → {OUT_NDJSON}")
+    # d.quit()
