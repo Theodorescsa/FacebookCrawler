@@ -24,7 +24,12 @@ def crawl_scroll_loop(
     seen_ids: Set[str],
     keep_last: int,
     max_scrolls: int = 10000000,
-):
+) -> bool:
+    """
+    Return:
+        True  -> dừng vì stall (Stall confirmed ...)
+        False -> dừng vì lý do khác (STOP flag, MAX_SCROLLS, error...)
+    """
     MAX_SCROLLS = max_scrolls or 10000
     CLEANUP_EVERY = 25
     STALL_THRESHOLD = 8
@@ -35,6 +40,7 @@ def crawl_scroll_loop(
     stall_count = 0
     idle_rounds_no_new_posts = 0
     i = 0
+    stopped_due_to_stall = False  # NEW
 
     while True:
         if _SHOULD_STOP:
@@ -107,9 +113,11 @@ def crawl_scroll_loop(
                 "[STOP] Stall confirmed: no new posts for %d rounds & height stagnant.",
                 idle_rounds_no_new_posts,
             )
+            stopped_due_to_stall = True  # NEW
             break
 
         i += 1
         time.sleep(1)
 
     logger.info("[DONE] Crawl loop finished. Total unique posts seen: %d", len(seen_ids))
+    return stopped_due_to_stall  # NEW

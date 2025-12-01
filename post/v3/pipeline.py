@@ -13,7 +13,7 @@ from .storage.ndjson import append_ndjson
 
 
 LATEST_CREATED_TS: Optional[int] = None
-
+EARLIEST_CREATED_TS: Optional[int] = None  # NEW
 
 def process_single_gql_rec(
     rec: Dict[str, Any],
@@ -22,7 +22,7 @@ def process_single_gql_rec(
     out_path: Path,
     log_prefix: str = "",
 ) -> int:
-    global LATEST_CREATED_TS
+    global LATEST_CREATED_TS, EARLIEST_CREATED_TS  # UPDATED
 
     text = rec.get("responseText")
     if not text:
@@ -67,11 +67,15 @@ def process_single_gql_rec(
         logger.debug("[GQL%s] no fresh posts after dedup", log_prefix)
         return 0
 
+    # cập nhật min/max created_time
     for p in fresh:
         ts = p.get("created_time")
         if isinstance(ts, (int, float)):
-            if LATEST_CREATED_TS is None or ts > LATEST_CREATED_TS:
-                LATEST_CREATED_TS = int(ts)
+            ts_int = int(ts)
+            if LATEST_CREATED_TS is None or ts_int > LATEST_CREATED_TS:
+                LATEST_CREATED_TS = ts_int
+            if EARLIEST_CREATED_TS is None or ts_int < EARLIEST_CREATED_TS:
+                EARLIEST_CREATED_TS = ts_int
 
     append_ndjson(fresh, out_path)
 
