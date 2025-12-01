@@ -23,7 +23,7 @@ def crawl_scroll_loop(
     out_path: Path,
     seen_ids: Set[str],
     keep_last: int,
-    max_scrolls: int = 10000,
+    max_scrolls: int = 10000000,
 ):
     MAX_SCROLLS = max_scrolls or 10000
     CLEANUP_EVERY = 25
