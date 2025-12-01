@@ -2,9 +2,60 @@
 import datetime
 import json
 import re
-from get_comment_fb_utils import find_pageinfo_any
 
 _HASHTAG_RE = re.compile(r"(?:#|＃)([A-Za-z0-9_]+)", re.UNICODE)
+
+def find_pageinfo_any(pay):
+    # 1) page_info cổ điển
+    paths = [
+        ("data","node","comment_rendering_instance_for_feed_location","comments","page_info"),
+        ("data","node","feedback","comment_rendering_instance","comments","page_info"),
+    ]
+    for p in paths:
+        try:
+            pi = pay
+            for k in p: pi = pi[k]
+            if isinstance(pi, dict):
+                ec = pi.get("end_cursor") or pi.get("endCursor")
+                hn = pi.get("has_next_page") or pi.get("hasNextPage")
+                if ec or (hn is not None):
+                    return ec, bool(hn)
+        except Exception:
+            pass
+
+    # 2) NEW: lấy expansion_token từ CHÍNH list top-level
+    def _last_token_from_edges(edges):
+        last_tok = None
+        for e in edges or []:
+            n = (e or {}).get("node") or {}
+            fb = n.get("feedback") or {}
+            ei = fb.get("expansion_info") or {}
+            tok = ei.get("expansion_token")
+            if tok:
+                last_tok = tok
+        return last_tok
+
+    # 2a) đường comment_rendering_instance_for_feed_location
+    try:
+        edges = (pay["data"]["node"]
+                    ["comment_rendering_instance_for_feed_location"]["comments"]
+                    .get("edges", []))
+        tok = _last_token_from_edges(edges)
+        if tok: return tok, True
+    except Exception:
+        pass
+
+    # 2b) fallback feedback.comment_rendering_instance
+    try:
+        edges = (pay["data"]["node"]["feedback"]
+                    ["comment_rendering_instance"]["comments"]
+                    .get("edges", []))
+        tok = _last_token_from_edges(edges)
+        if tok: return tok, True
+    except Exception:
+        pass
+
+    return None, None
 
 
 # 1) Generic safe getters -------------------------------------------------------

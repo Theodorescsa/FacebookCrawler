@@ -2,7 +2,7 @@ import json, time, urllib.parse, sys, re
 from selenium.webdriver.common.by import By
 from collections import deque
 from pathlib import Path
-from extract_comment_utils import extract_full_posts_from_resptext, extract_replies_from_depth1_resp
+from extract_comment_utils import extract_full_posts_from_resptext, extract_replies_from_depth_resp
 from configs import REPLY_DOC_ID, POST_URL
 from get_comment_fb_utils import (
                                  _split_top_level_json_objects,
@@ -842,7 +842,7 @@ def crawl_comments(driver, raw_dump_path, out_json="comments.ndjson",
                 parent_id=parent_id,
                 parent_token=parent_token,
                 out_json=out_json,
-                extract_fn=extract_replies_from_depth1_resp,
+                extract_fn=extract_replies_from_depth_resp,
                 clean_fn=clean_fb_resp_text,
                 max_reply_pages=None,
                 level=1,

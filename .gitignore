@@ -6,3 +6,6 @@ comment/v2/__pycache__
 __pycache__
 logs/logs/crawl.log
 logs/logs
+database
+logs/logs/crawl.log
+logs/logs

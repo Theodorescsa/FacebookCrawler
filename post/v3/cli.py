@@ -22,7 +22,7 @@ from .pipeline import LATEST_CREATED_TS
 
 def add_common_args(ap):
     ap.add_argument("--group-url", type=str,
-                    default=env("GROUP_URL", "https://www.facebook.com/thoibao.de"))
+                    default=env("GROUP_URL", "https://web.facebook.com/profile.php?id=100079810928296"))
     ap.add_argument("--page-name", type=str,
                     default=env("PAGE_NAME", "thoibaode"))
     ap.add_argument("--account-tag", type=str,
