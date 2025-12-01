@@ -21,6 +21,12 @@ def create_chrome(headless: bool = False):
     chrome_opts.add_argument("--no-sandbox")
     chrome_opts.add_argument("--start-maximized")
 
+    # 🚀 NGĂN CHROME DỪNG KHI KHÔNG FOCUS
+    chrome_opts.add_argument("--disable-renderer-backgrounding")
+    chrome_opts.add_argument("--disable-backgrounding-occluded-windows")
+    chrome_opts.add_argument("--disable-background-timer-throttling")
+    chrome_opts.add_argument("--disable-features=CalculateNativeWinOcclusion")
+
     if headless:
         chrome_opts.add_argument("--headless=new")
 

@@ -18,3 +18,609 @@
 2025-11-27 10:49:14 INFO    [crawl_sheet1] [STOP] Stall confirmed: no new posts for 10 rounds & height stagnant.
 2025-11-27 10:49:14 INFO    [crawl_sheet1] [DONE] Crawl loop finished. Total unique posts seen: 5
 2025-11-27 10:49:16 INFO    [crawl_sheet1] [DONE] Finished crawl for 2025-11-27. Total unique posts: 5
+2025-11-27 10:50:50 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | DATA_ROOT=E:\NCS\fb-selenium\database
+2025-11-27 10:50:50 INFO    [crawl_sheet1] [PATH] DB=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01 | OUT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\posts_all.ndjson | CKPT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\checkpoint.json
+2025-11-27 10:50:50 INFO    [crawl_sheet1] ====== CRAWL NGÀY 2025-11-27 ======
+2025-11-27 10:51:11 INFO    [crawl_sheet1] [AUTH] bootstrap_auth OK with cookies E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-27 10:51:11 INFO    [crawl_sheet1] [HOOK] install_early_hook OK (keep_last=350)
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/0] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/1] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/2] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/3] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/4] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/5] collect_post_summaries -> 0 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/6] collect_post_summaries -> 10 items
+2025-11-27 10:51:37 DEBUG   [crawl_sheet1] [GQL#0/6] coalesce_posts -> 1 items
+2025-11-27 10:51:37 INFO    [crawl_sheet1] [GQL#0/6] wrote 1 fresh posts
+2025-11-27 10:51:37 INFO    [crawl_sheet1] [GQL] #0: collected 1 new posts (total_seen=1)
+2025-11-27 10:51:40 DEBUG   [crawl_sheet1] [GQL#1/0] collect_post_summaries -> 10 items
+2025-11-27 10:51:40 DEBUG   [crawl_sheet1] [GQL#1/0] coalesce_posts -> 1 items
+2025-11-27 10:51:40 INFO    [crawl_sheet1] [GQL#1/0] wrote 1 fresh posts
+2025-11-27 10:51:40 INFO    [crawl_sheet1] [GQL] #1: collected 1 new posts (total_seen=2)
+2025-11-27 10:51:42 DEBUG   [crawl_sheet1] [GQL#2/0] collect_post_summaries -> 10 items
+2025-11-27 10:51:42 DEBUG   [crawl_sheet1] [GQL#2/0] coalesce_posts -> 1 items
+2025-11-27 10:51:42 INFO    [crawl_sheet1] [GQL#2/0] wrote 1 fresh posts
+2025-11-27 10:51:42 INFO    [crawl_sheet1] [GQL] #2: collected 1 new posts (total_seen=3)
+2025-11-27 10:51:48 DEBUG   [crawl_sheet1] [GQL#5/0] collect_post_summaries -> 10 items
+2025-11-27 10:51:48 DEBUG   [crawl_sheet1] [GQL#5/0] coalesce_posts -> 1 items
+2025-11-27 10:51:48 INFO    [crawl_sheet1] [GQL#5/0] wrote 1 fresh posts
+2025-11-27 10:51:48 INFO    [crawl_sheet1] [GQL] #5: collected 1 new posts (total_seen=4)
+2025-11-27 10:51:56 DEBUG   [crawl_sheet1] [GQL#9/0] collect_post_summaries -> 10 items
+2025-11-27 10:51:56 DEBUG   [crawl_sheet1] [GQL#9/0] coalesce_posts -> 1 items
+2025-11-27 10:51:56 INFO    [crawl_sheet1] [GQL#9/0] wrote 1 fresh posts
+2025-11-27 10:51:56 INFO    [crawl_sheet1] [GQL] #9: collected 1 new posts (total_seen=5)
+2025-11-27 10:52:05 DEBUG   [crawl_sheet1] [GQL#13/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:05 DEBUG   [crawl_sheet1] [GQL#13/0] coalesce_posts -> 1 items
+2025-11-27 10:52:05 INFO    [crawl_sheet1] [GQL#13/0] wrote 1 fresh posts
+2025-11-27 10:52:05 INFO    [crawl_sheet1] [GQL] #13: collected 1 new posts (total_seen=6)
+2025-11-27 10:52:15 DEBUG   [crawl_sheet1] [GQL#18/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:15 DEBUG   [crawl_sheet1] [GQL#18/0] coalesce_posts -> 1 items
+2025-11-27 10:52:15 INFO    [crawl_sheet1] [GQL#18/0] wrote 1 fresh posts
+2025-11-27 10:52:15 INFO    [crawl_sheet1] [GQL] #18: collected 1 new posts (total_seen=7)
+2025-11-27 10:52:21 DEBUG   [crawl_sheet1] [GQL#21/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:21 DEBUG   [crawl_sheet1] [GQL#21/0] coalesce_posts -> 1 items
+2025-11-27 10:52:21 INFO    [crawl_sheet1] [GQL#21/0] wrote 1 fresh posts
+2025-11-27 10:52:21 INFO    [crawl_sheet1] [GQL] #21: collected 1 new posts (total_seen=8)
+2025-11-27 10:52:28 DEBUG   [crawl_sheet1] [GQL#24/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:28 DEBUG   [crawl_sheet1] [GQL#24/0] coalesce_posts -> 1 items
+2025-11-27 10:52:28 INFO    [crawl_sheet1] [GQL#24/0] wrote 1 fresh posts
+2025-11-27 10:52:28 INFO    [crawl_sheet1] [GQL] #24: collected 1 new posts (total_seen=9)
+2025-11-27 10:52:36 DEBUG   [crawl_sheet1] [GQL#28/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:36 DEBUG   [crawl_sheet1] [GQL#28/0] coalesce_posts -> 1 items
+2025-11-27 10:52:36 INFO    [crawl_sheet1] [GQL#28/0] wrote 1 fresh posts
+2025-11-27 10:52:36 INFO    [crawl_sheet1] [GQL] #28: collected 1 new posts (total_seen=10)
+2025-11-27 10:52:42 DEBUG   [crawl_sheet1] [GQL#31/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:42 DEBUG   [crawl_sheet1] [GQL#31/0] coalesce_posts -> 1 items
+2025-11-27 10:52:42 INFO    [crawl_sheet1] [GQL#31/0] wrote 1 fresh posts
+2025-11-27 10:52:42 INFO    [crawl_sheet1] [GQL] #31: collected 1 new posts (total_seen=11)
+2025-11-27 10:52:50 DEBUG   [crawl_sheet1] [GQL#35/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:50 DEBUG   [crawl_sheet1] [GQL#35/0] coalesce_posts -> 1 items
+2025-11-27 10:52:50 INFO    [crawl_sheet1] [GQL#35/0] wrote 1 fresh posts
+2025-11-27 10:52:50 INFO    [crawl_sheet1] [GQL] #35: collected 1 new posts (total_seen=12)
+2025-11-27 10:52:59 DEBUG   [crawl_sheet1] [GQL#39/0] collect_post_summaries -> 10 items
+2025-11-27 10:52:59 DEBUG   [crawl_sheet1] [GQL#39/0] coalesce_posts -> 1 items
+2025-11-27 10:52:59 INFO    [crawl_sheet1] [GQL#39/0] wrote 1 fresh posts
+2025-11-27 10:52:59 INFO    [crawl_sheet1] [GQL] #39: collected 1 new posts (total_seen=13)
+2025-11-27 10:53:01 DEBUG   [crawl_sheet1] [GQL#40/0] collect_post_summaries -> 0 items
+2025-11-27 10:53:05 DEBUG   [crawl_sheet1] [GQL#42/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:05 DEBUG   [crawl_sheet1] [GQL#42/0] coalesce_posts -> 1 items
+2025-11-27 10:53:05 INFO    [crawl_sheet1] [GQL#42/0] wrote 1 fresh posts
+2025-11-27 10:53:05 INFO    [crawl_sheet1] [GQL] #42: collected 1 new posts (total_seen=14)
+2025-11-27 10:53:09 DEBUG   [crawl_sheet1] [GQL#44/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:09 DEBUG   [crawl_sheet1] [GQL#44/0] coalesce_posts -> 1 items
+2025-11-27 10:53:09 INFO    [crawl_sheet1] [GQL#44/0] wrote 1 fresh posts
+2025-11-27 10:53:09 INFO    [crawl_sheet1] [GQL] #44: collected 1 new posts (total_seen=15)
+2025-11-27 10:53:15 DEBUG   [crawl_sheet1] [GQL#47/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:15 DEBUG   [crawl_sheet1] [GQL#47/0] coalesce_posts -> 1 items
+2025-11-27 10:53:15 INFO    [crawl_sheet1] [GQL#47/0] wrote 1 fresh posts
+2025-11-27 10:53:15 INFO    [crawl_sheet1] [GQL] #47: collected 1 new posts (total_seen=16)
+2025-11-27 10:53:22 DEBUG   [crawl_sheet1] [GQL#50/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:22 DEBUG   [crawl_sheet1] [GQL#50/0] coalesce_posts -> 1 items
+2025-11-27 10:53:22 INFO    [crawl_sheet1] [GQL#50/0] wrote 1 fresh posts
+2025-11-27 10:53:22 INFO    [crawl_sheet1] [GQL] #50: collected 1 new posts (total_seen=17)
+2025-11-27 10:53:28 DEBUG   [crawl_sheet1] [GQL#53/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:28 DEBUG   [crawl_sheet1] [GQL#53/0] coalesce_posts -> 1 items
+2025-11-27 10:53:28 INFO    [crawl_sheet1] [GQL#53/0] wrote 1 fresh posts
+2025-11-27 10:53:28 INFO    [crawl_sheet1] [GQL] #53: collected 1 new posts (total_seen=18)
+2025-11-27 10:53:35 DEBUG   [crawl_sheet1] [GQL#56/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:35 DEBUG   [crawl_sheet1] [GQL#56/0] coalesce_posts -> 1 items
+2025-11-27 10:53:35 INFO    [crawl_sheet1] [GQL#56/0] wrote 1 fresh posts
+2025-11-27 10:53:35 INFO    [crawl_sheet1] [GQL] #56: collected 1 new posts (total_seen=19)
+2025-11-27 10:53:39 DEBUG   [crawl_sheet1] [GQL#58/0] collect_post_summaries -> 0 items
+2025-11-27 10:53:43 DEBUG   [crawl_sheet1] [GQL#60/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:43 DEBUG   [crawl_sheet1] [GQL#60/0] coalesce_posts -> 1 items
+2025-11-27 10:53:43 INFO    [crawl_sheet1] [GQL#60/0] wrote 1 fresh posts
+2025-11-27 10:53:43 INFO    [crawl_sheet1] [GQL] #60: collected 1 new posts (total_seen=20)
+2025-11-27 10:53:49 DEBUG   [crawl_sheet1] [GQL#63/0] collect_post_summaries -> 10 items
+2025-11-27 10:53:49 DEBUG   [crawl_sheet1] [GQL#63/0] coalesce_posts -> 1 items
+2025-11-27 10:53:49 INFO    [crawl_sheet1] [GQL#63/0] wrote 1 fresh posts
+2025-11-27 10:53:49 INFO    [crawl_sheet1] [GQL] #63: collected 1 new posts (total_seen=21)
+2025-11-27 10:54:00 DEBUG   [crawl_sheet1] [GQL#68/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:00 DEBUG   [crawl_sheet1] [GQL#68/0] coalesce_posts -> 1 items
+2025-11-27 10:54:00 INFO    [crawl_sheet1] [GQL#68/0] wrote 1 fresh posts
+2025-11-27 10:54:00 INFO    [crawl_sheet1] [GQL] #68: collected 1 new posts (total_seen=22)
+2025-11-27 10:54:06 DEBUG   [crawl_sheet1] [GQL#71/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:06 DEBUG   [crawl_sheet1] [GQL#71/0] coalesce_posts -> 1 items
+2025-11-27 10:54:06 INFO    [crawl_sheet1] [GQL#71/0] wrote 1 fresh posts
+2025-11-27 10:54:06 INFO    [crawl_sheet1] [GQL] #71: collected 1 new posts (total_seen=23)
+2025-11-27 10:54:14 DEBUG   [crawl_sheet1] [GQL#75/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:14 DEBUG   [crawl_sheet1] [GQL#75/0] coalesce_posts -> 1 items
+2025-11-27 10:54:14 INFO    [crawl_sheet1] [GQL#75/0] wrote 1 fresh posts
+2025-11-27 10:54:14 INFO    [crawl_sheet1] [GQL] #75: collected 1 new posts (total_seen=24)
+2025-11-27 10:54:18 DEBUG   [crawl_sheet1] [GQL#77/0] collect_post_summaries -> 0 items
+2025-11-27 10:54:21 DEBUG   [crawl_sheet1] [GQL#78/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:21 DEBUG   [crawl_sheet1] [GQL#78/0] coalesce_posts -> 1 items
+2025-11-27 10:54:21 INFO    [crawl_sheet1] [GQL#78/0] wrote 1 fresh posts
+2025-11-27 10:54:21 INFO    [crawl_sheet1] [GQL] #78: collected 1 new posts (total_seen=25)
+2025-11-27 10:54:29 DEBUG   [crawl_sheet1] [GQL#82/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:29 DEBUG   [crawl_sheet1] [GQL#82/0] coalesce_posts -> 1 items
+2025-11-27 10:54:29 INFO    [crawl_sheet1] [GQL#82/0] wrote 1 fresh posts
+2025-11-27 10:54:29 INFO    [crawl_sheet1] [GQL] #82: collected 1 new posts (total_seen=26)
+2025-11-27 10:54:31 DEBUG   [crawl_sheet1] [GQL#83/0] collect_post_summaries -> 0 items
+2025-11-27 10:54:37 DEBUG   [crawl_sheet1] [GQL#86/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:37 DEBUG   [crawl_sheet1] [GQL#86/0] coalesce_posts -> 1 items
+2025-11-27 10:54:37 INFO    [crawl_sheet1] [GQL#86/0] wrote 1 fresh posts
+2025-11-27 10:54:37 INFO    [crawl_sheet1] [GQL] #86: collected 1 new posts (total_seen=27)
+2025-11-27 10:54:46 DEBUG   [crawl_sheet1] [GQL#90/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:46 DEBUG   [crawl_sheet1] [GQL#90/0] coalesce_posts -> 1 items
+2025-11-27 10:54:46 INFO    [crawl_sheet1] [GQL#90/0] wrote 1 fresh posts
+2025-11-27 10:54:46 INFO    [crawl_sheet1] [GQL] #90: collected 1 new posts (total_seen=28)
+2025-11-27 10:54:52 DEBUG   [crawl_sheet1] [GQL#93/0] collect_post_summaries -> 10 items
+2025-11-27 10:54:52 DEBUG   [crawl_sheet1] [GQL#93/0] coalesce_posts -> 1 items
+2025-11-27 10:54:52 INFO    [crawl_sheet1] [GQL#93/0] wrote 1 fresh posts
+2025-11-27 10:54:52 INFO    [crawl_sheet1] [GQL] #93: collected 1 new posts (total_seen=29)
+2025-11-27 10:54:54 DEBUG   [crawl_sheet1] [GQL#94/0] collect_post_summaries -> 0 items
+2025-11-27 10:55:00 DEBUG   [crawl_sheet1] [GQL#97/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:00 DEBUG   [crawl_sheet1] [GQL#97/0] coalesce_posts -> 1 items
+2025-11-27 10:55:00 INFO    [crawl_sheet1] [GQL#97/0] wrote 1 fresh posts
+2025-11-27 10:55:00 INFO    [crawl_sheet1] [GQL] #97: collected 1 new posts (total_seen=30)
+2025-11-27 10:55:07 DEBUG   [crawl_sheet1] [GQL#100/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:07 DEBUG   [crawl_sheet1] [GQL#100/0] coalesce_posts -> 1 items
+2025-11-27 10:55:07 INFO    [crawl_sheet1] [GQL#100/0] wrote 1 fresh posts
+2025-11-27 10:55:07 INFO    [crawl_sheet1] [GQL] #100: collected 1 new posts (total_seen=31)
+2025-11-27 10:55:15 DEBUG   [crawl_sheet1] [GQL#104/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:15 DEBUG   [crawl_sheet1] [GQL#104/0] coalesce_posts -> 1 items
+2025-11-27 10:55:15 INFO    [crawl_sheet1] [GQL#104/0] wrote 1 fresh posts
+2025-11-27 10:55:15 INFO    [crawl_sheet1] [GQL] #104: collected 1 new posts (total_seen=32)
+2025-11-27 10:55:24 DEBUG   [crawl_sheet1] [GQL#108/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:24 DEBUG   [crawl_sheet1] [GQL#108/0] coalesce_posts -> 1 items
+2025-11-27 10:55:24 INFO    [crawl_sheet1] [GQL#108/0] wrote 1 fresh posts
+2025-11-27 10:55:24 INFO    [crawl_sheet1] [GQL] #108: collected 1 new posts (total_seen=33)
+2025-11-27 10:55:30 DEBUG   [crawl_sheet1] [GQL#111/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:30 DEBUG   [crawl_sheet1] [GQL#111/0] coalesce_posts -> 1 items
+2025-11-27 10:55:30 INFO    [crawl_sheet1] [GQL#111/0] wrote 1 fresh posts
+2025-11-27 10:55:30 INFO    [crawl_sheet1] [GQL] #111: collected 1 new posts (total_seen=34)
+2025-11-27 10:55:39 DEBUG   [crawl_sheet1] [GQL#115/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:39 DEBUG   [crawl_sheet1] [GQL#115/0] coalesce_posts -> 1 items
+2025-11-27 10:55:39 INFO    [crawl_sheet1] [GQL#115/0] wrote 1 fresh posts
+2025-11-27 10:55:39 INFO    [crawl_sheet1] [GQL] #115: collected 1 new posts (total_seen=35)
+2025-11-27 10:55:45 DEBUG   [crawl_sheet1] [GQL#118/0] collect_post_summaries -> 10 items
+2025-11-27 10:55:45 DEBUG   [crawl_sheet1] [GQL#118/0] coalesce_posts -> 1 items
+2025-11-27 10:55:45 INFO    [crawl_sheet1] [GQL#118/0] wrote 1 fresh posts
+2025-11-27 10:55:45 DEBUG   [crawl_sheet1] [GQL#118/1] collect_post_summaries -> 0 items
+2025-11-27 10:55:45 INFO    [crawl_sheet1] [GQL] #118: collected 1 new posts (total_seen=36)
+2025-11-27 10:56:06 INFO    [crawl_sheet1] [STOP] Stall confirmed: no new posts for 10 rounds & height stagnant.
+2025-11-27 10:56:06 INFO    [crawl_sheet1] [DONE] Crawl loop finished. Total unique posts seen: 36
+2025-11-27 10:56:08 INFO    [crawl_sheet1] [DONE] Finished crawl for 2025-11-27. Total unique posts: 36
+2025-11-27 10:58:37 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=acc01 | DATA_ROOT=E:\NCS\fb-selenium\database
+2025-11-27 10:58:37 INFO    [crawl_sheet1] [PATH] DB=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01 | OUT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\posts_all.ndjson | CKPT=E:\NCS\fb-selenium\database\post\page\thoibaode\ACC_acc01\checkpoint.json
+2025-11-27 10:58:37 INFO    [crawl_sheet1] ====== CRAWL NGÀY 2025-11-27 ======
+2025-11-27 10:58:58 INFO    [crawl_sheet1] [AUTH] bootstrap_auth OK with cookies E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-11-27 10:58:58 INFO    [crawl_sheet1] [HOOK] install_early_hook OK (keep_last=350)
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/0] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/1] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/2] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/3] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/4] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/5] collect_post_summaries -> 0 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/6] collect_post_summaries -> 10 items
+2025-11-27 10:59:24 DEBUG   [crawl_sheet1] [GQL#0/6] coalesce_posts -> 1 items
+2025-11-27 10:59:24 INFO    [crawl_sheet1] [GQL#0/6] wrote 1 fresh posts
+2025-11-27 10:59:24 INFO    [crawl_sheet1] [GQL] #0: collected 1 new posts (total_seen=1)
+2025-11-27 10:59:26 DEBUG   [crawl_sheet1] [GQL#1/0] collect_post_summaries -> 10 items
+2025-11-27 10:59:26 DEBUG   [crawl_sheet1] [GQL#1/0] coalesce_posts -> 1 items
+2025-11-27 10:59:26 INFO    [crawl_sheet1] [GQL#1/0] wrote 1 fresh posts
+2025-11-27 10:59:26 INFO    [crawl_sheet1] [GQL] #1: collected 1 new posts (total_seen=2)
+2025-11-27 10:59:30 DEBUG   [crawl_sheet1] [GQL#3/0] collect_post_summaries -> 10 items
+2025-11-27 10:59:30 DEBUG   [crawl_sheet1] [GQL#3/0] coalesce_posts -> 1 items
+2025-11-27 10:59:30 INFO    [crawl_sheet1] [GQL#3/0] wrote 1 fresh posts
+2025-11-27 10:59:30 INFO    [crawl_sheet1] [GQL] #3: collected 1 new posts (total_seen=3)
+2025-11-27 10:59:41 DEBUG   [crawl_sheet1] [GQL#8/0] collect_post_summaries -> 10 items
+2025-11-27 10:59:41 DEBUG   [crawl_sheet1] [GQL#8/0] coalesce_posts -> 1 items
+2025-11-27 10:59:41 INFO    [crawl_sheet1] [GQL#8/0] wrote 1 fresh posts
+2025-11-27 10:59:41 INFO    [crawl_sheet1] [GQL] #8: collected 1 new posts (total_seen=4)
+2025-11-27 10:59:53 DEBUG   [crawl_sheet1] [GQL#14/0] collect_post_summaries -> 10 items
+2025-11-27 10:59:53 DEBUG   [crawl_sheet1] [GQL#14/0] coalesce_posts -> 1 items
+2025-11-27 10:59:53 INFO    [crawl_sheet1] [GQL#14/0] wrote 1 fresh posts
+2025-11-27 10:59:53 INFO    [crawl_sheet1] [GQL] #14: collected 1 new posts (total_seen=5)
+2025-11-27 11:00:07 DEBUG   [crawl_sheet1] [GQL#21/0] collect_post_summaries -> 10 items
+2025-11-27 11:00:07 DEBUG   [crawl_sheet1] [GQL#21/0] coalesce_posts -> 1 items
+2025-11-27 11:00:07 INFO    [crawl_sheet1] [GQL#21/0] wrote 1 fresh posts
+2025-11-27 11:00:07 INFO    [crawl_sheet1] [GQL] #21: collected 1 new posts (total_seen=6)
+2025-11-27 11:00:15 DEBUG   [crawl_sheet1] [GQL#25/0] collect_post_summaries -> 10 items
+2025-11-27 11:00:15 DEBUG   [crawl_sheet1] [GQL#25/0] coalesce_posts -> 1 items
+2025-11-27 11:00:15 INFO    [crawl_sheet1] [GQL#25/0] wrote 1 fresh posts
+2025-11-27 11:00:15 INFO    [crawl_sheet1] [GQL] #25: collected 1 new posts (total_seen=7)
+2025-11-27 11:00:27 DEBUG   [crawl_sheet1] [GQL#31/0] collect_post_summaries -> 10 items
+2025-11-27 11:00:27 DEBUG   [crawl_sheet1] [GQL#31/0] coalesce_posts -> 1 items
+2025-11-27 11:00:27 INFO    [crawl_sheet1] [GQL#31/0] wrote 1 fresh posts
+2025-11-27 11:00:27 INFO    [crawl_sheet1] [GQL] #31: collected 1 new posts (total_seen=8)
+2025-11-27 11:00:40 DEBUG   [crawl_sheet1] [GQL#37/0] collect_post_summaries -> 10 items
+2025-11-27 11:00:40 DEBUG   [crawl_sheet1] [GQL#37/0] coalesce_posts -> 1 items
+2025-11-27 11:00:40 INFO    [crawl_sheet1] [GQL#37/0] wrote 1 fresh posts
+2025-11-27 11:00:40 INFO    [crawl_sheet1] [GQL] #37: collected 1 new posts (total_seen=9)
+2025-11-27 11:00:50 DEBUG   [crawl_sheet1] [GQL#42/0] collect_post_summaries -> 10 items
+2025-11-27 11:00:50 DEBUG   [crawl_sheet1] [GQL#42/0] coalesce_posts -> 1 items
+2025-11-27 11:00:50 INFO    [crawl_sheet1] [GQL#42/0] wrote 1 fresh posts
+2025-11-27 11:00:50 INFO    [crawl_sheet1] [GQL] #42: collected 1 new posts (total_seen=10)
+2025-11-27 11:01:00 DEBUG   [crawl_sheet1] [GQL#47/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:00 DEBUG   [crawl_sheet1] [GQL#47/0] coalesce_posts -> 1 items
+2025-11-27 11:01:00 INFO    [crawl_sheet1] [GQL#47/0] wrote 1 fresh posts
+2025-11-27 11:01:00 INFO    [crawl_sheet1] [GQL] #47: collected 1 new posts (total_seen=11)
+2025-11-27 11:01:13 DEBUG   [crawl_sheet1] [GQL#53/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:13 DEBUG   [crawl_sheet1] [GQL#53/0] coalesce_posts -> 1 items
+2025-11-27 11:01:13 INFO    [crawl_sheet1] [GQL#53/0] wrote 1 fresh posts
+2025-11-27 11:01:13 INFO    [crawl_sheet1] [GQL] #53: collected 1 new posts (total_seen=12)
+2025-11-27 11:01:23 DEBUG   [crawl_sheet1] [GQL#58/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:23 DEBUG   [crawl_sheet1] [GQL#58/0] coalesce_posts -> 1 items
+2025-11-27 11:01:23 INFO    [crawl_sheet1] [GQL#58/0] wrote 1 fresh posts
+2025-11-27 11:01:23 INFO    [crawl_sheet1] [GQL] #58: collected 1 new posts (total_seen=13)
+2025-11-27 11:01:28 DEBUG   [crawl_sheet1] [GQL#60/0] collect_post_summaries -> 0 items
+2025-11-27 11:01:30 DEBUG   [crawl_sheet1] [GQL#61/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:30 DEBUG   [crawl_sheet1] [GQL#61/0] coalesce_posts -> 1 items
+2025-11-27 11:01:30 INFO    [crawl_sheet1] [GQL#61/0] wrote 1 fresh posts
+2025-11-27 11:01:30 INFO    [crawl_sheet1] [GQL] #61: collected 1 new posts (total_seen=14)
+2025-11-27 11:01:40 DEBUG   [crawl_sheet1] [GQL#66/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:40 DEBUG   [crawl_sheet1] [GQL#66/0] coalesce_posts -> 1 items
+2025-11-27 11:01:40 INFO    [crawl_sheet1] [GQL#66/0] wrote 1 fresh posts
+2025-11-27 11:01:40 INFO    [crawl_sheet1] [GQL] #66: collected 1 new posts (total_seen=15)
+2025-11-27 11:01:48 DEBUG   [crawl_sheet1] [GQL#70/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:48 DEBUG   [crawl_sheet1] [GQL#70/0] coalesce_posts -> 1 items
+2025-11-27 11:01:48 INFO    [crawl_sheet1] [GQL#70/0] wrote 1 fresh posts
+2025-11-27 11:01:48 INFO    [crawl_sheet1] [GQL] #70: collected 1 new posts (total_seen=16)
+2025-11-27 11:01:59 DEBUG   [crawl_sheet1] [GQL#75/0] collect_post_summaries -> 10 items
+2025-11-27 11:01:59 DEBUG   [crawl_sheet1] [GQL#75/0] coalesce_posts -> 1 items
+2025-11-27 11:01:59 INFO    [crawl_sheet1] [GQL#75/0] wrote 1 fresh posts
+2025-11-27 11:01:59 INFO    [crawl_sheet1] [GQL] #75: collected 1 new posts (total_seen=17)
+2025-11-27 11:02:09 DEBUG   [crawl_sheet1] [GQL#80/0] collect_post_summaries -> 10 items
+2025-11-27 11:02:09 DEBUG   [crawl_sheet1] [GQL#80/0] coalesce_posts -> 1 items
+2025-11-27 11:02:09 INFO    [crawl_sheet1] [GQL#80/0] wrote 1 fresh posts
+2025-11-27 11:02:09 INFO    [crawl_sheet1] [GQL] #80: collected 1 new posts (total_seen=18)
+2025-11-27 11:02:19 DEBUG   [crawl_sheet1] [GQL#85/0] collect_post_summaries -> 10 items
+2025-11-27 11:02:19 DEBUG   [crawl_sheet1] [GQL#85/0] coalesce_posts -> 1 items
+2025-11-27 11:02:19 INFO    [crawl_sheet1] [GQL#85/0] wrote 1 fresh posts
+2025-11-27 11:02:19 INFO    [crawl_sheet1] [GQL] #85: collected 1 new posts (total_seen=19)
+2025-11-27 11:02:21 DEBUG   [crawl_sheet1] [GQL#86/0] collect_post_summaries -> 0 items
+2025-11-27 11:02:30 DEBUG   [crawl_sheet1] [GQL#90/0] collect_post_summaries -> 10 items
+2025-11-27 11:02:30 DEBUG   [crawl_sheet1] [GQL#90/0] coalesce_posts -> 1 items
+2025-11-27 11:02:30 INFO    [crawl_sheet1] [GQL#90/0] wrote 1 fresh posts
+2025-11-27 11:02:30 INFO    [crawl_sheet1] [GQL] #90: collected 1 new posts (total_seen=20)
+2025-11-27 11:02:40 DEBUG   [crawl_sheet1] [GQL#95/0] collect_post_summaries -> 10 items
+2025-11-27 11:02:40 DEBUG   [crawl_sheet1] [GQL#95/0] coalesce_posts -> 1 items
+2025-11-27 11:02:40 INFO    [crawl_sheet1] [GQL#95/0] wrote 1 fresh posts
+2025-11-27 11:02:40 INFO    [crawl_sheet1] [GQL] #95: collected 1 new posts (total_seen=21)
+2025-11-27 11:02:48 DEBUG   [crawl_sheet1] [GQL#99/0] collect_post_summaries -> 10 items
+2025-11-27 11:02:48 DEBUG   [crawl_sheet1] [GQL#99/0] coalesce_posts -> 1 items
+2025-11-27 11:02:48 INFO    [crawl_sheet1] [GQL#99/0] wrote 1 fresh posts
+2025-11-27 11:02:48 INFO    [crawl_sheet1] [GQL] #99: collected 1 new posts (total_seen=22)
+2025-11-27 11:03:02 DEBUG   [crawl_sheet1] [GQL#106/0] collect_post_summaries -> 10 items
+2025-11-27 11:03:02 DEBUG   [crawl_sheet1] [GQL#106/0] coalesce_posts -> 1 items
+2025-11-27 11:03:02 INFO    [crawl_sheet1] [GQL#106/0] wrote 1 fresh posts
+2025-11-27 11:03:02 INFO    [crawl_sheet1] [GQL] #106: collected 1 new posts (total_seen=23)
+2025-11-27 11:03:15 DEBUG   [crawl_sheet1] [GQL#112/0] collect_post_summaries -> 10 items
+2025-11-27 11:03:15 DEBUG   [crawl_sheet1] [GQL#112/0] coalesce_posts -> 1 items
+2025-11-27 11:03:15 INFO    [crawl_sheet1] [GQL#112/0] wrote 1 fresh posts
+2025-11-27 11:03:15 INFO    [crawl_sheet1] [GQL] #112: collected 1 new posts (total_seen=24)
+2025-11-27 11:03:23 DEBUG   [crawl_sheet1] [GQL#116/0] collect_post_summaries -> 10 items
+2025-11-27 11:03:23 DEBUG   [crawl_sheet1] [GQL#116/0] coalesce_posts -> 1 items
+2025-11-27 11:03:23 INFO    [crawl_sheet1] [GQL#116/0] wrote 1 fresh posts
+2025-11-27 11:03:23 DEBUG   [crawl_sheet1] [GQL#116/1] collect_post_summaries -> 0 items
+2025-11-27 11:03:23 INFO    [crawl_sheet1] [GQL] #116: collected 1 new posts (total_seen=25)
+2025-11-27 11:03:36 DEBUG   [crawl_sheet1] [GQL#122/0] collect_post_summaries -> 10 items
+2025-11-27 11:03:36 DEBUG   [crawl_sheet1] [GQL#122/0] coalesce_posts -> 1 items
+2025-11-27 11:03:36 INFO    [crawl_sheet1] [GQL#122/0] wrote 1 fresh posts
+2025-11-27 11:03:36 INFO    [crawl_sheet1] [GQL] #122: collected 1 new posts (total_seen=26)
+2025-11-27 11:03:42 DEBUG   [crawl_sheet1] [GQL#125/0] collect_post_summaries -> 0 items
+2025-11-27 11:03:48 DEBUG   [crawl_sheet1] [GQL#128/0] collect_post_summaries -> 0 items
+2025-11-27 11:03:50 DEBUG   [crawl_sheet1] [GQL#129/0] collect_post_summaries -> 10 items
+2025-11-27 11:03:50 DEBUG   [crawl_sheet1] [GQL#129/0] coalesce_posts -> 1 items
+2025-11-27 11:03:50 INFO    [crawl_sheet1] [GQL#129/0] wrote 1 fresh posts
+2025-11-27 11:03:50 INFO    [crawl_sheet1] [GQL] #129: collected 1 new posts (total_seen=27)
+2025-11-27 11:04:03 DEBUG   [crawl_sheet1] [GQL#135/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:03 DEBUG   [crawl_sheet1] [GQL#135/0] coalesce_posts -> 1 items
+2025-11-27 11:04:03 INFO    [crawl_sheet1] [GQL#135/0] wrote 1 fresh posts
+2025-11-27 11:04:03 INFO    [crawl_sheet1] [GQL] #135: collected 1 new posts (total_seen=28)
+2025-11-27 11:04:13 DEBUG   [crawl_sheet1] [GQL#140/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:13 DEBUG   [crawl_sheet1] [GQL#140/0] coalesce_posts -> 1 items
+2025-11-27 11:04:13 INFO    [crawl_sheet1] [GQL#140/0] wrote 1 fresh posts
+2025-11-27 11:04:13 INFO    [crawl_sheet1] [GQL] #140: collected 1 new posts (total_seen=29)
+2025-11-27 11:04:23 DEBUG   [crawl_sheet1] [GQL#145/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:23 DEBUG   [crawl_sheet1] [GQL#145/0] coalesce_posts -> 1 items
+2025-11-27 11:04:23 INFO    [crawl_sheet1] [GQL#145/0] wrote 1 fresh posts
+2025-11-27 11:04:23 INFO    [crawl_sheet1] [GQL] #145: collected 1 new posts (total_seen=30)
+2025-11-27 11:04:34 DEBUG   [crawl_sheet1] [GQL#150/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:34 DEBUG   [crawl_sheet1] [GQL#150/0] coalesce_posts -> 1 items
+2025-11-27 11:04:34 INFO    [crawl_sheet1] [GQL#150/0] wrote 1 fresh posts
+2025-11-27 11:04:34 INFO    [crawl_sheet1] [GQL] #150: collected 1 new posts (total_seen=31)
+2025-11-27 11:04:44 DEBUG   [crawl_sheet1] [GQL#155/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:44 DEBUG   [crawl_sheet1] [GQL#155/0] coalesce_posts -> 1 items
+2025-11-27 11:04:44 INFO    [crawl_sheet1] [GQL#155/0] wrote 1 fresh posts
+2025-11-27 11:04:44 INFO    [crawl_sheet1] [GQL] #155: collected 1 new posts (total_seen=32)
+2025-11-27 11:04:56 DEBUG   [crawl_sheet1] [GQL#161/0] collect_post_summaries -> 10 items
+2025-11-27 11:04:56 DEBUG   [crawl_sheet1] [GQL#161/0] coalesce_posts -> 1 items
+2025-11-27 11:04:56 INFO    [crawl_sheet1] [GQL#161/0] wrote 1 fresh posts
+2025-11-27 11:04:56 INFO    [crawl_sheet1] [GQL] #161: collected 1 new posts (total_seen=33)
+2025-11-27 11:05:09 DEBUG   [crawl_sheet1] [GQL#167/0] collect_post_summaries -> 10 items
+2025-11-27 11:05:09 DEBUG   [crawl_sheet1] [GQL#167/0] coalesce_posts -> 1 items
+2025-11-27 11:05:09 INFO    [crawl_sheet1] [GQL#167/0] wrote 1 fresh posts
+2025-11-27 11:05:09 INFO    [crawl_sheet1] [GQL] #167: collected 1 new posts (total_seen=34)
+2025-11-27 11:05:19 DEBUG   [crawl_sheet1] [GQL#172/0] collect_post_summaries -> 10 items
+2025-11-27 11:05:19 DEBUG   [crawl_sheet1] [GQL#172/0] coalesce_posts -> 1 items
+2025-11-27 11:05:19 INFO    [crawl_sheet1] [GQL#172/0] wrote 1 fresh posts
+2025-11-27 11:05:19 INFO    [crawl_sheet1] [GQL] #172: collected 1 new posts (total_seen=35)
+2025-11-27 11:05:30 DEBUG   [crawl_sheet1] [GQL#177/0] collect_post_summaries -> 10 items
+2025-11-27 11:05:30 DEBUG   [crawl_sheet1] [GQL#177/0] coalesce_posts -> 1 items
+2025-11-27 11:05:30 INFO    [crawl_sheet1] [GQL#177/0] wrote 1 fresh posts
+2025-11-27 11:05:30 INFO    [crawl_sheet1] [GQL] #177: collected 1 new posts (total_seen=36)
+2025-11-27 11:05:40 DEBUG   [crawl_sheet1] [GQL#182/0] collect_post_summaries -> 20 items
+2025-11-27 11:05:40 DEBUG   [crawl_sheet1] [GQL#182/0] coalesce_posts -> 2 items
+2025-11-27 11:05:40 INFO    [crawl_sheet1] [GQL#182/0] wrote 2 fresh posts
+2025-11-27 11:05:40 INFO    [crawl_sheet1] [GQL] #182: collected 2 new posts (total_seen=38)
+2025-11-27 11:05:54 DEBUG   [crawl_sheet1] [GQL#188/0] collect_post_summaries -> 10 items
+2025-11-27 11:05:54 DEBUG   [crawl_sheet1] [GQL#188/0] coalesce_posts -> 1 items
+2025-11-27 11:05:54 INFO    [crawl_sheet1] [GQL#188/0] wrote 1 fresh posts
+2025-11-27 11:05:54 INFO    [crawl_sheet1] [GQL] #188: collected 1 new posts (total_seen=39)
+2025-11-27 11:06:06 DEBUG   [crawl_sheet1] [GQL#194/0] collect_post_summaries -> 10 items
+2025-11-27 11:06:06 DEBUG   [crawl_sheet1] [GQL#194/0] coalesce_posts -> 1 items
+2025-11-27 11:06:06 INFO    [crawl_sheet1] [GQL#194/0] wrote 1 fresh posts
+2025-11-27 11:06:06 INFO    [crawl_sheet1] [GQL] #194: collected 1 new posts (total_seen=40)
+2025-11-27 11:06:17 DEBUG   [crawl_sheet1] [GQL#199/0] collect_post_summaries -> 10 items
+2025-11-27 11:06:17 DEBUG   [crawl_sheet1] [GQL#199/0] coalesce_posts -> 1 items
+2025-11-27 11:06:17 INFO    [crawl_sheet1] [GQL#199/0] wrote 1 fresh posts
+2025-11-27 11:06:17 INFO    [crawl_sheet1] [GQL] #199: collected 1 new posts (total_seen=41)
+2025-11-27 11:06:31 DEBUG   [crawl_sheet1] [GQL#205/0] collect_post_summaries -> 10 items
+2025-11-27 11:06:31 DEBUG   [crawl_sheet1] [GQL#205/0] coalesce_posts -> 1 items
+2025-11-27 11:06:31 INFO    [crawl_sheet1] [GQL#205/0] wrote 1 fresh posts
+2025-11-27 11:06:31 INFO    [crawl_sheet1] [GQL] #205: collected 1 new posts (total_seen=42)
+2025-11-27 11:06:39 DEBUG   [crawl_sheet1] [GQL#209/0] collect_post_summaries -> 10 items
+2025-11-27 11:06:39 DEBUG   [crawl_sheet1] [GQL#209/0] coalesce_posts -> 1 items
+2025-11-27 11:06:39 INFO    [crawl_sheet1] [GQL#209/0] wrote 1 fresh posts
+2025-11-27 11:06:39 INFO    [crawl_sheet1] [GQL] #209: collected 1 new posts (total_seen=43)
+2025-11-27 11:06:44 DEBUG   [crawl_sheet1] [GQL#211/0] collect_post_summaries -> 0 items
+2025-11-27 11:06:53 DEBUG   [crawl_sheet1] [GQL#215/0] collect_post_summaries -> 10 items
+2025-11-27 11:06:53 DEBUG   [crawl_sheet1] [GQL#215/0] coalesce_posts -> 1 items
+2025-11-27 11:06:53 INFO    [crawl_sheet1] [GQL#215/0] wrote 1 fresh posts
+2025-11-27 11:06:53 INFO    [crawl_sheet1] [GQL] #215: collected 1 new posts (total_seen=44)
+2025-11-27 11:06:55 DEBUG   [crawl_sheet1] [GQL#216/0] collect_post_summaries -> 0 items
+2025-11-27 11:07:04 DEBUG   [crawl_sheet1] [GQL#220/0] collect_post_summaries -> 10 items
+2025-11-27 11:07:04 DEBUG   [crawl_sheet1] [GQL#220/0] coalesce_posts -> 1 items
+2025-11-27 11:07:04 INFO    [crawl_sheet1] [GQL#220/0] wrote 1 fresh posts
+2025-11-27 11:07:04 INFO    [crawl_sheet1] [GQL] #220: collected 1 new posts (total_seen=45)
+2025-11-27 11:07:06 DEBUG   [crawl_sheet1] [GQL#221/0] collect_post_summaries -> 0 items
+2025-11-27 11:07:17 DEBUG   [crawl_sheet1] [GQL#226/0] collect_post_summaries -> 10 items
+2025-11-27 11:07:17 DEBUG   [crawl_sheet1] [GQL#226/0] coalesce_posts -> 1 items
+2025-11-27 11:07:17 INFO    [crawl_sheet1] [GQL#226/0] wrote 1 fresh posts
+2025-11-27 11:07:17 INFO    [crawl_sheet1] [GQL] #226: collected 1 new posts (total_seen=46)
+2025-11-27 11:07:27 DEBUG   [crawl_sheet1] [GQL#230/0] collect_post_summaries -> 19 items
+2025-11-27 11:07:27 DEBUG   [crawl_sheet1] [GQL#230/0] coalesce_posts -> 2 items
+2025-11-27 11:07:27 INFO    [crawl_sheet1] [GQL#230/0] wrote 2 fresh posts
+2025-11-27 11:07:27 INFO    [crawl_sheet1] [GQL] #230: collected 2 new posts (total_seen=48)
+2025-11-27 11:07:37 DEBUG   [crawl_sheet1] [GQL#235/0] collect_post_summaries -> 0 items
+2025-11-27 11:07:40 DEBUG   [crawl_sheet1] [GQL#236/0] collect_post_summaries -> 10 items
+2025-11-27 11:07:40 DEBUG   [crawl_sheet1] [GQL#236/0] coalesce_posts -> 1 items
+2025-11-27 11:07:40 INFO    [crawl_sheet1] [GQL#236/0] wrote 1 fresh posts
+2025-11-27 11:07:40 INFO    [crawl_sheet1] [GQL] #236: collected 1 new posts (total_seen=49)
+2025-11-27 11:07:46 DEBUG   [crawl_sheet1] [GQL#239/0] collect_post_summaries -> 0 items
+2025-11-27 11:07:51 DEBUG   [crawl_sheet1] [GQL#241/0] collect_post_summaries -> 10 items
+2025-11-27 11:07:51 DEBUG   [crawl_sheet1] [GQL#241/0] coalesce_posts -> 1 items
+2025-11-27 11:07:51 INFO    [crawl_sheet1] [GQL#241/0] wrote 1 fresh posts
+2025-11-27 11:07:51 INFO    [crawl_sheet1] [GQL] #241: collected 1 new posts (total_seen=50)
+2025-11-27 11:08:05 DEBUG   [crawl_sheet1] [GQL#247/0] collect_post_summaries -> 22 items
+2025-11-27 11:08:05 DEBUG   [crawl_sheet1] [GQL#247/0] coalesce_posts -> 2 items
+2025-11-27 11:08:05 INFO    [crawl_sheet1] [GQL#247/0] wrote 2 fresh posts
+2025-11-27 11:08:05 INFO    [crawl_sheet1] [GQL] #247: collected 2 new posts (total_seen=52)
+2025-11-27 11:08:20 DEBUG   [crawl_sheet1] [GQL#254/0] collect_post_summaries -> 10 items
+2025-11-27 11:08:20 DEBUG   [crawl_sheet1] [GQL#254/0] coalesce_posts -> 1 items
+2025-11-27 11:08:20 INFO    [crawl_sheet1] [GQL#254/0] wrote 1 fresh posts
+2025-11-27 11:08:20 INFO    [crawl_sheet1] [GQL] #254: collected 1 new posts (total_seen=53)
+2025-11-27 11:08:35 DEBUG   [crawl_sheet1] [GQL#261/0] collect_post_summaries -> 10 items
+2025-11-27 11:08:35 DEBUG   [crawl_sheet1] [GQL#261/0] coalesce_posts -> 1 items
+2025-11-27 11:08:35 INFO    [crawl_sheet1] [GQL#261/0] wrote 1 fresh posts
+2025-11-27 11:08:35 INFO    [crawl_sheet1] [GQL] #261: collected 1 new posts (total_seen=54)
+2025-11-27 11:08:41 DEBUG   [crawl_sheet1] [GQL#263/0] collect_post_summaries -> 10 items
+2025-11-27 11:08:41 DEBUG   [crawl_sheet1] [GQL#263/0] coalesce_posts -> 1 items
+2025-11-27 11:08:41 INFO    [crawl_sheet1] [GQL#263/0] wrote 1 fresh posts
+2025-11-27 11:08:41 DEBUG   [crawl_sheet1] [GQL#263/1] collect_post_summaries -> 0 items
+2025-11-27 11:08:41 INFO    [crawl_sheet1] [GQL] #263: collected 1 new posts (total_seen=55)
+2025-11-27 11:08:51 DEBUG   [crawl_sheet1] [GQL#267/0] collect_post_summaries -> 10 items
+2025-11-27 11:08:51 DEBUG   [crawl_sheet1] [GQL#267/0] coalesce_posts -> 1 items
+2025-11-27 11:08:51 INFO    [crawl_sheet1] [GQL#267/0] wrote 1 fresh posts
+2025-11-27 11:08:51 DEBUG   [crawl_sheet1] [GQL#267/1] collect_post_summaries -> 0 items
+2025-11-27 11:08:51 INFO    [crawl_sheet1] [GQL] #267: collected 1 new posts (total_seen=56)
+2025-11-27 11:08:59 DEBUG   [crawl_sheet1] [GQL#270/0] collect_post_summaries -> 10 items
+2025-11-27 11:08:59 DEBUG   [crawl_sheet1] [GQL#270/0] coalesce_posts -> 1 items
+2025-11-27 11:08:59 INFO    [crawl_sheet1] [GQL#270/0] wrote 1 fresh posts
+2025-11-27 11:08:59 INFO    [crawl_sheet1] [GQL] #270: collected 1 new posts (total_seen=57)
+2025-11-27 11:09:09 DEBUG   [crawl_sheet1] [GQL#274/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:12 DEBUG   [crawl_sheet1] [GQL#275/0] collect_post_summaries -> 9 items
+2025-11-27 11:09:12 DEBUG   [crawl_sheet1] [GQL#275/0] coalesce_posts -> 1 items
+2025-11-27 11:09:12 INFO    [crawl_sheet1] [GQL#275/0] wrote 1 fresh posts
+2025-11-27 11:09:12 INFO    [crawl_sheet1] [GQL] #275: collected 1 new posts (total_seen=58)
+2025-11-27 11:09:15 DEBUG   [crawl_sheet1] [GQL#276/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:20 DEBUG   [crawl_sheet1] [GQL#278/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:22 DEBUG   [crawl_sheet1] [GQL#279/0] collect_post_summaries -> 10 items
+2025-11-27 11:09:22 DEBUG   [crawl_sheet1] [GQL#279/0] coalesce_posts -> 1 items
+2025-11-27 11:09:22 INFO    [crawl_sheet1] [GQL#279/0] wrote 1 fresh posts
+2025-11-27 11:09:22 INFO    [crawl_sheet1] [GQL] #279: collected 1 new posts (total_seen=59)
+2025-11-27 11:09:25 DEBUG   [crawl_sheet1] [GQL#280/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:28 DEBUG   [crawl_sheet1] [GQL#281/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:30 DEBUG   [crawl_sheet1] [GQL#282/0] collect_post_summaries -> 0 items
+2025-11-27 11:09:35 DEBUG   [crawl_sheet1] [GQL#283/0] collect_post_summaries -> 10 items
+2025-11-27 11:09:35 DEBUG   [crawl_sheet1] [GQL#283/0] coalesce_posts -> 1 items
+2025-11-27 11:09:35 INFO    [crawl_sheet1] [GQL#283/0] wrote 1 fresh posts
+2025-11-27 11:09:35 INFO    [crawl_sheet1] [GQL] #283: collected 1 new posts (total_seen=60)
+2025-11-27 11:09:52 DEBUG   [crawl_sheet1] [GQL#287/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:02 DEBUG   [crawl_sheet1] [GQL#289/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:06 DEBUG   [crawl_sheet1] [GQL#290/0] collect_post_summaries -> 10 items
+2025-11-27 11:10:06 DEBUG   [crawl_sheet1] [GQL#290/0] coalesce_posts -> 1 items
+2025-11-27 11:10:06 INFO    [crawl_sheet1] [GQL#290/0] wrote 1 fresh posts
+2025-11-27 11:10:06 INFO    [crawl_sheet1] [GQL] #290: collected 1 new posts (total_seen=61)
+2025-11-27 11:10:17 DEBUG   [crawl_sheet1] [GQL#293/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:22 DEBUG   [crawl_sheet1] [GQL#294/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:26 DEBUG   [crawl_sheet1] [GQL#295/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:30 DEBUG   [crawl_sheet1] [GQL#296/0] collect_post_summaries -> 10 items
+2025-11-27 11:10:30 DEBUG   [crawl_sheet1] [GQL#296/0] coalesce_posts -> 1 items
+2025-11-27 11:10:30 INFO    [crawl_sheet1] [GQL#296/0] wrote 1 fresh posts
+2025-11-27 11:10:30 INFO    [crawl_sheet1] [GQL] #296: collected 1 new posts (total_seen=62)
+2025-11-27 11:10:41 DEBUG   [crawl_sheet1] [GQL#299/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:45 DEBUG   [crawl_sheet1] [GQL#300/0] collect_post_summaries -> 10 items
+2025-11-27 11:10:45 DEBUG   [crawl_sheet1] [GQL#300/0] coalesce_posts -> 1 items
+2025-11-27 11:10:45 INFO    [crawl_sheet1] [GQL#300/0] wrote 1 fresh posts
+2025-11-27 11:10:45 INFO    [crawl_sheet1] [GQL] #300: collected 1 new posts (total_seen=63)
+2025-11-27 11:10:54 DEBUG   [crawl_sheet1] [GQL#303/0] collect_post_summaries -> 0 items
+2025-11-27 11:10:59 DEBUG   [crawl_sheet1] [GQL#305/0] collect_post_summaries -> 0 items
+2025-11-27 11:11:03 DEBUG   [crawl_sheet1] [GQL#306/0] collect_post_summaries -> 10 items
+2025-11-27 11:11:03 DEBUG   [crawl_sheet1] [GQL#306/0] coalesce_posts -> 1 items
+2025-11-27 11:11:03 INFO    [crawl_sheet1] [GQL#306/0] wrote 1 fresh posts
+2025-11-27 11:11:03 INFO    [crawl_sheet1] [GQL] #306: collected 1 new posts (total_seen=64)
+2025-11-27 11:11:21 DEBUG   [crawl_sheet1] [GQL#312/0] collect_post_summaries -> 10 items
+2025-11-27 11:11:21 DEBUG   [crawl_sheet1] [GQL#312/0] coalesce_posts -> 1 items
+2025-11-27 11:11:21 INFO    [crawl_sheet1] [GQL#312/0] wrote 1 fresh posts
+2025-11-27 11:11:21 INFO    [crawl_sheet1] [GQL] #312: collected 1 new posts (total_seen=65)
+2025-11-27 11:11:31 DEBUG   [crawl_sheet1] [GQL#316/0] collect_post_summaries -> 0 items
+2025-11-27 11:11:36 DEBUG   [crawl_sheet1] [GQL#318/0] collect_post_summaries -> 10 items
+2025-11-27 11:11:36 DEBUG   [crawl_sheet1] [GQL#318/0] coalesce_posts -> 1 items
+2025-11-27 11:11:36 INFO    [crawl_sheet1] [GQL#318/0] wrote 1 fresh posts
+2025-11-27 11:11:36 INFO    [crawl_sheet1] [GQL] #318: collected 1 new posts (total_seen=66)
+2025-11-27 11:11:40 DEBUG   [crawl_sheet1] [GQL#319/0] collect_post_summaries -> 0 items
+2025-11-27 11:11:48 DEBUG   [crawl_sheet1] [GQL#322/0] collect_post_summaries -> 10 items
+2025-11-27 11:11:48 DEBUG   [crawl_sheet1] [GQL#322/0] coalesce_posts -> 1 items
+2025-11-27 11:11:48 INFO    [crawl_sheet1] [GQL#322/0] wrote 1 fresh posts
+2025-11-27 11:11:48 INFO    [crawl_sheet1] [GQL] #322: collected 1 new posts (total_seen=67)
+2025-11-27 11:11:51 DEBUG   [crawl_sheet1] [GQL#323/0] collect_post_summaries -> 0 items
+2025-11-27 11:12:01 DEBUG   [crawl_sheet1] [GQL#327/0] collect_post_summaries -> 10 items
+2025-11-27 11:12:01 DEBUG   [crawl_sheet1] [GQL#327/0] coalesce_posts -> 1 items
+2025-11-27 11:12:01 INFO    [crawl_sheet1] [GQL#327/0] wrote 1 fresh posts
+2025-11-27 11:12:01 INFO    [crawl_sheet1] [GQL] #327: collected 1 new posts (total_seen=68)
+2025-11-27 11:12:10 DEBUG   [crawl_sheet1] [GQL#331/0] collect_post_summaries -> 10 items
+2025-11-27 11:12:10 DEBUG   [crawl_sheet1] [GQL#331/0] coalesce_posts -> 1 items
+2025-11-27 11:12:10 INFO    [crawl_sheet1] [GQL#331/0] wrote 1 fresh posts
+2025-11-27 11:12:10 INFO    [crawl_sheet1] [GQL] #331: collected 1 new posts (total_seen=69)
+2025-11-27 11:12:20 DEBUG   [crawl_sheet1] [GQL#335/0] collect_post_summaries -> 0 items
+2025-11-27 11:12:25 DEBUG   [crawl_sheet1] [GQL#337/0] collect_post_summaries -> 10 items
+2025-11-27 11:12:25 DEBUG   [crawl_sheet1] [GQL#337/0] coalesce_posts -> 1 items
+2025-11-27 11:12:25 INFO    [crawl_sheet1] [GQL#337/0] wrote 1 fresh posts
+2025-11-27 11:12:25 INFO    [crawl_sheet1] [GQL] #337: collected 1 new posts (total_seen=70)
+2025-11-27 11:12:37 DEBUG   [crawl_sheet1] [GQL#342/0] collect_post_summaries -> 10 items
+2025-11-27 11:12:37 DEBUG   [crawl_sheet1] [GQL#342/0] coalesce_posts -> 1 items
+2025-11-27 11:12:37 INFO    [crawl_sheet1] [GQL#342/0] wrote 1 fresh posts
+2025-11-27 11:12:37 INFO    [crawl_sheet1] [GQL] #342: collected 1 new posts (total_seen=71)
+2025-11-27 11:12:52 DEBUG   [crawl_sheet1] [GQL#348/0] collect_post_summaries -> 0 items
+2025-11-27 11:12:52 DEBUG   [crawl_sheet1] [GQL#348/1] collect_post_summaries -> 10 items
+2025-11-27 11:12:52 DEBUG   [crawl_sheet1] [GQL#348/1] coalesce_posts -> 1 items
+2025-11-27 11:12:52 INFO    [crawl_sheet1] [GQL#348/1] wrote 1 fresh posts
+2025-11-27 11:12:52 INFO    [crawl_sheet1] [GQL] #348: collected 1 new posts (total_seen=72)
+2025-11-27 11:12:58 DEBUG   [crawl_sheet1] [GQL#350/0] collect_post_summaries -> 0 items
+2025-11-27 11:13:11 DEBUG   [crawl_sheet1] [GQL#354/0] collect_post_summaries -> 10 items
+2025-11-27 11:13:11 DEBUG   [crawl_sheet1] [GQL#354/0] coalesce_posts -> 1 items
+2025-11-27 11:13:11 INFO    [crawl_sheet1] [GQL#354/0] wrote 1 fresh posts
+2025-11-27 11:13:11 INFO    [crawl_sheet1] [GQL] #354: collected 1 new posts (total_seen=73)
+2025-11-27 11:13:24 DEBUG   [crawl_sheet1] [GQL#359/0] collect_post_summaries -> 9 items
+2025-11-27 11:13:24 DEBUG   [crawl_sheet1] [GQL#359/0] coalesce_posts -> 1 items
+2025-11-27 11:13:24 INFO    [crawl_sheet1] [GQL#359/0] wrote 1 fresh posts
+2025-11-27 11:13:24 INFO    [crawl_sheet1] [GQL] #359: collected 1 new posts (total_seen=74)
+2025-11-27 11:13:38 DEBUG   [crawl_sheet1] [GQL#364/0] collect_post_summaries -> 10 items
+2025-11-27 11:13:38 DEBUG   [crawl_sheet1] [GQL#364/0] coalesce_posts -> 1 items
+2025-11-27 11:13:38 INFO    [crawl_sheet1] [GQL#364/0] wrote 1 fresh posts
+2025-11-27 11:13:38 INFO    [crawl_sheet1] [GQL] #364: collected 1 new posts (total_seen=75)
+2025-11-27 11:13:43 DEBUG   [crawl_sheet1] [GQL#366/0] collect_post_summaries -> 0 items
+2025-11-27 11:13:52 DEBUG   [crawl_sheet1] [GQL#370/0] collect_post_summaries -> 10 items
+2025-11-27 11:13:52 DEBUG   [crawl_sheet1] [GQL#370/0] coalesce_posts -> 1 items
+2025-11-27 11:13:52 INFO    [crawl_sheet1] [GQL#370/0] wrote 1 fresh posts
+2025-11-27 11:13:52 INFO    [crawl_sheet1] [GQL] #370: collected 1 new posts (total_seen=76)
+2025-11-27 11:13:55 DEBUG   [crawl_sheet1] [GQL#371/0] collect_post_summaries -> 0 items
+2025-11-27 11:14:09 DEBUG   [crawl_sheet1] [GQL#376/0] collect_post_summaries -> 10 items
+2025-11-27 11:14:09 DEBUG   [crawl_sheet1] [GQL#376/0] coalesce_posts -> 1 items
+2025-11-27 11:14:09 INFO    [crawl_sheet1] [GQL#376/0] wrote 1 fresh posts
+2025-11-27 11:14:09 INFO    [crawl_sheet1] [GQL] #376: collected 1 new posts (total_seen=77)
+2025-11-27 11:14:20 DEBUG   [crawl_sheet1] [GQL#380/0] collect_post_summaries -> 0 items
+2025-11-27 11:14:23 DEBUG   [crawl_sheet1] [GQL#381/0] collect_post_summaries -> 10 items
+2025-11-27 11:14:23 DEBUG   [crawl_sheet1] [GQL#381/0] coalesce_posts -> 1 items
+2025-11-27 11:14:23 INFO    [crawl_sheet1] [GQL#381/0] wrote 1 fresh posts
+2025-11-27 11:14:23 INFO    [crawl_sheet1] [GQL] #381: collected 1 new posts (total_seen=78)
+2025-11-27 11:14:36 DEBUG   [crawl_sheet1] [GQL#386/0] collect_post_summaries -> 10 items
+2025-11-27 11:14:36 DEBUG   [crawl_sheet1] [GQL#386/0] coalesce_posts -> 1 items
+2025-11-27 11:14:36 INFO    [crawl_sheet1] [GQL#386/0] wrote 1 fresh posts
+2025-11-27 11:14:36 INFO    [crawl_sheet1] [GQL] #386: collected 1 new posts (total_seen=79)
+2025-11-27 11:14:50 DEBUG   [crawl_sheet1] [GQL#391/0] collect_post_summaries -> 10 items
+2025-11-27 11:14:50 DEBUG   [crawl_sheet1] [GQL#391/0] coalesce_posts -> 1 items
+2025-11-27 11:14:50 INFO    [crawl_sheet1] [GQL#391/0] wrote 1 fresh posts
+2025-11-27 11:14:50 INFO    [crawl_sheet1] [GQL] #391: collected 1 new posts (total_seen=80)
+2025-11-27 11:15:04 DEBUG   [crawl_sheet1] [GQL#396/0] collect_post_summaries -> 21 items
+2025-11-27 11:15:04 DEBUG   [crawl_sheet1] [GQL#396/0] coalesce_posts -> 2 items
+2025-11-27 11:15:04 INFO    [crawl_sheet1] [GQL#396/0] wrote 2 fresh posts
+2025-11-27 11:15:04 INFO    [crawl_sheet1] [GQL] #396: collected 2 new posts (total_seen=82)
+2025-11-27 11:15:12 DEBUG   [crawl_sheet1] [GQL#399/0] collect_post_summaries -> 0 items
+2025-11-27 11:15:20 DEBUG   [crawl_sheet1] [GQL#402/0] collect_post_summaries -> 10 items
+2025-11-27 11:15:20 DEBUG   [crawl_sheet1] [GQL#402/0] coalesce_posts -> 1 items
+2025-11-27 11:15:20 INFO    [crawl_sheet1] [GQL#402/0] wrote 1 fresh posts
+2025-11-27 11:15:20 INFO    [crawl_sheet1] [GQL] #402: collected 1 new posts (total_seen=83)
+2025-11-27 11:15:30 DEBUG   [crawl_sheet1] [GQL#406/0] collect_post_summaries -> 10 items
+2025-11-27 11:15:30 DEBUG   [crawl_sheet1] [GQL#406/0] coalesce_posts -> 1 items
+2025-11-27 11:15:30 INFO    [crawl_sheet1] [GQL#406/0] wrote 1 fresh posts
+2025-11-27 11:15:30 INFO    [crawl_sheet1] [GQL] #406: collected 1 new posts (total_seen=84)
+2025-11-27 11:15:44 DEBUG   [crawl_sheet1] [GQL#411/0] collect_post_summaries -> 10 items
+2025-11-27 11:15:44 DEBUG   [crawl_sheet1] [GQL#411/0] coalesce_posts -> 1 items
+2025-11-27 11:15:44 INFO    [crawl_sheet1] [GQL#411/0] wrote 1 fresh posts
+2025-11-27 11:15:44 INFO    [crawl_sheet1] [GQL] #411: collected 1 new posts (total_seen=85)
+2025-11-27 11:15:59 DEBUG   [crawl_sheet1] [GQL#416/0] collect_post_summaries -> 10 items
+2025-11-27 11:15:59 DEBUG   [crawl_sheet1] [GQL#416/0] coalesce_posts -> 1 items
+2025-11-27 11:15:59 INFO    [crawl_sheet1] [GQL#416/0] wrote 1 fresh posts
+2025-11-27 11:15:59 INFO    [crawl_sheet1] [GQL] #416: collected 1 new posts (total_seen=86)
+2025-11-27 11:16:18 DEBUG   [crawl_sheet1] [GQL#422/0] collect_post_summaries -> 10 items
+2025-11-27 11:16:18 DEBUG   [crawl_sheet1] [GQL#422/0] coalesce_posts -> 1 items
+2025-11-27 11:16:18 INFO    [crawl_sheet1] [GQL#422/0] wrote 1 fresh posts
+2025-11-27 11:16:18 INFO    [crawl_sheet1] [GQL] #422: collected 1 new posts (total_seen=87)
+2025-11-27 11:16:35 DEBUG   [crawl_sheet1] [GQL#428/0] collect_post_summaries -> 10 items
+2025-11-27 11:16:35 DEBUG   [crawl_sheet1] [GQL#428/0] coalesce_posts -> 1 items
+2025-11-27 11:16:35 INFO    [crawl_sheet1] [GQL#428/0] wrote 1 fresh posts
+2025-11-27 11:16:35 INFO    [crawl_sheet1] [GQL] #428: collected 1 new posts (total_seen=88)
+2025-11-27 11:16:47 DEBUG   [crawl_sheet1] [GQL#432/0] collect_post_summaries -> 10 items
+2025-11-27 11:16:47 DEBUG   [crawl_sheet1] [GQL#432/0] coalesce_posts -> 1 items
+2025-11-27 11:16:47 INFO    [crawl_sheet1] [GQL#432/0] wrote 1 fresh posts
+2025-11-27 11:16:47 INFO    [crawl_sheet1] [GQL] #432: collected 1 new posts (total_seen=89)
+2025-11-27 11:17:03 DEBUG   [crawl_sheet1] [GQL#437/0] collect_post_summaries -> 10 items
+2025-11-27 11:17:03 DEBUG   [crawl_sheet1] [GQL#437/0] coalesce_posts -> 1 items
+2025-11-27 11:17:03 INFO    [crawl_sheet1] [GQL#437/0] wrote 1 fresh posts
+2025-11-27 11:17:03 INFO    [crawl_sheet1] [GQL] #437: collected 1 new posts (total_seen=90)
+2025-11-27 11:17:11 DEBUG   [crawl_sheet1] [GQL#440/0] collect_post_summaries -> 10 items
+2025-11-27 11:17:11 DEBUG   [crawl_sheet1] [GQL#440/0] coalesce_posts -> 1 items
+2025-11-27 11:17:11 INFO    [crawl_sheet1] [GQL#440/0] wrote 1 fresh posts
+2025-11-27 11:17:11 INFO    [crawl_sheet1] [GQL] #440: collected 1 new posts (total_seen=91)
+2025-11-27 11:17:19 DEBUG   [crawl_sheet1] [GQL#442/0] collect_post_summaries -> 0 items
+2025-11-27 11:17:32 DEBUG   [crawl_sheet1] [GQL#447/0] collect_post_summaries -> 10 items
+2025-11-27 11:17:32 DEBUG   [crawl_sheet1] [GQL#447/0] coalesce_posts -> 1 items
+2025-11-27 11:17:32 INFO    [crawl_sheet1] [GQL#447/0] wrote 1 fresh posts
+2025-11-27 11:17:32 INFO    [crawl_sheet1] [GQL] #447: collected 1 new posts (total_seen=92)
+2025-11-27 11:17:36 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-27 11:17:38 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-11-27 11:17:40 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:08 INFO    [crawl_sheet1] [BOOT] PAGE=thoibaode | TAG=- | DATA_ROOT=E:\NCS\fb-selenium\database
+2025-12-01 08:42:08 INFO    [crawl_sheet1] [PATH] DB=E:\NCS\fb-selenium\database\post\page\thoibaode | OUT=E:\NCS\fb-selenium\database\post\page\thoibaode\posts_all.ndjson | CKPT=E:\NCS\fb-selenium\database\post\page\thoibaode\checkpoint.json
+2025-12-01 08:42:08 INFO    [crawl_sheet1] ====== CRAWL NGÀY 2025-11-10 ======
+2025-12-01 08:42:22 INFO    [crawl_sheet1] [AUTH] bootstrap_auth OK with cookies E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json
+2025-12-01 08:42:22 INFO    [crawl_sheet1] [HOOK] install_early_hook OK (keep_last=350)
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/0] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/1] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/2] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/3] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/4] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/5] collect_post_summaries -> 0 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/6] collect_post_summaries -> 10 items
+2025-12-01 08:42:31 DEBUG   [crawl_sheet1] [GQL#0/6] coalesce_posts -> 1 items
+2025-12-01 08:42:31 INFO    [crawl_sheet1] [GQL#0/6] wrote 1 fresh posts
+2025-12-01 08:42:31 INFO    [crawl_sheet1] [GQL] #0: collected 1 new posts (total_seen=1)
+2025-12-01 08:42:33 DEBUG   [crawl_sheet1] [GQL#1/0] collect_post_summaries -> 10 items
+2025-12-01 08:42:33 DEBUG   [crawl_sheet1] [GQL#1/0] coalesce_posts -> 1 items
+2025-12-01 08:42:33 INFO    [crawl_sheet1] [GQL#1/0] wrote 1 fresh posts
+2025-12-01 08:42:33 INFO    [crawl_sheet1] [GQL] #1: collected 1 new posts (total_seen=2)
+2025-12-01 08:42:35 DEBUG   [crawl_sheet1] [GQL#2/0] collect_post_summaries -> 10 items
+2025-12-01 08:42:35 DEBUG   [crawl_sheet1] [GQL#2/0] coalesce_posts -> 1 items
+2025-12-01 08:42:35 INFO    [crawl_sheet1] [GQL#2/0] wrote 1 fresh posts
+2025-12-01 08:42:35 INFO    [crawl_sheet1] [GQL] #2: collected 1 new posts (total_seen=3)
+2025-12-01 08:42:38 DEBUG   [crawl_sheet1] [GQL#3/0] collect_post_summaries -> 10 items
+2025-12-01 08:42:38 DEBUG   [crawl_sheet1] [GQL#3/0] coalesce_posts -> 1 items
+2025-12-01 08:42:38 INFO    [crawl_sheet1] [GQL#3/0] wrote 1 fresh posts
+2025-12-01 08:42:38 INFO    [crawl_sheet1] [GQL] #3: collected 1 new posts (total_seen=4)
+2025-12-01 08:42:42 DEBUG   [crawl_sheet1] [GQL#5/0] collect_post_summaries -> 21 items
+2025-12-01 08:42:42 DEBUG   [crawl_sheet1] [GQL#5/0] coalesce_posts -> 2 items
+2025-12-01 08:42:42 INFO    [crawl_sheet1] [GQL#5/0] wrote 2 fresh posts
+2025-12-01 08:42:42 INFO    [crawl_sheet1] [GQL] #5: collected 2 new posts (total_seen=6)
+2025-12-01 08:42:43 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:43 INFO    [crawl_sheet1] [STOP] Received stop flag, breaking scroll loop.
+2025-12-01 08:42:43 INFO    [crawl_sheet1] [DONE] Crawl loop finished. Total unique posts seen: 6
+2025-12-01 08:42:45 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:47 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:49 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:51 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
+2025-12-01 08:42:53 WARNING [crawl_sheet1] [SIGNAL] Nhận tín hiệu dừng, sẽ thoát an toàn sau bước hiện tại.
