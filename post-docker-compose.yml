@@ -1,34 +1,54 @@
-version: "3.8"
-
 services:
-  post_crawler_acc01:
+  post_crawler_fanpagea_acc00:
     build:
       context: .
       dockerfile: post-Dockerfile
+    image: fb-post-crawler:latest  
     environment:
       - GROUP_URL=https://www.facebook.com/thoibao.de
       - PAGE_NAME=thoibaode
       - ACCOUNT_TAG=acc01
       - DATA_ROOT=/app/database
-      - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
-      - MITM_PORT=8899
-      # - PROXY_HOST=142.111.48.253
-      # - PROXY_PORT=7030
-      # - PROXY_USER=ycycsdtq
-      # - PROXY_PASS=ka0d32hzsydi
-      # - PAGE_LIMIT=100
-      # BẬT headless: dùng flag CLI dưới; hoặc thêm HEADLESS=1 rồi sửa entrypoint đọc biến
-    # command: >
-    #   python /app/post/v2/main.py
-    #   --resume
-    #   --headless
+      - COOKIE_PATH=/app/database/facebookaccount/acc01_thoibaode/cookies.json
+      - HEADLESS=true
     volumes:
       - ./post:/app/post
       - ./util:/app/util
       - ./logs:/app/logs
       - ./database:/app/database
-    ports:
-      - "8899:8899"
     restart: unless-stopped
     shm_size: "1g"
 
+  post_crawler_fanpageb_acc01:
+    image: fb-post-crawler:latest   
+    environment:
+      - GROUP_URL=https://www.facebook.com/100005937302699
+      - PAGE_NAME=nguyenvandai0906
+      - ACCOUNT_TAG=nguyenvandai0906
+      - DATA_ROOT=/app/database
+      - COOKIE_PATH=/app/database/facebookaccount/acc01_nguyenvandai0906/cookies.json
+      - HEADLESS=true
+    volumes:
+      - ./post:/app/post
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    restart: unless-stopped
+    shm_size: "1g"
+
+  post_crawler_fanpagec_acc02:
+    image: fb-post-crawler:latest
+    environment:
+      - GROUP_URL=https://www.facebook.com/100044545594726
+      - PAGE_NAME=nvdai0906
+      - ACCOUNT_TAG=nvdai0906
+      - DATA_ROOT=/app/database
+      - COOKIE_PATH=/app/database/facebookaccount/acc02_nvdai0906/cookies.json
+      - HEADLESS=true
+    volumes:
+      - ./post:/app/post
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    restart: unless-stopped
+    shm_size: "1g"

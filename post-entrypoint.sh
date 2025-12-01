@@ -1,69 +1,47 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Folders đảm bảo tồn tại (vẫn được mount từ host)
+# Tạo sẵn thư mục DB & logs (vẫn mount từ host được bình thường)
 mkdir -p "${DATA_ROOT:-/app/database}" /app/logs/logs
 
-# Log banner nhỏ
-echo "[BOOT] PAGE=${PAGE_NAME:-} | TAG=${ACCOUNT_TAG:-} | MITM=${MITM_PORT:-8899} | DATA_ROOT=${DATA_ROOT:-/app/database}"
+# Log banner nhỏ cho dễ debug
+echo "[BOOT] PAGE=${PAGE_NAME:-} | TAG=${ACCOUNT_TAG:-} | DATA_ROOT=${DATA_ROOT:-/app/database} | DATE=${CRAWL_DATE:-today}"
 
-# Base args
-ARGS=( \
-  "--group-url" "${GROUP_URL:-https://www.facebook.com/thoibao.de}" \
-  "--page-name" "${PAGE_NAME:-thoibaode}" \
-  "--account-tag" "${ACCOUNT_TAG:-}" \
-  "--data-root" "${DATA_ROOT:-/app/database}" \
-  "--cookies-path" "${COOKIE_PATH:-}" \
-  "--mitm-port" "${MITM_PORT:-8899}" \
+# Base args đúng theo post/v3/cli.py
+ARGS=(
+  "--group-url"   "${GROUP_URL:-https://www.facebook.com/1024013528523184}"
+  "--page-name"   "${PAGE_NAME:-thoibaode}"
+  "--account-tag" "${ACCOUNT_TAG:-}"
+  "--data-root"   "${DATA_ROOT:-/app/database}"
+  "--cookies-path" "${COOKIE_PATH:-}"
 )
 
-# Proxy (optional)
-if [[ -n "${PROXY_HOST:-}" ]]; then
-  ARGS+=("--proxy-host" "${PROXY_HOST}")
-fi
-if [[ -n "${PROXY_PORT:-}" ]]; then
-  ARGS+=("--proxy-port" "${PROXY_PORT}")
-fi
-if [[ -n "${PROXY_USER:-}" ]]; then
-  ARGS+=("--proxy-user" "${PROXY_USER}")
-fi
-if [[ -n "${PROXY_PASS:-}" ]]; then
-  ARGS+=("--proxy-pass" "${PROXY_PASS}")
-fi
-
-# Keep last (hook config)
+# KEEP_LAST (optional) – nếu không set thì dùng default trong code (350)
 if [[ -n "${KEEP_LAST:-}" ]]; then
   ARGS+=("--keep-last" "${KEEP_LAST}")
 fi
 
-# Page limit (test)
+# Giới hạn số lượt scroll (optional)
 if [[ -n "${PAGE_LIMIT:-}" ]]; then
   ARGS+=("--page-limit" "${PAGE_LIMIT}")
 fi
 
-# Flags boolean
-if [[ "${RESUME:-false}" == "true" ]]; then
-  ARGS+=("--resume")
-fi
-
-# Headless: mặc định true; nếu HEADLESS=false thì bật --no-headless
+# Headless: mặc định true; nếu HEADLESS=false thì dùng --no-headless
 if [[ "${HEADLESS:-true}" == "true" ]]; then
   ARGS+=("--headless")
 else
   ARGS+=("--no-headless")
 fi
 
-# Backfill mode (optional)
-if [[ "${BACKFILL:-false}" == "true" ]]; then
-  ARGS+=("--backfill")
-  if [[ -n "${FROM_MONTH:-}" ]]; then ARGS+=("--from-month" "${FROM_MONTH}"); fi
-  if [[ -n "${TO_MONTH:-}" ]]; then ARGS+=("--to-month" "${TO_MONTH}"); fi
-  if [[ -n "${YEAR:-}" ]]; then ARGS+=("--year" "${YEAR}"); fi
+# Crawl theo ngày cụ thể (optional)
+# Ví dụ: CRAWL_DATE=2025-12-01 → '--date 2025-12-01'
+if [[ -n "${CRAWL_DATE:-}" ]]; then
+  ARGS+=("--date" "${CRAWL_DATE}")
 fi
 
-# Chromium flags via env
+# Chromium flags via env – create_chrome sẽ đọc CHROME_BIN/CHROMIUM_FLAGS
 export CHROME_BIN=/usr/bin/chromium
 export CHROMIUM_FLAGS="${CHROMIUM_FLAGS:-"--no-sandbox --disable-dev-shm-usage --disable-gpu --headless=new"}"
 
-# Run
-exec python /app/post/v2/main.py "${ARGS[@]}"
+# Run: quan trọng là chạy dạng MODULE để relative import trong post/v3/cli.py chạy được
+exec python -m post.v3.cli "${ARGS[@]}"

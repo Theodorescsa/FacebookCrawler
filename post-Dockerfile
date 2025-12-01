@@ -30,18 +30,17 @@ RUN useradd -m -u ${UID} ${USER} || true
 WORKDIR /app
 
 # ---- Python deps
-# (Dùng đúng versions cậu cung cấp)
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Env để Selenium tìm chromium/chromedriver
+# Env mặc định cho Chromium
 ENV CHROME_BIN=/usr/bin/chromium \
     CHROMIUM_FLAGS="--no-sandbox --disable-dev-shm-usage --disable-gpu --headless=new"
 
 # Copy toàn bộ source vào /app
 COPY . /app
 
-# Tạo sẵn folders cho DB & logs (đồng thời vẫn mount từ host)
+# Tạo sẵn thư mục DB & logs
 RUN mkdir -p /app/database /app/logs/logs && chown -R ${USER}:${USER} /app
 
 # Entrypoint script
@@ -49,6 +48,6 @@ RUN chmod +x /app/post-entrypoint.sh
 
 USER ${USER}
 
-# tini giúp gửi tín hiệu chuẩn (graceful SIGTERM)
+# tini giúp nhận SIGTERM, SIGINT chuẩn (graceful stop)
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/app/post-entrypoint.sh"]
