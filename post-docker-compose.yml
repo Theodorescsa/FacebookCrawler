@@ -1,50 +1,59 @@
+# post-docker-compose.yml
 services:
-  post_crawler_fanpagea_acc00:
+  # Service 1: Crawler page Thoibao.de
+  post_crawler_thoibaode_acc01:
     build:
       context: .
       dockerfile: post-Dockerfile
-    image: fb-post-crawler:latest  
-    environment:
-      - GROUP_URL=https://www.facebook.com/thoibao.de
-      - PAGE_NAME=thoibaode
-      - ACCOUNT_TAG=acc01
-      - DATA_ROOT=/app/database
-      - COOKIE_PATH=/app/database/facebookaccount/acc01_thoibaode/cookies.json
-      - HEADLESS=true
-    volumes:
-      - ./post:/app/post
-      - ./util:/app/util
-      - ./logs:/app/logs
-      - ./database:/app/database
-    restart: unless-stopped
-    shm_size: "1g"
-
-  post_crawler_fanpageb_acc01:
-    image: fb-post-crawler:latest   
-    environment:
-      - GROUP_URL=https://www.facebook.com/100005937302699
-      - PAGE_NAME=nguyenvandai0906
-      - ACCOUNT_TAG=nguyenvandai0906
-      - DATA_ROOT=/app/database
-      - COOKIE_PATH=/app/database/facebookaccount/acc01_nguyenvandai0906/cookies.json
-      - HEADLESS=true
-    volumes:
-      - ./post:/app/post
-      - ./util:/app/util
-      - ./logs:/app/logs
-      - ./database:/app/database
-    restart: unless-stopped
-    shm_size: "1g"
-
-  post_crawler_fanpagec_acc02:
     image: fb-post-crawler:latest
     environment:
-      - GROUP_URL=https://www.facebook.com/100044545594726
-      - PAGE_NAME=nvdai0906
-      - ACCOUNT_TAG=nvdai0906
-      - DATA_ROOT=/app/database
-      - COOKIE_PATH=/app/database/facebookaccount/acc02_nvdai0906/cookies.json
-      - HEADLESS=true
+      GROUP_URL: "https://web.facebook.com/ThoibaoTheGioi"
+      PAGE_NAME: "ThoibaoTheGioi"
+      ACCOUNT_TAG: "ThoibaoTheGioi"
+      DATA_ROOT: "/app/database"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json"
+      HEADLESS: "true"
+      CRAWL_DATE: "2025-12-2"
+      KEEP_LAST: "350"
+    volumes:
+      - ./post:/app/post
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    restart: unless-stopped
+    shm_size: "1g"
+
+  # Service 2: Crawler profile Nguyễn Văn Đài (id)
+  post_crawler_nguyenvandai_acc01:
+    image: fb-post-crawler:latest
+    environment:
+      GROUP_URL: "https://web.facebook.com/le.t.khoa.1?_rdc=1&_rdr"
+      PAGE_NAME: "le.t.khoa.1#"      # tên folder lưu
+      ACCOUNT_TAG: "le.t.khoa.1#"
+      DATA_ROOT: "/app/database"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
+      HEADLESS: "true"
+      CRAWL_DATE: "2025-6-22"
+    volumes:
+      - ./post:/app/post
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    restart: unless-stopped
+    shm_size: "1g"
+
+  # Service 3: Crawler profile khác (ví dụ nvdai0906)
+  post_crawler_lekhoa_acc01:
+    image: fb-post-crawler:latest
+    environment:
+      # LƯU Ý: có dấu # phải luôn bọc trong "..."
+      GROUP_URL: "https://www.facebook.com/nvdai0906"
+      PAGE_NAME: "nvdai0906"          
+      ACCOUNT_TAG: "nvdai0906"
+      DATA_ROOT: "/app/database"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
+      CRAWL_DATE: "2022-12-14"
+      HEADLESS: "true"
     volumes:
       - ./post:/app/post
       - ./util:/app/util

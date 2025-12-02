@@ -21,7 +21,7 @@ from . import pipeline
 
 def add_common_args(ap):
     ap.add_argument("--group-url", type=str,
-                    default=env("GROUP_URL", "https://web.facebook.com/groups/nguyenvandaiandfans/?sorting_setting=CHRONOLOGICAL&_rdc=1&_rdr"))
+                    default=env("GROUP_URL", "https://www.facebook.com/le.t.khoa.1#"))
     ap.add_argument("--page-name", type=str,
                     default=env("PAGE_NAME", "thoibaode"))
     ap.add_argument("--account-tag", type=str,

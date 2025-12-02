@@ -14,7 +14,7 @@ from selenium.webdriver.chrome.options import Options
 # ----------------------------
 CHROME_PATH   = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 USER_DATA_DIR = r"E:\NCS\Userdata"       # thư mục user data (chứa các Profile)
-PROFILE_NAME  = "Profile 5"              # ví dụ: "Profile 5", "Default"
+PROFILE_NAME  = "Profile 72"              # ví dụ: "Profile 5", "Default"
 REMOTE_PORT   = 9222                     # khác với port bạn dùng ở crawler để khỏi đụng nhau
 
 # Các origin sẽ vào để lấy storage
@@ -33,7 +33,7 @@ ALLOWED_COOKIE_DOMAINS = [
 ]
 
 # File output
-OUT_COOKIES_PATH       = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
+OUT_COOKIES_PATH       = r"E:\NCS\fb-selenium\database\facebookaccount\authen_0896691804\cookies.json"
 
 
 # ----------------------------
@@ -162,7 +162,7 @@ def smart_merge_storage(storage_by_origin: Dict[str, Dict[str, str]]) -> Dict[st
 
 def main():
     driver = start_driver()
-
+    driver.get("https://www.facebook.com/")
     # 1) Lấy tất cả cookies từ profile qua CDP (gồm HttpOnly)
     driver.execute_cdp_cmd("Network.enable", {})
     res = driver.execute_cdp_cmd("Network.getAllCookies", {})

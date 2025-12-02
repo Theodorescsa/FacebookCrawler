@@ -9,10 +9,10 @@ echo "[BOOT] PAGE=${PAGE_NAME:-} | TAG=${ACCOUNT_TAG:-} | DATA_ROOT=${DATA_ROOT:
 
 # Base args đúng theo post/v3/cli.py
 ARGS=(
-  "--group-url"   "${GROUP_URL:-https://www.facebook.com/1024013528523184}"
-  "--page-name"   "${PAGE_NAME:-thoibaode}"
-  "--account-tag" "${ACCOUNT_TAG:-}"
-  "--data-root"   "${DATA_ROOT:-/app/database}"
+  "--group-url"    "${GROUP_URL:-https://www.facebook.com/1024013528523184}"
+  "--page-name"    "${PAGE_NAME:-thoibaode}"
+  "--account-tag"  "${ACCOUNT_TAG:-}"
+  "--data-root"    "${DATA_ROOT:-/app/database}"
   "--cookies-path" "${COOKIE_PATH:-}"
 )
 
@@ -40,8 +40,9 @@ if [[ -n "${CRAWL_DATE:-}" ]]; then
 fi
 
 # Chromium flags via env – create_chrome sẽ đọc CHROME_BIN/CHROMIUM_FLAGS
-export CHROME_BIN=/usr/bin/chromium
-export CHROMIUM_FLAGS="${CHROMIUM_FLAGS:-"--no-sandbox --disable-dev-shm-usage --disable-gpu --headless=new"}"
+export CHROME_BIN="${CHROME_BIN:-/usr/bin/chromium}"
+# Lưu ý: dùng cú pháp ${VAR:---no-sandbox ...} để không bị lỗi quote
+export CHROMIUM_FLAGS="${CHROMIUM_FLAGS:---no-sandbox --disable-dev-shm-usage --disable-gpu --headless=new}"
 
 # Run: quan trọng là chạy dạng MODULE để relative import trong post/v3/cli.py chạy được
 exec python -m post.v3.cli "${ARGS[@]}"
