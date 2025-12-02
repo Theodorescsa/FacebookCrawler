@@ -21,7 +21,7 @@ from . import pipeline
 
 def add_common_args(ap):
     ap.add_argument("--group-url", type=str,
-                    default=env("GROUP_URL", "https://www.Facebook.com/100005937302699"))
+                    default=env("GROUP_URL", "https://web.facebook.com/groups/nguyenvandaiandfans/?sorting_setting=CHRONOLOGICAL&_rdc=1&_rdr"))
     ap.add_argument("--page-name", type=str,
                     default=env("PAGE_NAME", "thoibaode"))
     ap.add_argument("--account-tag", type=str,
@@ -97,7 +97,8 @@ def _run_single_session(
     try:
         d.get(group_url)
         time.sleep(1.5)
-        go_to_date(d, target_date)
+        if "group" not in group_url:
+            go_to_date(d, target_date)
 
         stopped_due_to_stall = crawl_scroll_loop(
             d,

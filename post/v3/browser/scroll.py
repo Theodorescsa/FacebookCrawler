@@ -23,14 +23,14 @@ def crawl_scroll_loop(
     out_path: Path,
     seen_ids: Set[str],
     keep_last: int,
-    max_scrolls: int = 10000000,
+    max_scrolls: int = 10000000000,
 ) -> bool:
     """
     Return:
         True  -> dừng vì stall (Stall confirmed ...)
         False -> dừng vì lý do khác (STOP flag, MAX_SCROLLS, error...)
     """
-    MAX_SCROLLS = max_scrolls or 10000
+    MAX_SCROLLS = max_scrolls
     CLEANUP_EVERY = 25
     STALL_THRESHOLD = 8
 

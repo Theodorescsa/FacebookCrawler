@@ -10,4 +10,6 @@ def append_ndjson(items: List[Dict[str, Any]], output_path: Path):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("a", encoding="utf-8") as f:
         for it in items:
+            if it["id"] in (None, ""):
+                continue
             f.write(json.dumps(it, ensure_ascii=False) + "\n")
