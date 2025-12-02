@@ -1,4 +1,4 @@
-# Dockerfile
+# comment-Dockerfile
 FROM python:3.11-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-# Thêm bash + dos2unix (khuyến nghị) để tránh CRLF
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     dos2unix \
@@ -38,7 +37,7 @@ ENV CHROME_BIN=/usr/bin/chromium \
 
 COPY . /app
 
-# Chuyển EOL về LF để tránh lỗi khi edit trên Windows
+# Chuyển EOL về LF để tránh lỗi CRLF
 RUN dos2unix /app/comment-entrypoint.sh || true
 
 RUN mkdir -p /app/database /app/logs/logs && chown -R ${USER}:${USER} /app
@@ -47,5 +46,4 @@ RUN chmod +x /app/comment-entrypoint.sh
 USER ${USER}
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-# Gọi trực tiếp bằng bash để chắc chắn dùng bash, không phải /bin/sh
 CMD ["/bin/bash", "/app/comment-entrypoint.sh"]

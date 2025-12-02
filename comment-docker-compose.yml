@@ -1,28 +1,40 @@
 version: "3.8"
 
 services:
-  comment_crawler_acc01:
+  # Container 1: file excel số 1
+  comment_crawler_excel1:
+    image: comment_crawler:latest
+
     build:
       context: .
       dockerfile: comment-Dockerfile
     environment:
-      - PAGE_NAME=thoibaode
-      - SHEET_NAME=Sheet_3
+      - PAGE_NAME=nguyenvandai
+      - INPUT_EXCEL=/app/database/post/page/nguyenvandai/ACC_nguyenvandai/nguyenvandai.xlsx
       - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
-      - MITM_PORT=8899
-      - INPUT_EXCEL=/app/database/post/page/thoibaode/thoibao-de-last-split-sheet3.xlsx
-      # - PROXY_HOST=142.111.48.253
-      # - PROXY_PORT=7030
-      # - PROXY_USER=ycycsdtq
-      # - PROXY_PASS=ka0d32hzsydi
-      # - PAGE_LIMIT=100
-      # BẬT headless: dùng flag CLI dưới; hoặc thêm HEADLESS=1 rồi sửa entrypoint đọc biến
+      - DATA_ROOT=/app/database
+      - HEADLESS=true
     volumes:
       - ./comment:/app/comment
       - ./util:/app/util
       - ./logs:/app/logs
       - ./database:/app/database
-    ports:
-      - "8899:8899"
-    restart: unless-stopped
     shm_size: 1gb
+    restart: unless-stopped
+
+  # Container 2: file excel số 2
+  comment_crawler_excel2:
+    image: comment_crawler:latest     # <-- dùng lại image đã build
+    environment:
+      - PAGE_NAME=nguyenvandai0906
+      - INPUT_EXCEL=/app/database/post/page/nguyenvandai0906/ACC_nguyenvandai0906/nguyenvandai0906.xlsx
+      - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
+      - DATA_ROOT=/app/database
+      - HEADLESS=true
+    volumes:
+      - ./comment:/app/comment
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    shm_size: 1gb
+    restart: unless-stopped
