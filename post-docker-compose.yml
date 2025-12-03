@@ -1,7 +1,7 @@
 # post-docker-compose.yml
 services:
   # Service 1: Crawler page Thoibao.de
-  post_crawler_thoibaode_acc01:
+  post_crawler_ThoibaoTheGioi_acc01:
     build:
       context: .
       dockerfile: post-Dockerfile
@@ -13,7 +13,7 @@ services:
       DATA_ROOT: "/app/database"
       COOKIE_PATH: "/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2025-12-2"
+      CRAWL_DATE: "2023-8-22"
       KEEP_LAST: "350"
     volumes:
       - ./post:/app/post
@@ -24,7 +24,7 @@ services:
     shm_size: "1g"
 
   # Service 2: Crawler profile Nguyễn Văn Đài (id)
-  post_crawler_nguyenvandai_acc01:
+  post_crawler_le.t.khoa.1_acc02:
     image: fb-post-crawler:latest
     environment:
       GROUP_URL: "https://web.facebook.com/le.t.khoa.1?_rdc=1&_rdr"
@@ -33,7 +33,7 @@ services:
       DATA_ROOT: "/app/database"
       COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2025-6-22"
+      CRAWL_DATE: "2022-5-17"
     volumes:
       - ./post:/app/post
       - ./util:/app/util
@@ -43,7 +43,7 @@ services:
     shm_size: "1g"
 
   # Service 3: Crawler profile khác (ví dụ nvdai0906)
-  post_crawler_lekhoa_acc01:
+  post_crawler_nvdai0906_acc03:
     image: fb-post-crawler:latest
     environment:
       # LƯU Ý: có dấu # phải luôn bọc trong "..."
@@ -51,8 +51,8 @@ services:
       PAGE_NAME: "nvdai0906"          
       ACCOUNT_TAG: "nvdai0906"
       DATA_ROOT: "/app/database"
-      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
-      CRAWL_DATE: "2022-12-14"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa2004/cookies.json"
+      CRAWL_DATE: "2021-10-3"
       HEADLESS: "true"
     volumes:
       - ./post:/app/post

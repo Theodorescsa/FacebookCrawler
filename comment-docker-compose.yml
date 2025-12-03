@@ -9,8 +9,8 @@ services:
       context: .
       dockerfile: comment-Dockerfile
     environment:
-      - PAGE_NAME=nguyenvandai
-      - INPUT_EXCEL=/app/database/post/page/nguyenvandai/ACC_nguyenvandai/nguyenvandai.xlsx
+      - PAGE_NAME=nvdai0906-100044544594726
+      - INPUT_EXCEL=/app/database/post/page/nvdai0906/ACC_nvdai0906/nvdai0906-100044544594726-v1.xlsx
       - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
       - DATA_ROOT=/app/database
       - HEADLESS=true
@@ -26,9 +26,9 @@ services:
   comment_crawler_excel2:
     image: comment_crawler:latest     # <-- dùng lại image đã build
     environment:
-      - PAGE_NAME=nguyenvandai0906
-      - INPUT_EXCEL=/app/database/post/page/nguyenvandai0906/ACC_nguyenvandai0906/nguyenvandai0906.xlsx
-      - COOKIE_PATH=/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json
+      - PAGE_NAME=nvdai0906-100044544594726
+      - INPUT_EXCEL=/app/database/post/page/nvdai0906/ACC_nvdai0906/nvdai0906-100044544594726-v2.xlsx
+      - COOKIE_PATH=/app/database/facebookaccount/authen_theodorescsa2004/cookies.json
       - DATA_ROOT=/app/database
       - HEADLESS=true
     volumes:
