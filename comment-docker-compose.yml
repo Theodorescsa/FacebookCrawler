@@ -38,3 +38,19 @@ services:
       - ./database:/app/database
     shm_size: 1gb
     restart: unless-stopped
+
+  comment_crawler_excel3:
+    image: comment_crawler:latest     # <-- dùng lại image đã build
+    environment:
+      - PAGE_NAME=nvdai0906-100044544594726
+      - INPUT_EXCEL=/app/database/post/page/nvdai0906/ACC_nvdai0906/nvdai0906-100044544594726-v3.xlsx
+      - COOKIE_PATH=/app/database/facebookaccount/authen_theodorescsa0312/cookies.json
+      - DATA_ROOT=/app/database
+      - HEADLESS=true
+    volumes:
+      - ./comment:/app/comment
+      - ./util:/app/util
+      - ./logs:/app/logs
+      - ./database:/app/database
+    shm_size: 1gb
+    restart: unless-stopped

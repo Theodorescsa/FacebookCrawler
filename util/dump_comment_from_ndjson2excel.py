@@ -72,8 +72,8 @@ from openpyxl import Workbook as _W
 from openpyxl import load_workbook
 
 # ========= CONFIG =========
-INPUT_DIR      = r"E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet1\tmp_comments_sheet1"
-OUTPUT_EXCEL   = r"E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet1\thoibaode-comments-sheet1-newv2.xlsx"
+INPUT_DIR      = r"E:\NCS\fb-selenium\database\comment\page\nvdai0906-100044544594726"
+OUTPUT_EXCEL   = r"E:\NCS\fb-selenium\database\comment\page\thoibaode\sheet1\nvdai0906-100044544594726.xlsx"
 REBUILD_EXCEL  = True   
 ALLOWED_EXT    = {".json", ".ndjson"}
 BATCH_SIZE     = 5000   

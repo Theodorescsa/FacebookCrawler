@@ -7,3 +7,5 @@ __pycache__
 logs/logs/crawl.log
 logs/logs
 database
+database/facebookaccount/authen_tranhoangdinhnam/cookies.json
+database/facebookaccount/authen_tranhoangdinhnam/cookies.json

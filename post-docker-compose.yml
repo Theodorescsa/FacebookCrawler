@@ -13,7 +13,7 @@ services:
       DATA_ROOT: "/app/database"
       COOKIE_PATH: "/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2023-8-22"
+      CRAWL_DATE: "2022-12-28"
       KEEP_LAST: "350"
     volumes:
       - ./post:/app/post
@@ -33,7 +33,7 @@ services:
       DATA_ROOT: "/app/database"
       COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2022-5-17"
+      CRAWL_DATE: "2022-2-13"
     volumes:
       - ./post:/app/post
       - ./util:/app/util
@@ -47,12 +47,12 @@ services:
     image: fb-post-crawler:latest
     environment:
       # LƯU Ý: có dấu # phải luôn bọc trong "..."
-      GROUP_URL: "https://www.facebook.com/nvdai0906"
-      PAGE_NAME: "nvdai0906"          
-      ACCOUNT_TAG: "nvdai0906"
+      GROUP_URL: "https://www.facebook.com/groups/1093932159216688/"
+      PAGE_NAME: "nguyenvandaiandyou-1093932159216688"          
+      ACCOUNT_TAG: "nguyenvandaiandyou-1093932159216688"
       DATA_ROOT: "/app/database"
       COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa2004/cookies.json"
-      CRAWL_DATE: "2021-10-3"
+      # CRAWL_DATE: "2021-10-3"
       HEADLESS: "true"
     volumes:
       - ./post:/app/post
