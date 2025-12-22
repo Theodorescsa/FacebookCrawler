@@ -1,26 +1,20 @@
 import pandas as pd
 
-# ===== CẤU HÌNH =====
-input_file = "thoibao-de-last.xlsx"     # đường dẫn file Excel gốc
-output_file = "thoibao-de-last-split.xlsx"  # file Excel sau khi chia
-num_sheets = 4               # số sheet muốn chia
+# Đọc file Excel
+df = pd.read_excel(r"E:\NCS\fb-selenium\util\output_links.xlsx")  # đổi tên file nếu cần
 
-# ===== ĐỌC FILE =====
-df = pd.read_excel(input_file)
+# Điều kiện lọc
+mask_videos = df["facebook_link"].str.contains("videos", case=False, na=False)
 
-# ===== TÍNH SỐ DÒNG MỖI SHEET =====
-rows_per_sheet = len(df) // num_sheets
-remainder = len(df) % num_sheets
+# Sheet mới: chỉ chứa link videos
+df_videos = df[mask_videos]
 
-# ===== GHI RA FILE MỚI =====
-with pd.ExcelWriter(output_file, engine="openpyxl") as writer:
-    start = 0
-    for i in range(num_sheets):
-        # nếu không chia hết thì các sheet đầu có thêm 1 dòng
-        extra = 1 if i < remainder else 0
-        end = start + rows_per_sheet + extra
-        chunk = df.iloc[start:end]
-        chunk.to_excel(writer, sheet_name=f"Sheet_{i+1}", index=False)
-        start = end
+# Sheet cũ: loại bỏ các dòng videos
+df_remaining = df[~mask_videos]
 
-print(f"✅ Đã chia {len(df)} dòng thành {num_sheets} sheet đều nhau trong file '{output_file}'.")
+# Ghi ra Excel
+with pd.ExcelWriter("output.xlsx", engine="openpyxl") as writer:
+    df_remaining.to_excel(writer, sheet_name="original_data", index=False)
+    df_videos.to_excel(writer, sheet_name="videos_only", index=False)
+
+print("✅ Đã chuyển dòng sang sheet khác và xóa khỏi sheet cũ")

@@ -1,59 +1,20 @@
 # post-docker-compose.yml
 services:
   # Service 1: Crawler page Thoibao.de
-  post_crawler_ThoibaoTheGioi_acc01:
+  post_crawler_thoibaode_acc01:
     build:
       context: .
       dockerfile: post-Dockerfile
     image: fb-post-crawler:latest
     environment:
-      GROUP_URL: "https://web.facebook.com/ThoibaoTheGioi"
-      PAGE_NAME: "ThoibaoTheGioi"
-      ACCOUNT_TAG: "ThoibaoTheGioi"
+      GROUP_URL: "https://www.facebook.com/thoibao.de#"
+      PAGE_NAME: "thoibao.de"
+      ACCOUNT_TAG: "thoibao.de"
       DATA_ROOT: "/app/database"
-      COOKIE_PATH: "/app/database/facebookaccount/authen_tranhoangdinhnam/cookies.json"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_nganhamy/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2022-12-28"
+      CRAWL_DATE: "2025-12-4"
       KEEP_LAST: "350"
-    volumes:
-      - ./post:/app/post
-      - ./util:/app/util
-      - ./logs:/app/logs
-      - ./database:/app/database
-    restart: unless-stopped
-    shm_size: "1g"
-
-  # Service 2: Crawler profile Nguyễn Văn Đài (id)
-  post_crawler_le.t.khoa.1_acc02:
-    image: fb-post-crawler:latest
-    environment:
-      GROUP_URL: "https://web.facebook.com/le.t.khoa.1?_rdc=1&_rdr"
-      PAGE_NAME: "le.t.khoa.1#"      # tên folder lưu
-      ACCOUNT_TAG: "le.t.khoa.1#"
-      DATA_ROOT: "/app/database"
-      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312/cookies.json"
-      HEADLESS: "true"
-      CRAWL_DATE: "2022-2-13"
-    volumes:
-      - ./post:/app/post
-      - ./util:/app/util
-      - ./logs:/app/logs
-      - ./database:/app/database
-    restart: unless-stopped
-    shm_size: "1g"
-
-  # Service 3: Crawler profile khác (ví dụ nvdai0906)
-  post_crawler_nvdai0906_acc03:
-    image: fb-post-crawler:latest
-    environment:
-      # LƯU Ý: có dấu # phải luôn bọc trong "..."
-      GROUP_URL: "https://www.facebook.com/groups/1093932159216688/"
-      PAGE_NAME: "nguyenvandaiandyou-1093932159216688"          
-      ACCOUNT_TAG: "nguyenvandaiandyou-1093932159216688"
-      DATA_ROOT: "/app/database"
-      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa2004/cookies.json"
-      # CRAWL_DATE: "2021-10-3"
-      HEADLESS: "true"
     volumes:
       - ./post:/app/post
       - ./util:/app/util

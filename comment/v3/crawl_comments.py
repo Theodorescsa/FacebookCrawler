@@ -26,7 +26,21 @@ from extract import (
     extract_replies_from_depth_resp,
 )
 from logs.loging_config import logger
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
+def close_fb_login_popup(driver, timeout=5):
+    try:
+        close_btn = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//div[@role='button' and @aria-label='Close']")
+            )
+        )
+        close_btn.click()
+        print("✅ Closed Facebook login popup")
+    except Exception as e:
+        print("⚠️ Close button not found:", e)
 
 def _pull_new_gql_reqs(driver, last_len: int):
     """
@@ -122,7 +136,7 @@ def crawl_comments_for_post(
 
     try:
         # Auth theo cookies có sẵn
-        bootstrap_auth(driver, cookies_path)
+        # bootstrap_auth(driver, cookies_path)
 
         # bật Network (optional, chủ yếu để bạn debug)
         try:
