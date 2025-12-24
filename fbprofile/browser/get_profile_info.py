@@ -1,106 +1,116 @@
-# post/v3/browser/profile_info.py
-import sys
 import time
 import json
-import os
 from pathlib import Path
-from datetime import date
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 
-# --- CẤU HÌNH ĐƯỜNG DẪN IMPORT ---
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-# Import hàm khởi tạo driver của bạn
-from util.export_utils.export_fb_session import start_driver
+# Import logger từ hệ thống log hiện tại
+from logs.loging_config import logger
 
 # ==========================================
-# CÁC HÀM XỬ LÝ (HELPER FUNCTIONS)
+# 1. BASIC INFO (Tên, Avatar, Follower)
 # ==========================================
-
-def get_name_follwers_following_avatar(driver):
+def get_name_followers_following_avatar(driver):
     """
-    Lấy thông tin cơ bản: Tên, Followers, Following, Avatar và Ảnh bìa.
+    Lấy thông tin cơ bản: Tên, Followers, Following, Avatar, Cover và SỐ LƯỢNG BẠN BÈ.
     """
     info = {
         "name": None,
-        "followers": None,
-        "following": None,
+        "followers": "0",
+        "following": "0",
+        "friends": "0",      # Thêm trường này
         "avatar_url": None,
-        "cover_photo": None  # Thêm trường này
+        "cover_photo": None
     }
     
     try:
         wait = WebDriverWait(driver, 10)
         
-        # 1. Tên
+        # 1. Tên (Giữ nguyên)
         try:
             name_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, "h1")))
             info["name"] = name_element.text.strip()
         except:
-            print("Không tìm thấy tên.")
+            logger.warning("[PROFILE] Không tìm thấy tên user.")
 
-        # 2. Followers
+        # 2. Avatar (CẬP NHẬT MỚI DỰA TRÊN HTML BẠN GỬI)
+        try:
+            # Tìm thẻ <image> nằm trong <svg role="img">
+            # Thuộc tính preserveAspectRatio="xMidYMid slice" rất đặc trưng cho avatar FB
+            avatar_xpath = "//*[name()='svg'][@role='img']//*[name()='image']"
+            
+            # Lấy tất cả các element khớp (thường avatar là cái to nhất hoặc đầu tiên)
+            imgs = driver.find_elements(By.XPATH, avatar_xpath)
+            
+            for img in imgs:
+                # Ưu tiên lấy xlink:href
+                src = img.get_attribute("xlink:href")
+                if not src:
+                    src = img.get_attribute("href")
+                
+                # Link avatar thường chứa 'fbcdn' và không phải là icon nhỏ (thường icon nhỏ là .png hoặc svg base64)
+                if src and "fbcdn" in src:
+                    info["avatar_url"] = src
+                    break # Lấy được cái đầu tiên hợp lệ thì dừng
+        except Exception as e:
+            logger.warning(f"[PROFILE] Lỗi lấy Avatar: {e}")
+
+        # 3. Số lượng Bạn bè (CẬP NHẬT MỚI)
+        try:
+            # Tìm thẻ <a> có href chứa chữ 'friends'
+            # HTML: <a href=".../friends/"><strong>324</strong> người bạn</a>
+            friend_xpath = "//a[contains(@href, 'friends')]//strong"
+            friend_element = driver.find_element(By.XPATH, friend_xpath)
+            info["friends"] = friend_element.text.strip()
+        except:
+            # Fallback: Đôi khi nó hiện "xxx người theo dõi" ở chỗ bạn bè nếu không công khai bạn bè
+            pass
+
+        # 4. Followers (Người theo dõi - Giữ nguyên logic cũ nhưng thêm try-except lỏng hơn)
         try:
             followers_element = driver.find_element(By.XPATH, "//a[contains(@href, 'followers')]//strong")
             info["followers"] = followers_element.text.strip()
         except:
-            info["followers"] = "0"
+            pass
 
-        # 3. Following
+        # 5. Following (Đang theo dõi - Giữ nguyên)
         try:
             following_element = driver.find_element(By.XPATH, "//a[contains(@href, 'following')]//strong")
             info["following"] = following_element.text.strip()
         except:
-            info["following"] = "0"
-
-        # 4. Avatar (Ảnh đại diện)
-        try:
-            # Avatar thường nằm trong thẻ SVG -> image
-            avatar_element = driver.find_element(By.XPATH, "//svg[@role='img']//image")
-            info["avatar_url"] = avatar_element.get_attribute("xlink:href")
-        except:
             pass
 
-        # 5. Ảnh bìa (Cover Photo) - MỚI
+        # 6. Ảnh bìa (Giữ nguyên)
         try:
-            # Dựa vào thuộc tính data-imgperflogname="profileCoverPhoto" trong HTML bạn gửi
             cover_element = driver.find_element(By.XPATH, "//img[@data-imgperflogname='profileCoverPhoto']")
             info["cover_photo"] = cover_element.get_attribute("src")
         except:
-            # Fallback: Đôi khi Facebook load ảnh bìa dạng khác, nhưng đây là cách chuẩn theo HTML bạn đưa
             pass
 
-    except TimeoutException:
-        print("Lỗi: Quá thời gian chờ khi lấy thông tin cơ bản.")
     except Exception as e:
-        print(f"Lỗi Basic Info: {str(e)}")
+        logger.error(f"[PROFILE] Lỗi lấy Basic Info: {e}")
         
     return info
+
+# ==========================================
+# 2. FEATURED NEWS (Tin nổi bật / Highlights)
+# ==========================================
 def get_profile_featured_news(driver, target_url, timeout: int = 20):
-    """
-    Hàm lấy dữ liệu từ mục 'Đáng chú ý' (Highlights).
-    CẬP NHẬT: Tự động click "Nhấp để xem tin" nếu bị chặn.
-    """
+    """Lấy dữ liệu từ mục 'Đáng chú ý' (Highlights)."""
     featured_data = []
     wait = WebDriverWait(driver, timeout)
 
     try:
-        # --- BƯỚC 1: VÀO TRANG PROFILE ---
         if target_url not in driver.current_url:
             driver.get(target_url)
             time.sleep(3)
 
-        print("Đang tìm các bộ sưu tập đáng chú ý...")
+        logger.info("[PROFILE] Đang tìm các bộ sưu tập đáng chú ý...")
         
         collection_links = []
         try:
-            # Tìm các link highlights
             elements = wait.until(EC.presence_of_all_elements_located(
                 (By.XPATH, "//a[contains(@href, 'source=profile_highlight')]")
             ))
@@ -113,41 +123,30 @@ def get_profile_featured_news(driver, target_url, timeout: int = 20):
                     except:
                         title = "Không tên"
                 
-                # Lọc URL trùng
                 if url and url not in [x['url'] for x in collection_links]:
                     collection_links.append({"url": url, "title": title})
         except TimeoutException:
-            print("Không tìm thấy mục Đáng chú ý nào.")
+            logger.info("[PROFILE] Không tìm thấy mục Đáng chú ý nào.")
             return []
 
-        print(f"--> Tìm thấy {len(collection_links)} bộ sưu tập.")
+        logger.info(f"[PROFILE] --> Tìm thấy {len(collection_links)} bộ sưu tập.")
 
-        # --- BƯỚC 2: DUYỆT QUA TỪNG BỘ SƯU TẬP ---
         for collection in collection_links:
-            print(f"    Đang quét: {collection['title']}")
+            logger.info(f"[PROFILE] Đang quét Highlight: {collection['title']}")
             driver.get(collection['url'])
-            time.sleep(4) # Chờ Viewer load ban đầu
+            time.sleep(4)
 
-            # ============================================================
-            # [MỚI] XỬ LÝ NÚT "NHẤP ĐỂ XEM TIN"
-            # ============================================================
+            # Xử lý nút "Nhấp để xem tin"
             try:
-                # Tìm thẻ span chứa chữ "Nhấp để xem tin"
                 view_btn_xpath = "//span[contains(text(), 'Nhấp để xem tin')]"
-                
-                # Chờ tối đa 5s xem nút này có hiện không (dùng timeout ngắn để không làm chậm nếu không có)
                 overlay_wait = WebDriverWait(driver, 5)
                 btn = overlay_wait.until(EC.element_to_be_clickable((By.XPATH, view_btn_xpath)))
-                
-                print("    -> Phát hiện màn hình chờ, đang click 'Nhấp để xem tin'...")
                 driver.execute_script("arguments[0].click();", btn)
-                time.sleep(3) # Chờ story thật load sau khi click
+                time.sleep(3)
             except TimeoutException:
-                # Nếu không thấy nút này thì tốt, story tự chạy
                 pass
             except Exception as e:
-                print(f"    ! Cảnh báo nút xem tin: {e}")
-            # ============================================================
+                logger.warning(f"[PROFILE] ! Cảnh báo nút xem tin: {e}")
 
             collection_media = []
             visited_urls = set()
@@ -157,42 +156,34 @@ def get_profile_featured_news(driver, target_url, timeout: int = 20):
                     media_src = None
                     media_type = "unknown"
 
-                    # 1. Tìm Video
                     try:
                         video_element = driver.find_element(By.TAG_NAME, "video")
                         media_src = video_element.get_attribute("src")
                         media_type = "video"
                     except:
-                        # 2. Nếu không có video, tìm Ảnh
                         try:
-                            # XPath ảnh trong viewer
                             img_element = driver.find_element(By.XPATH, "//div[contains(@data-id, 'story-viewer')]//img")
                             media_src = img_element.get_attribute("src")
                             media_type = "image"
                         except:
                             pass
 
-                    # Lưu dữ liệu
                     if media_src and media_src not in visited_urls:
-                        # In ra để debug chơi
-                        # print(f"      + {media_type}: {media_src[:30]}...")
                         visited_urls.add(media_src)
                         collection_media.append({"type": media_type, "src": media_src})
 
-                    # 3. Click Next (Thẻ tiếp theo)
+                    # Click Next
                     next_xpath = "//div[@aria-label='Thẻ tiếp theo'][@role='button']"
                     try:
                         next_btn = driver.find_element(By.XPATH, next_xpath)
                         driver.execute_script("arguments[0].click();", next_btn)
-                        time.sleep(2.5) # Chờ story tiếp theo load
+                        time.sleep(2.5)
                     except:
-                        # Không thấy nút Next -> Hết story -> Break vòng lặp while
-                        break 
+                        break # Hết story
                 
                 except Exception:
                     break
             
-            # Lưu vào list tổng
             featured_data.append({
                 "collection_title": collection['title'],
                 "collection_url": collection['url'],
@@ -200,44 +191,53 @@ def get_profile_featured_news(driver, target_url, timeout: int = 20):
             })
 
     except Exception as e:
-        print(f"Lỗi Featured News: {str(e)}")
+        logger.error(f"[PROFILE] Lỗi Featured News: {str(e)}")
 
     return featured_data
 
-def get_profile_introduces(driver, target_url, timeout: int = 20) -> dict:
-    """
-    Lấy thông tin Giới thiệu (About).
-    """
-    if "profile" not in target_url:
-        driver.get(f"{target_url}/about")
-    else:
-        driver.get(f"{target_url}&sk=about")
-    time.sleep(3)
+# ==========================================
+# 3. INTRODUCES (Giới thiệu / About)
+# ==========================================
+def get_profile_introduces(driver, target_url, timeout: int = 15) -> dict:
+    """Lấy thông tin Giới thiệu (About)."""
+    current_url = driver.current_url
+    target_about = f"{target_url}/about" if "profile.php" not in target_url else f"{target_url}&sk=about"
+    
+    if target_about not in current_url:
+        driver.get(target_about)
+        time.sleep(3)
     
     data = {}
     wait = WebDriverWait(driver, timeout)
 
     tabs_mapping = {
-        "overview": ["Tổng quan"],
-        "work_education": ["Công việc và học vấn"],
-        "places": ["Nơi từng sống"],
-        "contact_basic": ["Thông tin liên hệ và cơ bản"],
-        "family": ["Gia đình và các mối quan hệ"],
-        "details": ["Chi tiết về"],
-        "life_events": ["Sự kiện trong đời"]
+        "overview": ["Tổng quan", "Overview"],
+        "work_education": ["Công việc và học vấn", "Work and education"],
+        "places": ["Nơi từng sống", "Places Lived"],
+        "contact_basic": ["Thông tin liên hệ và cơ bản", "Contact and basic info"],
+        "family": ["Gia đình và các mối quan hệ", "Family and relationships"],
+        "details": ["Chi tiết về", "Details about"],
+        "life_events": ["Sự kiện trong đời", "Life events"]
     }
 
-    print("Đang quét thông tin Giới thiệu...")
+    logger.info("[PROFILE] Đang quét thông tin Giới thiệu...")
 
     for key, keywords in tabs_mapping.items():
         data[key] = []
         try:
-            xpath_tab = f"//a[@role='tab']//span[contains(text(), '{keywords[0]}')]"
-            tab_element = wait.until(EC.presence_of_element_located((By.XPATH, xpath_tab)))
-            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", tab_element)
-            driver.execute_script("arguments[0].click();", tab_element)
-            time.sleep(2) 
+            xpath_parts = [f"contains(text(), '{kw}')" for kw in keywords]
+            xpath_condition = " or ".join(xpath_parts)
+            xpath_tab = f"//a[@role='tab']//span[{xpath_condition}]"
+            
+            try:
+                tab_element = wait.until(EC.presence_of_element_located((By.XPATH, xpath_tab)))
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", tab_element)
+                driver.execute_script("arguments[0].click();", tab_element)
+                time.sleep(2)
+            except TimeoutException:
+                continue
 
+            # Xử lý riêng cho tab "details"
             if key == "details":
                 sections = driver.find_elements(By.XPATH, "//div[@class='x1iyjqo2']//div[@class='xieb3on x1gslohp']")
                 for sec in sections:
@@ -251,6 +251,9 @@ def get_profile_introduces(driver, target_url, timeout: int = 20) -> dict:
                         continue
             else:
                 rows = driver.find_elements(By.XPATH, "//div[contains(@class, 'x13faqbe')]")
+                if not rows:
+                    rows = driver.find_elements(By.XPATH, "//div[@class='x1iyjqo2']//div[@class='x1gslohp']")
+                
                 for row in rows:
                     text_content = row.text.strip()
                     if text_content and "Không có" not in text_content and "để hiển thị" not in text_content:
@@ -258,80 +261,71 @@ def get_profile_introduces(driver, target_url, timeout: int = 20) -> dict:
                         if clean_text not in data[key]:
                             data[key].append(clean_text)
 
-        except TimeoutException:
-            pass # Không có tab này
         except Exception:
             continue
 
     return data
 
+# ==========================================
+# 4. PHOTOS (Ảnh)
+# ==========================================
 def get_profile_pictures(driver, target_url, timeout: int = 20) -> list:
-    """
-    Lấy danh sách Ảnh.
-    """
+    """Lấy danh sách Ảnh."""
     image_urls = []
     wait = WebDriverWait(driver, timeout)
 
     try:
-        if "profile" not in target_url:
-            driver.get(f"{target_url}/photos")
-        else:
-            driver.get(f"{target_url}&sk=photos")
+        target_photos = f"{target_url}/photos" if "profile.php" not in target_url else f"{target_url}&sk=photos"
+        driver.get(target_photos)
         time.sleep(3)
         
-        print("Đang quét danh sách ảnh...")
+        logger.info("[PROFILE] Đang quét danh sách ảnh...")
         xpath_images = "//a[contains(@href, 'photo.php')]//img"
         try:
             wait.until(EC.presence_of_element_located((By.XPATH, xpath_images)))
+            # Cuộn một chút để load thêm ảnh
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+            time.sleep(2)
+            
             img_elements = driver.find_elements(By.XPATH, xpath_images)
             for img in img_elements:
                 src = img.get_attribute("src")
                 if src and "fbcdn.net" in src:
                     image_urls.append(src)
         except:
-            print("Không tìm thấy ảnh nào.")
+            logger.info("[PROFILE] Không tìm thấy ảnh nào.")
                 
     except Exception as e:
-        print(f"Lỗi lấy ảnh: {str(e)}")
+        logger.error(f"[PROFILE] Lỗi lấy ảnh: {str(e)}")
 
     return list(set(image_urls))
 
+# ==========================================
+# 5. FRIENDS (Bạn bè)
+# ==========================================
 def get_profile_friends(driver, target_url, timeout: int = 20) -> list:
-    """
-    Lấy danh sách Bạn bè (có cuộn trang).
-    """
+    """Lấy danh sách Bạn bè (có cuộn trang)."""
     friends_list = []
-    wait = WebDriverWait(driver, timeout)
-
+    
     try:
-        if "profile.php" in target_url:
-            friends_url = f"{target_url}&sk=friends"
-        else:
-            friends_url = f"{target_url}/friends"
+        target_friends = f"{target_url}/friends" if "profile.php" not in target_url else f"{target_url}&sk=friends"
             
-        print(f"Đang truy cập danh sách bạn bè: {friends_url}")
-        driver.get(friends_url)
+        logger.info(f"[PROFILE] Đang truy cập danh sách bạn bè: {target_friends}")
+        driver.get(target_friends)
         time.sleep(3)
 
-        print("Đang cuộn trang (Infinite Scroll)...")
+        logger.info("[PROFILE] Đang cuộn trang danh sách bạn bè (Max 3 lần scroll)...")
+        # Giới hạn scroll để tránh treo tool quá lâu
         last_height = driver.execute_script("return document.body.scrollHeight")
-        retries = 0
-        max_retries = 3
-        
-        while True:
+        for _ in range(3): 
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(2.5)
             new_height = driver.execute_script("return document.body.scrollHeight")
-            
             if new_height == last_height:
-                retries += 1
-                if retries >= max_retries:
-                    break
-            else:
-                last_height = new_height
-                retries = 0
+                break
+            last_height = new_height
 
-        print("Đang trích xuất dữ liệu bạn bè...")
+        logger.info("[PROFILE] Đang trích xuất dữ liệu bạn bè...")
         info_divs = driver.find_elements(By.XPATH, "//div[contains(@class, 'x1iyjqo2') and contains(@class, 'xv54qhq')]")
 
         for info in info_divs:
@@ -362,28 +356,20 @@ def get_profile_friends(driver, target_url, timeout: int = 20) -> list:
             except: continue
 
     except Exception as e:
-        print(f"Lỗi lấy bạn bè: {str(e)}")
+        logger.error(f"[PROFILE] Lỗi lấy bạn bè: {str(e)}")
 
     return friends_list
 
 # ==========================================
-# HÀM MAIN (CHƯƠNG TRÌNH CHÍNH)
+# MAIN ORCHESTRATOR
 # ==========================================
-
-def main():
-    # 1. Cấu hình
-    profile_name_driver = "Profile 5" # Tên profile trong tool export_fb_session
-    target_url = "https://www.facebook.com/duy.pham.598064"
+def scrape_full_profile_info(driver, target_url: str, output_path: Path):
+    """
+    Hàm chính điều phối việc lấy TOÀN BỘ thông tin profile và lưu file.
+    """
+    logger.info(f"--- BẮT ĐẦU QUÉT INFO PROFILE (FULL): {target_url} ---")
     
-    # Tạo ID file từ URL
-    uid = target_url.split("id=")[-1].split("&")[0] if "id=" in target_url else target_url.strip("/").split("/")[-1]
-    
-    print(f"--- BẮT ĐẦU QUÉT PROFILE: {uid} ---")
-    driver = start_driver(profile_name_driver)
-    
-    # Cấu trúc dữ liệu tổng
     full_data = {
-        "id": uid,
         "url": target_url,
         "scanned_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "basic_info": {},
@@ -394,55 +380,37 @@ def main():
     }
 
     try:
-        # BƯỚC 1: Vào trang chủ profile lấy Basic Info
-        print("\n[1/5] Lấy thông tin cơ bản...")
-        driver.get(target_url)
-        time.sleep(4)
-        full_data["basic_info"] = get_name_follwers_following_avatar(driver)
-        print("✅ Hoàn thành Basic Info.")
+        # 1. Basic Info (Trang chủ)
+        if target_url not in driver.current_url:
+            driver.get(target_url)
+            time.sleep(3)
+        full_data["basic_info"] = get_name_followers_following_avatar(driver)
+        logger.info("[PROFILE] ✅ Xong Basic Info")
 
-        # BƯỚC 2: Lấy Featured News (Tin nổi bật)
-        # Lưu ý: Hàm này sẽ tự mở các story viewer
-        print("\n[2/5] Lấy tin nổi bật (Highlights)...")
-        # full_data["featured_news"] = get_profile_featured_news(driver, target_url)
-        # print(f"✅ Hoàn thành Featured News ({len(full_data['featured_news'])} bộ).")
+        # 2. Featured News (Highlights) - Chạy luôn
+        # Lưu ý: Hàm này tốn thời gian vì phải click xem từng story
+        full_data["featured_news"] = get_profile_featured_news(driver, target_url)
+        logger.info(f"[PROFILE] ✅ Xong Highlights ({len(full_data['featured_news'])} bộ)")
 
-        # BƯỚC 3: Lấy Giới thiệu (About)
-        print("\n[3/5] Lấy thông tin Giới thiệu...")
+        # 3. Introduction (About)
         full_data["introduction"] = get_profile_introduces(driver, target_url)
-        print("✅ Hoàn thành Introduction.")
+        logger.info("[PROFILE] ✅ Xong Introduction")
 
-        # BƯỚC 4: Lấy Ảnh (Photos)
-        print("\n[4/5] Lấy danh sách Ảnh...")
+        # 4. Photos
         full_data["photos"] = get_profile_pictures(driver, target_url)
-        print(f"✅ Hoàn thành Photos ({len(full_data['photos'])} ảnh).")
+        logger.info(f"[PROFILE] ✅ Xong Photos ({len(full_data['photos'])} ảnh)")
 
-        # BƯỚC 5: Lấy Bạn bè (Friends)
-        print("\n[5/5] Lấy danh sách Bạn bè...")
+        # 5. Friends
         full_data["friends"] = get_profile_friends(driver, target_url)
-        print(f"✅ Hoàn thành Friends ({len(full_data['friends'])} bạn).")
-
-        # --- LƯU FILE ---
-        file_name = f"fb_data_{uid}.json"
-        print(f"\n💾 Đang lưu kết quả vào file: {file_name}")
-        with open(file_name, "w", encoding="utf-8") as f:
-            json.dump(full_data, f, ensure_ascii=False, indent=4)
-        print("🎉 ĐÃ LƯU THÀNH CÔNG!")
+        logger.info(f"[PROFILE] ✅ Xong Friends ({len(full_data['friends'])} người)")
 
     except Exception as e:
-        print(f"\n❌ CÓ LỖI XẢY RA TRONG MAIN: {e}")
-        import traceback
-        traceback.print_exc()
-        
-        # Cố gắng lưu dữ liệu đã lấy được
-        with open(f"fb_data_{uid}_ERROR.json", "w", encoding="utf-8") as f:
-            json.dump(full_data, f, ensure_ascii=False, indent=4)
-        print("⚠️ Đã lưu file cứu hộ (_ERROR.json)")
-
+        logger.error(f"[PROFILE] ❌ Lỗi nghiêm trọng khi quét profile: {e}")
     finally:
-        print("\n--- Đóng trình duyệt sau 5s ---")
-        time.sleep(5)
-        driver.quit()
-
-if __name__ == "__main__":
-    main()
+        # Quan trọng: Dù thành công hay thất bại, lưu file lại
+        try:
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(full_data, f, ensure_ascii=False, indent=4)
+            logger.info(f"[PROFILE] 💾 Đã lưu FULL info vào: {output_path}")
+        except Exception as save_err:
+            logger.error(f"[PROFILE] Không thể lưu file: {save_err}")

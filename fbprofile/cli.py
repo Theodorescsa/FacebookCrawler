@@ -15,6 +15,9 @@ from .browser.driver import create_chrome, make_headless
 from .browser.hooks import install_early_hook
 from .browser.navigation import go_to_date
 from .browser.scroll import crawl_scroll_loop, set_stop_flag
+# Import hàm mới tạo
+from .browser.get_profile_info import scrape_full_profile_info
+from .browser.login import fb_login
 from .storage.paths import compute_paths
 from .storage.checkpoint import save_checkpoint
 from . import pipeline
@@ -45,6 +48,9 @@ def add_common_args(ap):
                     help="Giới hạn lượt scroll (None = 10000)")
     ap.add_argument("--date", type=str,
                     help="YYYY-MM-DD (ngày cần crawl, mặc định = hôm nay)")
+    # Thêm cờ để bật/tắt quét info (optional)
+    ap.add_argument("--skip-info", action="store_true",
+                    help="Bỏ qua bước quét thông tin profile")
 
 
 def _handle_sigterm(sig, frame):
@@ -61,18 +67,15 @@ def _run_single_session(
     group_url: str,
     target_date: date,
     out_ndjson: Path,
+    profile_info_path: Path, # Thêm tham số đường dẫn file info
     keep_last: int,
     seen_ids: Set[str],
     cookies: str,
 ):
     """
-    Chạy 1 phiên Chrome: open, go_to_date, crawl_scroll_loop, quit.
-    Return:
-        True  -> dừng vì STALL
-        False -> dừng vì lý do khác
+    Chạy 1 phiên Chrome: open, [scrape_profile], go_to_date, crawl_scroll_loop, quit.
     """
     d = create_chrome(headless=make_headless(args))
-
     if cookies and os.path.exists(cookies):
         try:
             bootstrap_auth(d, cookies)
@@ -81,7 +84,6 @@ def _run_single_session(
             logger.error("[AUTH] bootstrap_auth FAILED: %s", e)
     else:
         logger.warning("[AUTH] Không tìm thấy cookies: %s", cookies)
-
     try:
         d.execute_cdp_cmd("Network.enable", {})
         d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
@@ -95,8 +97,14 @@ def _run_single_session(
         logger.error("[HOOK] install_early_hook FAILED: %s", e)
 
     try:
+        try:
+            scrape_full_profile_info(d, group_url, profile_info_path)
+        except Exception as e:
+            logger.error(f"Lỗi khi crawl profile info: {e}")
+
         d.get(group_url)
         time.sleep(1.5)
+        
         if "group" not in group_url:
             go_to_date(d, target_date)
 
@@ -119,9 +127,14 @@ def _run_single_session(
 def main(argv=None):
     import argparse
 
+    print(">>> ĐANG KHỞI CHẠY SCRIPT...")
+
     ap = argparse.ArgumentParser("FB Post Crawler (single-day, clean)")
     add_common_args(ap)
     args = ap.parse_args(argv)
+
+    # Đã sửa lại PROJECT_ROOT đúng như cuộc hội thoại trước
+    print(f">>> DEBUG: PROJECT_ROOT hiện tại là: {PROJECT_ROOT}")
 
     group_url = args.group_url.strip()
     page_name = args.page_name.strip()
@@ -129,10 +142,15 @@ def main(argv=None):
     data_root = Path(args.data_root).resolve()
     keep_last = int(args.keep_last)
     cookies = args.cookies_path.strip()
-
+    print("cookies: ", cookies)
+    
+    # Tính toán đường dẫn
     database_path, out_ndjson, raw_dumps_dir, checkpoint = compute_paths(
         data_root, page_name, account_tag
     )
+    
+    # Định nghĩa đường dẫn file info profile
+    profile_info_path = database_path / "profile_info.json"
 
     logger.info(
         "[BOOT] PAGE=%s | TAG=%s | DATA_ROOT=%s",
@@ -141,7 +159,7 @@ def main(argv=None):
         data_root,
     )
     logger.info(
-        "[PATH] DB=%s | OUT=%s | CKPT=%s", database_path, out_ndjson, checkpoint
+        "[PATH] DB=%s | OUT=%s | INFO=%s", database_path, out_ndjson, profile_info_path
     )
 
     if args.date:
@@ -172,6 +190,7 @@ def main(argv=None):
             group_url=group_url,
             target_date=current_target_date,
             out_ndjson=out_ndjson,
+            profile_info_path=profile_info_path, # Truyền tham số mới vào
             keep_last=keep_last,
             seen_ids=seen_ids,
             cookies=cookies,
@@ -196,7 +215,6 @@ def main(argv=None):
             )
             break
 
-        # Dùng EARLIEST_CREATED_TS để nhảy sâu hơn xuống dòng thời gian
         if pipeline.EARLIEST_CREATED_TS is None:
             logger.warning(
                 "[SESSION] EARLIEST_CREATED_TS chưa có, không thể tính ngày mới. Dừng."
@@ -212,9 +230,7 @@ def main(argv=None):
             pipeline.EARLIEST_CREATED_TS,
         )
         current_target_date = new_date
-        # vòng while tiếp theo sẽ create_chrome mới và crawl tiếp
 
-    # lưu checkpoint theo LATEST_CREATED_TS (chuẩn incremental)
     if pipeline.LATEST_CREATED_TS is not None:
         save_checkpoint(checkpoint, pipeline.LATEST_CREATED_TS)
 
