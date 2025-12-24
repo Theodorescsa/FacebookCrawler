@@ -22,7 +22,7 @@ POST_URL_RE = re.compile(
 )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def env(key: str, default=None, cast=str):
