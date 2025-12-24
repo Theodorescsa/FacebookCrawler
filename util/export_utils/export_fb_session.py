@@ -38,28 +38,24 @@ ALLOWED_COOKIE_DOMAINS = [
 PROFILES = [
     # {
     #     "profile_name": "Profile 72",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa0312\cookies.json",
+    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa0312@gmail.com\cookies.json",
     # },
-    {
-        "profile_name": "Profile 5",
-        "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_nganhamy\cookies.json",
-    },
     # {
-    #     "profile_name": "Profile 7",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_nguyenminhanh\cookies.json",
+    #     "profile_name": "Profile 5",
+    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_dinhthai160@icloud.com\cookies.json",
     # },
     # {
     #     "profile_name": "Profile 10",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_thaidinh\cookies.json",
+    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_0385348933\cookies.json",
     # },
     # {
     #     "profile_name": "Profile 40",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa2004\cookies.json",
+    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa2004@gmail.com\cookies.json",
     # },
-    # {
-    #     "profile_name": "Profile 8",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json",
-    # },
+    {
+        "profile_name": "Profile 8",
+        "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_0896691804\cookies.json",
+    },
 ]
 
 

@@ -78,7 +78,7 @@ def _run_single_session(
     d = create_chrome(headless=make_headless(args))
     if cookies and os.path.exists(cookies):
         try:
-            bootstrap_auth(d, cookies)
+            login_status = bootstrap_auth(d, cookies)
             logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies)
         except Exception as e:
             logger.error("[AUTH] bootstrap_auth FAILED: %s", e)
@@ -89,7 +89,8 @@ def _run_single_session(
         d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
     except Exception as e:
         logger.warning("[CDP] Cannot enable network/disable cache: %s", e)
-
+    if login_status == False:
+        return
     try:
         install_early_hook(d, keep_last=keep_last)
         logger.info("[HOOK] install_early_hook OK (keep_last=%s)", keep_last)
