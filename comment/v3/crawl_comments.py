@@ -127,7 +127,6 @@ def crawl_comments_for_post(
     """
     Mở 1 bài viết Facebook, scroll + click “Xem thêm bình luận”, 
     hứng GraphQL trong window.__gqlReqs, parse comment + reply.
-
     Trả về: list[row_dict]
     """
     logger.info("[CRAWLER] Start crawl comments for: %s", page_url)
@@ -136,8 +135,12 @@ def crawl_comments_for_post(
 
     try:
         # Auth theo cookies có sẵn
-        # bootstrap_auth(driver, cookies_path)
+        login_status = bootstrap_auth(driver, cookies_path)
+        if not login_status:
+            logger.error("[AUTH] bootstrap_auth FAILED with cookies %s", cookies_path)
+            return []
 
+        logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies_path)
         # bật Network (optional, chủ yếu để bạn debug)
         try:
             driver.execute_cdp_cmd("Network.enable", {})

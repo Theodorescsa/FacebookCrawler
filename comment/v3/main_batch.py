@@ -144,6 +144,8 @@ if __name__ == "__main__":
                 headless=args.headless,
                 out_path=str(out_path),
             )
+            if rows == []:
+                logger.warning("[BATCH] Không tìm thấy bài viết: %s", url)
             logger.info(
                 "[BATCH] Done file=%s, unique comments+replies=%s",
                 fname,

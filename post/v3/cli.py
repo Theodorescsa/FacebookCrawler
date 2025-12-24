@@ -75,7 +75,10 @@ def _run_single_session(
 
     if cookies and os.path.exists(cookies):
         try:
-            bootstrap_auth(d, cookies)
+            login_status = bootstrap_auth(d, cookies)
+            if not login_status:
+                logger.error("[AUTH] bootstrap_auth FAILED with cookies %s", cookies)
+                return False
             logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies)
         except Exception as e:
             logger.error("[AUTH] bootstrap_auth FAILED: %s", e)
@@ -179,7 +182,7 @@ def main(argv=None):
 
         # nếu không phải stall -> kết thúc luôn
         if not stopped_due_to_stall:
-            logger.info("[SESSION] Dừng không phải do stall, kết thúc crawler.")
+            logger.info(f"[SESSION] Cần lấy lại cookies cho folder {cookies}")
             break
 
         stall_retry_count += 1
