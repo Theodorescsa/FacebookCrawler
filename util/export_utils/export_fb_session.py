@@ -195,13 +195,6 @@ def smart_merge_storage(storage_by_origin: Dict[str, Dict[str, str]]) -> Dict[st
 
 
 def export_cookies_for_profile(profile_name: str, output_path: str):
-    """
-    Chạy full flow cho 1 profile:
-      - Mở Chrome với profile_name
-      - Vào facebook
-      - Lấy cookie
-      - Ghi file output_path
-    """
     print(f"\n==============================")
     print(f"[PROFILE] Đang xử lý: {profile_name}")
     print(f"[OUTPUT ] {output_path}")
@@ -211,28 +204,39 @@ def export_cookies_for_profile(profile_name: str, output_path: str):
     try:
         driver = start_driver(profile_name)
         driver.get("https://www.facebook.com/")
-        time.sleep(2)
+        time.sleep(3) # Chờ load ổn định
 
-        # 1) Lấy tất cả cookies từ profile qua CDP (gồm HttpOnly)
+        # 1. Lấy User-Agent hiện tại của Profile
+        user_agent = driver.execute_script("return navigator.userAgent;")
+        print(f"[UA] {user_agent}")
+
+        # 2. Lấy Cookies
         driver.execute_cdp_cmd("Network.enable", {})
         res = driver.execute_cdp_cmd("Network.getAllCookies", {})
         all_cookies = res.get("cookies", []) if isinstance(res, dict) else []
         fb_cookies = filter_cookies(all_cookies, ALLOWED_COOKIE_DOMAINS)
         print(f"[COOKIES] total={len(all_cookies)}, selected={len(fb_cookies)}")
 
-        # Tạo thư mục nếu chưa tồn tại
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
+        # 3. Ghi file: Lưu cả Cookie và User-Agent
+        # Nên đổi cấu trúc JSON output để chứa cả 2 thông tin
+        data_export = {
+            "user_agent": user_agent,
+            "cookies": fb_cookies
+        }
+        
         with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(fb_cookies, f, ensure_ascii=False, indent=2)
+            json.dump(data_export, f, ensure_ascii=False, indent=2)
+            
         print(f"[WRITE] {output_path}")
 
     except Exception as e:
         print(f"[ERROR] Lỗi khi xử lý profile {profile_name}: {e}")
     finally:
         if driver is not None:
+            # Quan trọng: Quit driver để đóng session phía trình duyệt này
             driver.quit()
-            # nghỉ 1 chút cho Chrome tắt hẳn, tránh kẹt port
             time.sleep(2)
 
     print(f"[DONE] Exported cookies for profile: {profile_name}")

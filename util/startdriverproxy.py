@@ -11,6 +11,7 @@ import signal
 from urllib.parse import urlparse
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 import logging
 # ------------------ CONFIG ------------------
 ALLOWED_COOKIE_DOMAINS = {".facebook.com", "facebook.com", "m.facebook.com", "web.facebook.com"}
@@ -71,16 +72,87 @@ def _normalize_cookie(c: dict) -> Optional[dict]:
         out["expiry"] = expiry
     return out
 
-def _add_cookies_safely(driver, cookies_path: Path):
-    with open(cookies_path, "r", encoding="utf-8") as f:
-        raw = json.load(f)
-    if isinstance(raw, dict) and "cookies" in raw:
-        raw = raw["cookies"]
-    if not isinstance(raw, list):
-        raise ValueError("File cookies không phải mảng JSON.")
+# ----------------------------
+# CẬP NHẬT HÀM XỬ LÝ COOKIE & AUTH
+# ----------------------------
+def check_login_visual(driver) -> bool:
+    """
+    Kiểm tra giao diện xem có hiện form đăng nhập hay không.
+    Trả về: True (Đã đăng nhập OK), False (Chưa đăng nhập/Bị hiện form)
+    """
+    try:
+        # 1. Check cái Popup chặn màn hình (Dựa vào HTML bạn gửi: id="login_popup_cta_form")
+        popups = driver.find_elements(By.ID, "login_popup_cta_form")
+        if len(popups) > 0:
+            print("[CHECK] Phát hiện Popup bắt đăng nhập (login_popup_cta_form).")
+            return False # Chưa đăng nhập
 
+        # 2. Check form đăng nhập thường (trang login full màn hình)
+        email_inputs = driver.find_elements(By.NAME, "email")
+        pass_inputs = driver.find_elements(By.NAME, "pass")
+        
+        # Nếu thấy cả ô email và ô pass -> Chắc chắn đang ở màn hình login
+        if len(email_inputs) > 0 and len(pass_inputs) > 0:
+             # Kiểm tra thêm: đôi khi ô input bị ẩn, chỉ tính khi nó hiển thị
+            if email_inputs[0].is_displayed():
+                print("[CHECK] Phát hiện ô nhập Email/Pass.")
+                return False # Chưa đăng nhập
+
+        # 3. (Optional) Check nút "Đăng nhập"
+        # login_buttons = driver.find_elements(By.XPATH, "//div[@aria-label='Đăng nhập vào Facebook']")
+        
+        # Nếu không tìm thấy dấu hiệu login form -> Tạm coi là OK
+        return True
+
+    except Exception as e:
+        print(f"[WARN] Lỗi khi check visual: {e}")
+        # Nếu lỗi check element, ta tạm tin vào cookie
+        return True
+def _add_cookies_safely(driver, cookies_path: Path):
+    """
+    Đọc file JSON, set User-Agent (nếu có) và add Cookies.
+    Trả về: (số cookie add thành công, user-agent đã set hoặc None)
+    """
+    if not os.path.exists(cookies_path):
+        return 0, None
+
+    with open(cookies_path, "r", encoding="utf-8") as f:
+        try:
+            raw = json.load(f)
+        except json.JSONDecodeError:
+            return 0, None
+
+    # Biến lưu trữ dữ liệu
+    cookies_list = []
+    user_agent = None
+
+    # 1. Xử lý logic đọc file (hỗ trợ cả format cũ và mới)
+    if isinstance(raw, list):
+        # Format cũ: Chỉ là list cookies
+        cookies_list = raw
+    elif isinstance(raw, dict):
+        # Format mới: {"user_agent": "...", "cookies": [...]}
+        cookies_list = raw.get("cookies", [])
+        user_agent = raw.get("user_agent")
+    else:
+        print("[ERR] File cookies sai định dạng.")
+        return 0, None
+
+    # 2. Quan trọng: Set User-Agent NẾU tìm thấy trong file
+    # Việc này phải làm trước khi load trang với cookie mới
+    if user_agent:
+        try:
+            print(f"[AUTH] Found User-Agent in file, applying override...")
+            driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": user_agent})
+        except Exception as e:
+            print(f"[WARN] Failed to set User-Agent: {e}")
+
+    # 3. Add từng cookie
     added = 0
-    for c in raw:
+    if not isinstance(cookies_list, list):
+        return 0, user_agent
+
+    for c in cookies_list:
         nc = _normalize_cookie(c)
         if not nc:
             continue
@@ -89,27 +161,42 @@ def _add_cookies_safely(driver, cookies_path: Path):
             added += 1
         except Exception:
             pass
-    return added
+            
+    return added, user_agent
+
 
 def bootstrap_auth(d, cookie_path):
-    d.get("https://www.facebook.com/")
-    time.sleep(1.0)
-    print("[AUTH] Bootstrapping auth...")
-    if cookie_path and os.path.exists(cookie_path):
-        try:
-            count = _add_cookies_safely(d, Path(cookie_path))
-            d.get("https://www.facebook.com/")
-            time.sleep(1.0)
-            print(f"[AUTH] Added cookies: {count}")
-        except Exception as e:
-            print("[WARN] bootstrap cookies:", e)
+    """
+    Hàm khởi động auth: vào facebook -> nạp cookie + UA -> reload check login
+    """
+    # Bước 1: Vào trang login trắng để khởi tạo domain context
     try:
-        all_cookies = {c["name"]: c.get("value") for c in d.get_cookies()}
-        has_cuser = "c_user" in all_cookies
-        has_xs    = "xs" in all_cookies
-        print(f"[AUTH] c_user={has_cuser}, xs={has_xs}")
-    except Exception as e:
-        print("[WARN] bootstrap cookies:", e)
+        if "facebook.com" not in d.current_url:
+            d.get("https://www.facebook.com/")
+    except:
+        d.get("https://www.facebook.com/")
+
+    if cookie_path and os.path.exists(cookie_path):
+        _add_cookies_safely(d, Path(cookie_path)) # Nhớ dùng hàm add cookie mới
+        time.sleep(1.0)
+        d.get("https://www.facebook.com/") # Reload để nhận cookie
+        time.sleep(3.0) # Chờ load giao diện
+    
+    # --- PHẦN CHECK MỚI ---
+    
+    # 1. Check bằng Cookie (Logic ngầm)
+    all_cookies = {c["name"]: c.get("value") for c in d.get_cookies()}
+    has_cuser = "c_user" in all_cookies
+    
+    # 2. Check bằng Giao diện (HTML bạn gửi)
+    is_visual_login = check_login_visual(d)
+
+    if has_cuser and is_visual_login:
+        print("[AUTH] Đăng nhập THÀNH CÔNG (Cookie OK + Không hiện form).")
+        return True
+    else:
+        print("[AUTH] Đăng nhập THẤT BẠI (Cookie mất hoặc Bị hiện Popup).")
+        return False
 
 def find_mitmdump_executable():
     # 1) try PATH
