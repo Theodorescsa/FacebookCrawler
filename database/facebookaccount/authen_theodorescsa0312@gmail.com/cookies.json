@@ -12,46 +12,6 @@
       "expires": 1773027856.040839
     },
     {
-      "name": "sb",
-      "value": "bMU_aWK300CfOsbCYhb1n6tB",
-      "domain": ".facebook.com",
-      "path": "/",
-      "secure": true,
-      "httpOnly": true,
-      "sameSite": "None",
-      "expires": 1801126829.90091
-    },
-    {
-      "name": "ps_l",
-      "value": "1",
-      "domain": ".facebook.com",
-      "path": "/",
-      "secure": true,
-      "httpOnly": true,
-      "sameSite": "Lax",
-      "expires": 1800346975.863368
-    },
-    {
-      "name": "ps_n",
-      "value": "1",
-      "domain": ".facebook.com",
-      "path": "/",
-      "secure": true,
-      "httpOnly": true,
-      "sameSite": "None",
-      "expires": 1800346975.863449
-    },
-    {
-      "name": "wd",
-      "value": "1536x730",
-      "domain": ".facebook.com",
-      "path": "/",
-      "secure": true,
-      "httpOnly": false,
-      "sameSite": "Lax",
-      "expires": 1767171645
-    },
-    {
       "name": "dpr",
       "value": "1.25",
       "domain": ".facebook.com",
@@ -59,17 +19,27 @@
       "secure": true,
       "httpOnly": false,
       "sameSite": "None",
-      "expires": 1767171645
+      "expires": 1767413418
     },
     {
       "name": "datr",
-      "value": "W6tLafyVTbzMvNZPaU9-HaN2",
+      "value": "b-BMacfeNXm0N2a_I3u4Ha4d",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1801126736.404911
+      "expires": 1801205859.119835
+    },
+    {
+      "name": "sb",
+      "value": "c-BMaSMo7oLPK7eDGid10reG",
+      "domain": ".facebook.com",
+      "path": "/",
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "None",
+      "expires": 1801368609.198745
     },
     {
       "name": "locale",
@@ -79,7 +49,37 @@
       "secure": true,
       "httpOnly": false,
       "sameSite": "None",
-      "expires": 1767171547.068747
+      "expires": 1767250673.031878
+    },
+    {
+      "name": "ps_l",
+      "value": "1",
+      "domain": ".facebook.com",
+      "path": "/",
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "Lax",
+      "expires": 1801205919.797255
+    },
+    {
+      "name": "ps_n",
+      "value": "1",
+      "domain": ".facebook.com",
+      "path": "/",
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "None",
+      "expires": 1801205919.797348
+    },
+    {
+      "name": "wd",
+      "value": "1536x730",
+      "domain": ".facebook.com",
+      "path": "/",
+      "secure": true,
+      "httpOnly": false,
+      "sameSite": "Lax",
+      "expires": 1767413418
     },
     {
       "name": "c_user",
@@ -89,31 +89,31 @@
       "secure": true,
       "httpOnly": false,
       "sameSite": "None",
-      "expires": 1798102830.258209
+      "expires": 1798344609.520104
     },
     {
       "name": "xs",
-      "value": "39%3Af8yE4fzpRlw0eg%3A2%3A1766566838%3A-1%3A-1%3A%3AAcy-LgjFJS3Q2fYJtisH4R4468xhkN8oBt-1QvmoEg",
+      "value": "21%3AZdBdMl6KJdRZSQ%3A2%3A1766808623%3A-1%3A-1%3A%3AAcwabpVeShb_G6TsQtZIM_zJwS41RjkYtj5goQ-7pg",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1798102830.258338
+      "expires": 1798344609.520262
     },
     {
       "name": "fr",
-      "value": "1iskj5l0zK7w97in4.AWfwrDzdYKAkaJnE2j6Cc9ibL6G4ambR4-QcOWm-nv1AmoR97GI.BpS6u5..AAA.0.0.BpS6vA.AWexsvc2HWtBX-5oUjr510JYYBI",
+      "value": "1479eP319rXpFlnk6.AWetLAc8QyLDtJ49b_C5RjUBtZ9pp-YO-YvkusnjvWm0Iy70ZKk.BpT1ww..AAA.0.0.BpT1w2.AWe85MWVzZX60C_BrIkCIQ-PG3o",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1774342837.318021
+      "expires": 1774584615.319074
     },
     {
       "name": "presence",
-      "value": "C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1766566845574%2C%22v%22%3A1%7D",
+      "value": "C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1766808618377%2C%22v%22%3A1%7D",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,

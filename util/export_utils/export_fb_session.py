@@ -36,10 +36,10 @@ ALLOWED_COOKIE_DOMAINS = [
 # => CHỈNH CHO ĐÚNG Ở ĐÂY
 # ----------------------------
 PROFILES = [
-    # {
-    #     "profile_name": "Profile 72",
-    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa0312@gmail.com\cookies.json",
-    # },
+    {
+        "profile_name": "Profile 72",
+        "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa0312@gmail.com\cookies.json",
+    },
     # {
     #     "profile_name": "Profile 5",
     #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_dinhthai160@icloud.com\cookies.json",
@@ -52,10 +52,10 @@ PROFILES = [
     #     "profile_name": "Profile 40",
     #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_theodorescsa2004@gmail.com\cookies.json",
     # },
-    {
-        "profile_name": "Profile 8",
-        "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_0896691804\cookies.json",
-    },
+    # {
+    #     "profile_name": "Profile 8",
+    #     "output_path": r"E:\NCS\fb-selenium\database\facebookaccount\authen_0896691804\cookies.json",
+    # },
 ]
 
 

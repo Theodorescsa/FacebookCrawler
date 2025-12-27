@@ -16,7 +16,10 @@ def set_stop_flag():
     global _SHOULD_STOP
     _SHOULD_STOP = True
 
-
+def reset_stop_flag():
+    global STOP_FLAG
+    STOP_FLAG = False
+    logger.info("[RESET] Đã reset cờ dừng về False.")
 def crawl_scroll_loop(
     d,
     group_url: str,

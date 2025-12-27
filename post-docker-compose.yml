@@ -1,20 +1,28 @@
-# post-docker-compose.yml
 services:
   # Service 1: Crawler page Thoibao.de
-  post_crawler_thoibaode_acc01:
+  post_crawler_new_acc01:
     build:
       context: .
       dockerfile: post-Dockerfile
     image: fb-post-crawler:latest
     environment:
-      GROUP_URL: "https://www.facebook.com/thoibao.de#"
-      PAGE_NAME: "thoibao.de"
-      ACCOUNT_TAG: "thoibao.de"
+      # Hỗ trợ nhiều URL, cách nhau bởi dấu cách
+      GROUP_URLS: "https://www.facebook.com/thoibao.de# https://www.facebook.com/profile.php?id=100079810928296# https://www.facebook.com/nguyenvandai0906# https://www.facebook.com/nvdai0906# https://www.facebook.com/le.t.khoa.1# https://www.facebook.com/ThoibaoTheGioi#"
+      
+      # Thời gian chạy tối đa cho mỗi URL (phút). 0 = không giới hạn.
+      TIMEOUT: "30"
+      
+      PAGE_NAME: "new"
+      ACCOUNT_TAG: "new"
       DATA_ROOT: "/app/database"
-      COOKIE_PATH: "/app/database/facebookaccount/authen_nganhamy/cookies.json"
+      COOKIE_PATH: "/app/database/facebookaccount/authen_theodorescsa0312@gmail.com/cookies.json"
       HEADLESS: "true"
-      CRAWL_DATE: "2025-12-4"
+      CRAWL_DATE: "2025-12-27"
       KEEP_LAST: "350"
+      
+      # Thêm biến giới hạn scroll nếu cần
+      PAGE_LIMIT: "5000"
+      
     volumes:
       - ./post:/app/post
       - ./util:/app/util
