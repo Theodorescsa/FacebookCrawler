@@ -30,3 +30,22 @@ services:
       - ./database:/app/database
     restart: no
     shm_size: "1g"
+  
+  stats_logger:
+    image: docker:cli
+    container_name: resource_logger
+    volumes:
+      # 1. Cho phép container này "nhìn thấy" các container khác
+      - /var/run/docker.sock:/var/run/docker.sock
+      # 2. Map thư mục báo cáo ra máy Windows (Tạo thư mục 'reports' ngang hàng file yml)
+      - ./reports:/reports
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "echo 'Time,Name,CPU,RAM_Usage,RAM_Perc,Net_IO' > /reports/stats.csv &&
+      while true; do
+        timestamp=$(date +%H:%M:%S);
+        # Lấy thông số và ghi vào file csv
+        docker stats --no-stream --format \"$timestamp,{{.Name}},{{.CPUPerc}},{{.MemUsage}},{{.MemPerc}},{{.NetIO}}\" | sed 's/%//g' >> /reports/stats.csv;
+        sleep 5;
+      done"
+    restart: "no"

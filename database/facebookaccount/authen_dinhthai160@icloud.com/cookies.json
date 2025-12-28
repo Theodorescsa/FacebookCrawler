@@ -79,7 +79,7 @@
       "secure": true,
       "httpOnly": false,
       "sameSite": "None",
-      "expires": 1767171504
+      "expires": 1767508554
     },
     {
       "name": "datr",
@@ -99,7 +99,7 @@
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1801126683.190135
+      "expires": 1801463735.17808
     },
     {
       "name": "ps_l",
@@ -129,41 +129,41 @@
       "secure": true,
       "httpOnly": false,
       "sameSite": "None",
-      "expires": 1798102687.46103
+      "expires": 1798439736.314962
     },
     {
       "name": "xs",
-      "value": "42%3A3IIU-7TVxq6s4w%3A2%3A1766566693%3A-1%3A-1%3A%3AAcxeOP2zmRVYWNuji5GLZ-MeZyjUwbO0tE2sRiQi3g",
+      "value": "42%3AjMkjSpE9193J9A%3A2%3A1766903748%3A-1%3A-1%3A%3AAcxa8p7vs8bgZmFsFYlpHY-1aeNuq6XtIcXiwKj0Aw",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1798102687.461154
+      "expires": 1798439736.315094
     },
     {
       "name": "fr",
-      "value": "1B5rDCV9uo99RT19s.AWegLXmX4ilKgfTXWgzNTAGb7j1UXR9wkR9pPwHsVIZvpag7Z2E.BpS6sr..AAA.0.0.BpS6s2.AWc80mJyBNocvmbN4ZBvp2A19Ms",
+      "value": "16PoorAMEoPl1B3CR.AWdJqjioVk2B_T--2OjYUhP6nFDy4SO2WA0CaJIJOyxtxLwQqy8.BpUM_I..AAA.0.0.BpUM_W.AWfgc6kIkheCQmgTDB2heV9-T9k",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": true,
       "sameSite": "None",
-      "expires": 1774342698.433715
+      "expires": 1774679749.761876
     },
     {
       "name": "wd",
-      "value": "1407x838",
+      "value": "1408x838",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,
       "httpOnly": false,
       "sameSite": "Lax",
-      "expires": 1767171504
+      "expires": 1767508554
     },
     {
       "name": "presence",
-      "value": "C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1766566704723%2C%22v%22%3A1%7D",
+      "value": "C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1766903754075%2C%22v%22%3A1%7D",
       "domain": ".facebook.com",
       "path": "/",
       "secure": true,

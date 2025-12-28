@@ -6,7 +6,7 @@ import time
 import threading
 from pathlib import Path
 from datetime import datetime, date
-from typing import Set, List
+from typing import Set, List, Optional
 
 from logs.loging_config import logger
 from util.startdriverproxy import bootstrap_auth
@@ -15,14 +15,13 @@ from .config import PROJECT_ROOT, env
 from .browser.driver import create_chrome, make_headless
 from .browser.hooks import install_early_hook
 from .browser.navigation import go_to_date
-
-# --- SỬA IMPORT TẠI ĐÂY ---
-# Import thêm reset_stop_flag
 from .browser.scroll import crawl_scroll_loop, set_stop_flag, reset_stop_flag
-
 from .storage.paths import compute_paths
 from .storage.checkpoint import save_checkpoint
 from . import pipeline
+
+# --- CẤU HÌNH BATCH ---
+BATCH_SIZE = 3  # Số lượng URL chạy trước khi reset driver
 
 def add_common_args(ap):
     ap.add_argument("--group-urls", type=str, nargs='+',
@@ -51,46 +50,57 @@ def _handle_sigterm(sig, frame):
 signal.signal(signal.SIGTERM, _handle_sigterm)
 signal.signal(signal.SIGINT, _handle_sigterm)
 
+# Hàm khởi tạo Driver và Đăng nhập (Dùng chung cho cả batch)
+def init_driver_and_login(args):
+    logger.info("[DRIVER] Đang khởi tạo Chrome driver mới cho batch...")
+    d = create_chrome(headless=make_headless(args))
+    
+    cookies = args.cookies_path.strip()
+    if cookies and os.path.exists(cookies):
+        try:
+            if not bootstrap_auth(d, cookies):
+                logger.error("[AUTH] Đăng nhập thất bại. Đóng driver.")
+                d.quit()
+                return None
+            logger.info("[AUTH] Đăng nhập OK")
+        except Exception as e:
+            logger.error(f"[AUTH] Lỗi khi đăng nhập: {e}")
+            d.quit()
+            return None
+    
+    # Cài đặt Network
+    try:
+        d.execute_cdp_cmd("Network.enable", {})
+        d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
+        install_early_hook(d, keep_last=int(args.keep_last))
+    except Exception:
+        pass
+        
+    return d
+
 def _run_single_session(
     *,
+    driver, # NHẬN DRIVER TỪ BÊN NGOÀI
     args,
     group_url: str,
     target_date: date,
     out_ndjson: Path,
     keep_last: int,
     seen_ids: Set[str],
-    cookies: str,
 ):
-    d = create_chrome(headless=make_headless(args))
-
-    if cookies and os.path.exists(cookies):
-        try:
-            if not bootstrap_auth(d, cookies):
-                logger.error("[AUTH] Fail")
-                d.quit()
-                return False
-            logger.info("[AUTH] OK")
-        except Exception as e:
-            logger.error(f"[AUTH] Error: {e}")
+    # Không tạo driver ở đây nữa
     
-    try:
-        d.execute_cdp_cmd("Network.enable", {})
-        d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
-        install_early_hook(d, keep_last=keep_last)
-    except Exception:
-        pass
-
     stopped_due_to_stall = False
     try:
         logger.info(f"[NAV] Đang truy cập: {group_url}")
-        d.get(group_url)
+        driver.get(group_url)
         time.sleep(1.5)
         
         if "group" not in group_url:
-            go_to_date(d, target_date)
+            go_to_date(driver, target_date)
 
         stopped_due_to_stall = crawl_scroll_loop(
-            d,
+            driver,
             group_url=group_url,
             out_path=out_ndjson,
             seen_ids=seen_ids,
@@ -99,28 +109,21 @@ def _run_single_session(
         )
     except Exception as e:
         logger.error(f"[SESSION] Error: {e}")
-    finally:
-        try:
-            d.quit()
-        except:
-            pass
-
+        # Không quit driver ở đây để còn dùng cho link tiếp theo
+    
     return stopped_due_to_stall
 
-def process_url(url, args, global_seen_ids_map):
+def process_url(url, args, driver):
     global IS_TIMEOUT_TRIGGERED
     
-    # --- CẬP NHẬT: GỌI HÀM RESET CHÍNH CHỦ ---
     reset_stop_flag()
     IS_TIMEOUT_TRIGGERED = False
-    # ------------------------------------------
 
     group_url = url.strip()
     page_name = args.page_name.strip()
     account_tag = (args.account_tag or "").strip()
     data_root = Path(args.data_root).resolve()
     keep_last = int(args.keep_last)
-    cookies = args.cookies_path.strip()
     timeout_mins = args.timeout
 
     database_path, out_ndjson, raw_dumps_dir, checkpoint = compute_paths(
@@ -157,15 +160,20 @@ def process_url(url, args, global_seen_ids_map):
         while True:
             if IS_TIMEOUT_TRIGGERED:
                 break
+            
+            # Nếu driver bị None (do lỗi init trước đó), break luôn
+            if driver is None:
+                logger.error("[SESSION] Driver không tồn tại, bỏ qua URL này.")
+                break
 
             stopped_due_to_stall = _run_single_session(
+                driver=driver, # Truyền driver vào
                 args=args,
                 group_url=group_url,
                 target_date=current_target_date,
                 out_ndjson=out_ndjson,
                 keep_last=keep_last,
                 seen_ids=seen_ids,
-                cookies=cookies,
             )
 
             if IS_TIMEOUT_TRIGGERED:
@@ -185,7 +193,6 @@ def process_url(url, args, global_seen_ids_map):
             new_date = datetime.fromtimestamp(pipeline.EARLIEST_CREATED_TS).date()
             current_target_date = new_date
             
-            # Reset flag again before retry loop just in case
             reset_stop_flag()
             
     finally:
@@ -206,17 +213,52 @@ def main(argv=None):
         logger.error("No URLs provided")
         return
 
-    logger.info(f"[BATCH] Xử lý {len(urls)} URLs. Timeout: {args.timeout}m")
+    logger.info(f"[BATCH] Xử lý {len(urls)} URLs. Timeout: {args.timeout}m. Batch Size: {BATCH_SIZE}")
 
-    for i, url in enumerate(urls, 1):
-        logger.info(f"\n{'='*10} PROCESSING URL {i}/{len(urls)} {'='*10}")
+    current_driver = None
+
+    for i, url in enumerate(urls):
+        # Logic quản lý Batch Driver
+        # Nếu là URL đầu tiên HOẶC đã chạy đủ số lượng batch -> Reset driver
+        if i % BATCH_SIZE == 0:
+            if current_driver:
+                logger.info(f"[BATCH] Đã chạy xong {BATCH_SIZE} URL, đang restart driver...")
+                try:
+                    current_driver.quit()
+                except:
+                    pass
+                current_driver = None
+            
+            # Khởi tạo driver mới và đăng nhập
+            current_driver = init_driver_and_login(args)
+            if not current_driver:
+                logger.error("[BATCH] Không thể khởi tạo driver. Dừng toàn bộ batch hiện tại.")
+                # Tùy chọn: continue để thử lại ở batch sau hoặc return để dừng hẳn
+                continue 
+
+        logger.info(f"\n{'='*10} PROCESSING URL {i+1}/{len(urls)} {'='*10}")
         try:
-            process_url(url, args, None)
+            process_url(url, args, current_driver)
         except Exception as e:
             logger.exception(f"[BATCH] Error URL {url}: {e}")
+            # Nếu gặp lỗi nghiêm trọng (ví dụ driver crash), có thể cần gán current_driver = None để vòng lặp sau tạo lại
+            try:
+                # Kiểm tra xem driver còn sống không
+                current_driver.title 
+            except:
+                logger.warning("[BATCH] Driver có vẻ đã chết, sẽ tạo lại ở URL kế tiếp.")
+                current_driver = None
         
-        if i < len(urls):
+        if i < len(urls) - 1:
             time.sleep(5)
+
+    # Dọn dẹp cuối cùng
+    if current_driver:
+        logger.info("[BATCH] Hoàn tất danh sách. Đóng driver.")
+        try:
+            current_driver.quit()
+        except:
+            pass
 
 if __name__ == "__main__":
     main()
