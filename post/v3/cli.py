@@ -4,7 +4,9 @@ import sys
 import signal
 import time
 import threading
+import re
 from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 from datetime import datetime, date
 from typing import Set, List, Optional
 
@@ -21,7 +23,7 @@ from .storage.checkpoint import save_checkpoint
 from . import pipeline
 
 # --- CẤU HÌNH BATCH ---
-BATCH_SIZE = 3  # Số lượng URL chạy trước khi reset driver
+BATCH_SIZE = 3 
 
 def add_common_args(ap):
     ap.add_argument("--group-urls", type=str, nargs='+',
@@ -50,7 +52,26 @@ def _handle_sigterm(sig, frame):
 signal.signal(signal.SIGTERM, _handle_sigterm)
 signal.signal(signal.SIGINT, _handle_sigterm)
 
-# Hàm khởi tạo Driver và Đăng nhập (Dùng chung cho cả batch)
+# --- HÀM TIỆN ÍCH: Tách ID từ URL ---
+def extract_id_from_url(url: str) -> str:
+    try:
+        parsed = urlparse(url)
+        query = parse_qs(parsed.query)
+        if 'id' in query:
+            return query['id'][0] # profile.php?id=123 -> 123
+        
+        path_parts = [p for p in parsed.path.split('/') if p]
+        if not path_parts:
+            return "unknown"
+            
+        candidate = path_parts[-1]
+        # Xử lý sạch ký tự lạ
+        clean_name = re.sub(r'[^a-zA-Z0-9._-]', '', candidate)
+        return clean_name if clean_name else "unknown"
+    except Exception:
+        return "unknown"
+
+# --- HÀM KHỞI TẠO DRIVER ---
 def init_driver_and_login(args):
     logger.info("[DRIVER] Đang khởi tạo Chrome driver mới cho batch...")
     d = create_chrome(headless=make_headless(args))
@@ -68,7 +89,6 @@ def init_driver_and_login(args):
             d.quit()
             return None
     
-    # Cài đặt Network
     try:
         d.execute_cdp_cmd("Network.enable", {})
         d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
@@ -78,18 +98,7 @@ def init_driver_and_login(args):
         
     return d
 
-def _run_single_session(
-    *,
-    driver, # NHẬN DRIVER TỪ BÊN NGOÀI
-    args,
-    group_url: str,
-    target_date: date,
-    out_ndjson: Path,
-    keep_last: int,
-    seen_ids: Set[str],
-):
-    # Không tạo driver ở đây nữa
-    
+def _run_single_session(*, driver, args, group_url: str, target_date: date, out_ndjson: Path, keep_last: int, seen_ids: Set[str]):
     stopped_due_to_stall = False
     try:
         logger.info(f"[NAV] Đang truy cập: {group_url}")
@@ -109,7 +118,6 @@ def _run_single_session(
         )
     except Exception as e:
         logger.error(f"[SESSION] Error: {e}")
-        # Không quit driver ở đây để còn dùng cho link tiếp theo
     
     return stopped_due_to_stall
 
@@ -120,12 +128,19 @@ def process_url(url, args, driver):
     IS_TIMEOUT_TRIGGERED = False
 
     group_url = url.strip()
-    page_name = args.page_name.strip()
+    
+    # --- LOGIC TẠO TÊN FOLDER RIÊNG BIỆT ---
+    base_project = args.page_name.strip()
+    unique_id = extract_id_from_url(group_url)
+    page_name = f"{base_project}_{unique_id}"
+    # ---------------------------------------
+
     account_tag = (args.account_tag or "").strip()
     data_root = Path(args.data_root).resolve()
     keep_last = int(args.keep_last)
     timeout_mins = args.timeout
 
+    # Path sẽ được tính toán dựa trên page_name mới
     database_path, out_ndjson, raw_dumps_dir, checkpoint = compute_paths(
         data_root, page_name, account_tag
     )
@@ -150,7 +165,7 @@ def process_url(url, args, driver):
         timer.start()
         logger.info(f"[TIMER] Đã đặt hẹn giờ {timeout_mins} phút")
 
-    logger.info(f"====== CRAWL URL: {group_url} | DATE: {target_date} ======")
+    logger.info(f"====== CRAWL URL: {group_url} | FOLDER: {page_name} ======")
     seen_ids: Set[str] = set()
     MAX_STALL_RETRIES = 3
     stall_retry_count = 0
@@ -161,13 +176,12 @@ def process_url(url, args, driver):
             if IS_TIMEOUT_TRIGGERED:
                 break
             
-            # Nếu driver bị None (do lỗi init trước đó), break luôn
             if driver is None:
                 logger.error("[SESSION] Driver không tồn tại, bỏ qua URL này.")
                 break
 
             stopped_due_to_stall = _run_single_session(
-                driver=driver, # Truyền driver vào
+                driver=driver,
                 args=args,
                 group_url=group_url,
                 target_date=current_target_date,
@@ -192,7 +206,6 @@ def process_url(url, args, driver):
 
             new_date = datetime.fromtimestamp(pipeline.EARLIEST_CREATED_TS).date()
             current_target_date = new_date
-            
             reset_stop_flag()
             
     finally:
@@ -200,7 +213,7 @@ def process_url(url, args, driver):
             timer.cancel()
         if pipeline.LATEST_CREATED_TS is not None:
             save_checkpoint(checkpoint, pipeline.LATEST_CREATED_TS)
-        logger.info(f"[DONE] URL: {group_url}. Unique posts: {len(seen_ids)}")
+        logger.info(f"[DONE] URL: {group_url}. Output: {out_ndjson}")
 
 def main(argv=None):
     import argparse
@@ -213,27 +226,23 @@ def main(argv=None):
         logger.error("No URLs provided")
         return
 
-    logger.info(f"[BATCH] Xử lý {len(urls)} URLs. Timeout: {args.timeout}m. Batch Size: {BATCH_SIZE}")
+    logger.info(f"[BATCH] Xử lý {len(urls)} URLs. Batch Size: {BATCH_SIZE}")
 
     current_driver = None
 
     for i, url in enumerate(urls):
-        # Logic quản lý Batch Driver
-        # Nếu là URL đầu tiên HOẶC đã chạy đủ số lượng batch -> Reset driver
         if i % BATCH_SIZE == 0:
             if current_driver:
-                logger.info(f"[BATCH] Đã chạy xong {BATCH_SIZE} URL, đang restart driver...")
+                logger.info(f"[BATCH] Đã chạy xong {BATCH_SIZE} URL, restart driver...")
                 try:
                     current_driver.quit()
                 except:
                     pass
                 current_driver = None
             
-            # Khởi tạo driver mới và đăng nhập
             current_driver = init_driver_and_login(args)
             if not current_driver:
-                logger.error("[BATCH] Không thể khởi tạo driver. Dừng toàn bộ batch hiện tại.")
-                # Tùy chọn: continue để thử lại ở batch sau hoặc return để dừng hẳn
+                logger.error("[BATCH] Init driver fail. Skipping batch.")
                 continue 
 
         logger.info(f"\n{'='*10} PROCESSING URL {i+1}/{len(urls)} {'='*10}")
@@ -241,20 +250,17 @@ def main(argv=None):
             process_url(url, args, current_driver)
         except Exception as e:
             logger.exception(f"[BATCH] Error URL {url}: {e}")
-            # Nếu gặp lỗi nghiêm trọng (ví dụ driver crash), có thể cần gán current_driver = None để vòng lặp sau tạo lại
             try:
-                # Kiểm tra xem driver còn sống không
                 current_driver.title 
             except:
-                logger.warning("[BATCH] Driver có vẻ đã chết, sẽ tạo lại ở URL kế tiếp.")
+                logger.warning("[BATCH] Driver died. Resetting.")
                 current_driver = None
         
         if i < len(urls) - 1:
             time.sleep(5)
 
-    # Dọn dẹp cuối cùng
     if current_driver:
-        logger.info("[BATCH] Hoàn tất danh sách. Đóng driver.")
+        logger.info("[BATCH] DONE. Closing driver.")
         try:
             current_driver.quit()
         except:
