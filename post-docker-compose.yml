@@ -7,7 +7,7 @@ services:
     image: fb-post-crawler:latest
     environment:
       # Hỗ trợ nhiều URL, cách nhau bởi dấu cách
-      GROUP_URLS: "https://www.facebook.com/thoibao.de# https://www.facebook.com/profile.php?id=100079810928296# https://www.facebook.com/nguyenvandai0906# https://www.facebook.com/nvdai0906# https://www.facebook.com/le.t.khoa.1# https://www.facebook.com/ThoibaoTheGioi#"
+      GROUP_URLS: "https://www.facebook.com/schannel.vn https://www.facebook.com/PETSngao https://www.facebook.com/duskmusic.asia https://www.facebook.com/chuha.cooking https://www.facebook.com/youngtobieedasick https://www.facebook.com/Lainguachanofficial"
       
       # Thời gian chạy tối đa cho mỗi URL (phút). 0 = không giới hạn.
       TIMEOUT: "30"
