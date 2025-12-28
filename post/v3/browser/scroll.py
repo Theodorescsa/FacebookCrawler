@@ -11,14 +11,13 @@ from ..pipeline import process_single_gql_rec  # sẽ tạo file này bên dư�
 
 _SHOULD_STOP = False
 
-
 def set_stop_flag():
     global _SHOULD_STOP
     _SHOULD_STOP = True
 
 def reset_stop_flag():
-    global STOP_FLAG
-    STOP_FLAG = False
+    global _SHOULD_STOP  
+    _SHOULD_STOP = False 
     logger.info("[RESET] Đã reset cờ dừng về False.")
 def crawl_scroll_loop(
     d,

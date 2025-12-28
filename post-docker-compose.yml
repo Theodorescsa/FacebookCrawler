@@ -28,5 +28,5 @@ services:
       - ./util:/app/util
       - ./logs:/app/logs
       - ./database:/app/database
-    restart: unless-stopped
+    restart: no
     shm_size: "1g"
