@@ -13,13 +13,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# Import các module MoreLogin gốc của bạn
+# Import các module MoreLogin
 try:
-    # Thử import theo cấu trúc package
     from comment.v3.morelogin_client import open_profile, close_profile
     from comment.v3.driver_morelogin import create_chrome_attach
 except ImportError:
-    # Fallback nếu chạy tại chỗ
     from morelogin_client import open_profile, close_profile
     from driver_morelogin import create_chrome_attach
 
@@ -44,6 +42,15 @@ def parse_args():
     parser.add_argument("--input-excel", dest="input_excel", required=True, help="Đường dẫn file Excel chứa cột 'link'.")
     parser.add_argument("--profile-id", dest="profile_id", required=True, help="ID của Profile trong MoreLogin.")
     parser.add_argument("--data-root", type=str, default=str(PROJECT_ROOT / "database"))
+    
+    # --- MỚI: Thêm cờ headless ---
+    parser.add_argument(
+        "--headless",
+        dest="headless",
+        action="store_true",
+        help="Bật chế độ không giao diện (Headless) của MoreLogin.",
+    )
+    
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -52,12 +59,14 @@ if __name__ == "__main__":
     EXCEL_PATH = args.input_excel
     PROFILE_ID = args.profile_id
     FANPAGE_NAME = args.page_name
+    IS_HEADLESS = args.headless  # Lấy giá trị headless (True/False)
     DATA_ROOT = Path(args.data_root)
+    
     BASE_DIR = DATA_ROOT / "comment" / "page"
     OUT_DIR = (BASE_DIR / FANPAGE_NAME).resolve()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    logger.info("[BATCH] START | EXCEL=%s | PROFILE_ID=%s | OUT_DIR=%s", EXCEL_PATH, PROFILE_ID, OUT_DIR)
+    logger.info("[BATCH] START | EXCEL=%s | PROFILE=%s | HEADLESS=%s", EXCEL_PATH, PROFILE_ID, IS_HEADLESS)
 
     # 1. Đọc Excel
     try:
@@ -78,10 +87,14 @@ if __name__ == "__main__":
     # --- BẮT ĐẦU QUY TRÌNH DRIVER 1 LẦN ---
     try:
         # 2. Mở Profile MoreLogin -> Lấy Debug Port
-        logger.info("[INIT] Opening MoreLogin profile %s...", PROFILE_ID)
+        logger.info("[INIT] Opening MoreLogin profile %s (Headless=%s)...", PROFILE_ID, IS_HEADLESS)
         try:
-            # headless=False để thấy trình duyệt, cdp_evasion=True để chống detect
-            debug_port = open_profile(PROFILE_ID, headless=False, cdp_evasion=True)
+            # Truyền tham số headless vào đây
+            debug_port = open_profile(
+                PROFILE_ID, 
+                headless=IS_HEADLESS, 
+                cdp_evasion=True
+            )
             logger.info("[INIT] Profile started on port: %s", debug_port)
         except Exception as e:
             logger.error("[INIT] Failed to open profile: %s", e)
@@ -101,7 +114,7 @@ if __name__ == "__main__":
         try:
             driver.execute_cdp_cmd("Network.enable", {})
             driver.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
-            install_early_hook(driver) # Inject script bắt GQL
+            install_early_hook(driver)
             logger.info("[INIT] Hooks & Network CDP enabled.")
         except Exception as e:
             logger.warning("[INIT] Warning setting up CDP/Hooks: %s", e)
@@ -119,7 +132,6 @@ if __name__ == "__main__":
                 rows = crawl_comments_for_post(
                     driver=driver,
                     page_url=url,
-                    # Không cần profile_id ở đây nữa vì driver đã có rồi
                     max_rounds=200,      
                     sleep_between_rounds=1.5,
                     out_path=str(out_path),
