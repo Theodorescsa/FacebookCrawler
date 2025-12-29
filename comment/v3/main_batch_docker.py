@@ -5,15 +5,15 @@ import json
 from pathlib import Path
 import sys
 
+from utils import append_ndjson_texts
+
 # ----- Import nội bộ -----
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from utils import append_ndjson_texts
-from driver_morelogin import create_chrome_attach
-from morelogin_client import open_profile, close_profile
-
+from driver import create_chrome
+from util.startdriverproxy import bootstrap_auth
 from hook import install_early_hook
 from automation import (
     open_reel_comments_if_present,
@@ -26,8 +26,6 @@ from extract import (
     extract_replies_from_depth_resp,
 )
 from logs.loging_config import logger
-
-# Selenium imports
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -47,6 +45,7 @@ def close_fb_login_popup(driver, timeout=5):
 def _pull_new_gql_reqs(driver, last_len: int):
     """
     Lấy list request GraphQL mới từ window.__gqlReqs kể từ last_len.
+    Trả về (new_reqs, new_len).
     """
     try:
         buf = driver.execute_script("return (window.__gqlReqs || []);")
@@ -66,6 +65,8 @@ def _pull_new_gql_reqs(driver, last_len: int):
 def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx: int):
     """
     Đi qua list request, parse comment/reply, gom vào by_id (anti-dup).
+    by_id: map raw_comment_id -> row
+    Đồng thời append NDJSON ra file out_path cho từng batch.
     """
     added = 0
 
@@ -78,6 +79,7 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
         rows, end_cursor, total, _ = extract_full_posts_from_resptext(resp_text)
 
         if rows:
+            # out_path = "comments.ndjson" cũ -> dùng biến truyền vào
             append_ndjson_texts(out_path, rows, page_no=round_idx, cursor_val=end_cursor)
 
             for row in rows:
@@ -90,7 +92,7 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
                 else:
                     by_id[cid].update({k: v for k, v in row.items() if v not in (None, "", [], {})})
 
-        # 2) Reply depth-1
+        # 2) Reply depth-1 (nếu payload dạng reply)
         replies, next_token = extract_replies_from_depth_resp(resp_text)
 
         if replies:
@@ -116,60 +118,48 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
 
 def crawl_comments_for_post(
     page_url: str,
-    profile_id: str,              # 👈 Thay cookies_path bằng profile_id
+    cookies_path: str,
     max_rounds: int = 1000,
     sleep_between_rounds: float = 1.5,
-    out_path: str = "comments.ndjson",
+    headless: bool = False,
+    out_path: str = "comments.ndjson",   # 👈 thêm default path
 ):
     """
-    Mở Profile MoreLogin, attach Selenium, mở bài viết và crawl comment.
+    Mở 1 bài viết Facebook, scroll + click “Xem thêm bình luận”, 
+    hứng GraphQL trong window.__gqlReqs, parse comment + reply.
+    Trả về: list[row_dict]
     """
-    logger.info("[CRAWLER] Start crawl comments for: %s | Profile: %s", page_url, profile_id)
+    logger.info("[CRAWLER] Start crawl comments for: %s", page_url)
 
-    # 1. Khởi động MoreLogin Profile
-    try:
-        # headless=False để debug cho dễ, cdp_evasion=True để tránh detect
-        debug_port = open_profile(profile_id, headless=False, cdp_evasion=True)
-        logger.info("[MORELOGIN] Started profile %s on port %s", profile_id, debug_port)
-    except Exception as e:
-        logger.error("[MORELOGIN] Failed to start profile: %s", e)
-        return []
+    driver = create_chrome(headless=headless)
 
-    # 2. Attach Selenium vào Chrome đã mở
     try:
-        driver = create_chrome_attach(debug_port)
-        if not driver:
-            logger.error("[SELENIUM] Failed to attach to port %s", debug_port)
-            close_profile(profile_id)
+        # Auth theo cookies có sẵn
+        login_status = bootstrap_auth(driver, cookies_path)
+        if not login_status:
+            logger.error("[AUTH] bootstrap_auth FAILED with cookies %s", cookies_path)
             return []
-    except Exception as e:
-        logger.error("[SELENIUM] Error attaching driver: %s", e)
-        close_profile(profile_id)
-        return []
 
-    try:
-        # Không cần bootstrap_auth vì Profile MoreLogin đã lưu cookie/session
-        logger.info("[AUTH] Using existing MoreLogin session.")
-
-        # Bật Network CDP (Optional)
+        logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies_path)
+        # bật Network (optional, chủ yếu để bạn debug)
         try:
             driver.execute_cdp_cmd("Network.enable", {})
             driver.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
         except Exception as e:
-            logger.warning("[CDP] Cannot enable network: %s", e)
+            logger.warning("[CDP] Cannot enable network/disable cache: %s", e)
 
-        # Gắn hook (quan trọng)
+        # gắn hook (trước khi load page)
         try:
             install_early_hook(driver)
             logger.info("[HOOK] install_early_hook OK")
         except Exception as e:
             logger.error("[HOOK] install_early_hook FAILED: %s", e)
 
-        # Mở bài viết
+        # mở bài viết
         driver.get(page_url)
         time.sleep(2.5)
 
-        # Xử lý Reel/Video mode
+        # Nếu là Reel / Video dạng mới -> mở panel bình luận (nếu có)
         if "reel" in page_url:
             try:
                 opened = open_reel_comments_if_present(driver)
@@ -177,7 +167,7 @@ def crawl_comments_for_post(
             except Exception as e:
                 logger.warning("[CRAWLER] open_reel_comments_if_present error: %s", e)
 
-        # Set sort = All comments
+        # Set sort = All comments (nếu tìm được nút)
         try:
             set_sort_to_all_comments_unified(driver)
             logger.info("[CRAWLER] Set sort = All comments OK")
@@ -185,67 +175,80 @@ def crawl_comments_for_post(
             logger.warning("[CRAWLER] Cannot set sort to All comments: %s", e)
 
         # Biến trạng thái crawl
-        last_len = 0
-        by_id = {}
-        rounds_no_new = 0
+        last_len = 0       # số lượng req trước đó trong window.__gqlReqs
+        by_id = {}         # map comment_id -> row
+        rounds_no_new = 0  # số vòng liền không thêm comment mới
 
         for r in range(max_rounds):
             logger.info("[CRAWLER] Round %s/%s", r + 1, max_rounds)
-            round_idx = r
+            round_idx = r  # dùng cho page_no NDJSON
 
-            # Scroll
+            # 1) Scroll xuống cuối block bình luận
             try:
                 scrolled = scroll_to_last_comment(driver)
-            except Exception:
+                logger.info("[CRAWLER] scroll_to_last_comment -> %s", scrolled)
+            except Exception as e:
+                logger.warning("[CRAWLER] scroll_to_last_comment error: %s", e)
                 scrolled = False
-            
-            # Click view more
+
+            # 2) Click "Xem thêm bình luận / phản hồi" nếu có
             try:
                 clicked = click_view_more_if_any(driver, max_clicks=3)
-            except Exception:
+                logger.info("[CRAWLER] click_view_more_if_any -> clicked=%s", clicked)
+            except Exception as e:
+                logger.warning("[CRAWLER] click_view_more_if_any error: %s", e)
                 clicked = 0
 
+            # 3) Cho FB thời gian load & bắn GraphQL
             time.sleep(sleep_between_rounds)
 
-            # Pull GQL
+            # 4) Lấy request GraphQL mới
             new_reqs, last_len = _pull_new_gql_reqs(driver, last_len)
-            logger.info("[CRAWLER] New gql reqs: %s", len(new_reqs))
+            logger.info("[CRAWLER] New gql reqs this round: %s", len(new_reqs))
 
-            # Extract
+            # 5) Parse comment từ responseText + append NDJSON
             added = _extract_comments_from_requests(
                 new_reqs,
                 by_id=by_id,
                 out_path=out_path,
                 round_idx=round_idx,
             )
-            logger.info("[CRAWLER] Added: %s (Total unique: %s)", added, len(by_id))
+            logger.info("[CRAWLER] New comments/replies added: %s (total=%s)", added, len(by_id))
 
             if added == 0:
                 rounds_no_new += 1
             else:
                 rounds_no_new = 0
 
-            # Điều kiện dừng: 2 vòng không có comment mới, không scroll được, không click được
             if rounds_no_new >= 2 and clicked == 0 and not scrolled:
-                logger.info("[CRAWLER] No more new comments -> Stop.")
+                logger.info("[CRAWLER] No more new comments for 2 rounds — stop.")
                 break
 
+
         rows = list(by_id.values())
-        logger.info("[CRAWLER] Done. Total: %s", len(rows))
+        logger.info("[CRAWLER] Done. Total unique comments+replies: %s", len(rows))
         return rows
 
-    except Exception as e:
-        logger.error("[CRAWLER] Runtime error: %s", e)
-        return []
-
     finally:
-        # Cleanup
         try:
-            if 'driver' in locals() and driver:
-                driver.quit() # Ngắt kết nối Selenium
+            driver.quit()
         except Exception:
             pass
-        
-        # Đóng Profile MoreLogin để giải phóng RAM
-        logger.info("[MORELOGIN] Closing profile %s...", profile_id)
-        close_profile(profile_id)
+
+
+if __name__ == "__main__":
+    PAGE_URL = "https://www.facebook.com/...."  # link bài viết
+    COOKIES_PATH = r"E:\NCS\fb-selenium\database\facebookaccount\authen_tranhoangdinhnam\cookies.json"
+
+    rows = crawl_comments_for_post(
+        page_url=PAGE_URL,
+        cookies_path=COOKIES_PATH,
+        max_rounds=50,
+        sleep_between_rounds=1.5,
+        headless=False,
+    )
+
+    # Ví dụ: dump ra JSON để kiểm tra
+    out_path = Path("comments_dump.json")
+    out_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Saved {len(rows)} rows to {out_path}")

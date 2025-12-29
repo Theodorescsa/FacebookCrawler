@@ -18,6 +18,9 @@ from .browser.driver import create_chrome, make_headless
 from .browser.hooks import install_early_hook
 from .browser.navigation import go_to_date
 from .browser.scroll import crawl_scroll_loop, set_stop_flag, reset_stop_flag
+from .browser.morelogin_client import close_profile, open_profile
+from .browser.driver_morelogin import create_chrome_attach
+
 from .storage.paths import compute_paths
 from .storage.checkpoint import save_checkpoint
 from . import pipeline
@@ -41,7 +44,8 @@ def add_common_args(ap):
     ap.add_argument("--no-headless", action="store_true")
     ap.add_argument("--page-limit", type=int, default=env("PAGE_LIMIT", None, int))
     ap.add_argument("--date", type=str, help="YYYY-MM-DD")
-
+    ap.add_argument("--morelogin-profile-id", type=str, required=True,
+                    help="Profile ID của MoreLogin")
 IS_TIMEOUT_TRIGGERED = False
 
 def _handle_sigterm(sig, frame):
@@ -97,7 +101,55 @@ def init_driver_and_login(args):
         pass
         
     return d
+def init_driver_and_login(args):
+    """
+    Start MoreLogin profile → attach Selenium → setup CDP hooks
+    """
+    profile_id = args.morelogin_profile_id
 
+    logger.info("[DRIVER] Starting MoreLogin profile %s", profile_id)
+
+    debug_port = None
+    try:
+        debug_port = open_profile(
+            profile_id,
+            headless=getattr(args, "headless", False),
+            cdp_evasion=True,
+        )
+
+        driver = create_chrome_attach(debug_port)
+
+        # ---- CDP setup (optional nhưng nên có) ----
+        try:
+            driver.execute_cdp_cmd("Network.enable", {})
+            driver.execute_cdp_cmd(
+                "Network.setCacheDisabled",
+                {"cacheDisabled": True}
+            )
+
+            if hasattr(args, "keep_last"):
+                install_early_hook(
+                    driver,
+                    keep_last=int(args.keep_last)
+                )
+        except Exception as e:
+            logger.debug("[DRIVER] CDP hook skipped: %s", e)
+
+        logger.info(
+            "[DRIVER] Attach MoreLogin OK | profile=%s | port=%s",
+            profile_id,
+            debug_port,
+        )
+        return driver
+
+    except Exception as e:
+        logger.error("[DRIVER] Failed to init driver: %s", e)
+
+        # nếu đã start profile mà attach fail → close ngay
+        if debug_port:
+            close_profile(profile_id)
+
+        raise
 def _run_single_session(*, driver, args, group_url: str, target_date: date, out_ndjson: Path, keep_last: int, seen_ids: Set[str]):
     stopped_due_to_stall = False
     try:
@@ -226,45 +278,53 @@ def main(argv=None):
         logger.error("No URLs provided")
         return
 
-    logger.info(f"[BATCH] Xử lý {len(urls)} URLs. Batch Size: {BATCH_SIZE}")
+    profile_id = args.morelogin_profile_id
+    logger.info(f"[MAIN] Bắt đầu xử lý {len(urls)} URLs. Chế độ: Restart Driver sau mỗi URL.")
 
-    current_driver = None
-
+    # --- VÒNG LẶP XỬ LÝ TỪNG URL ---
     for i, url in enumerate(urls):
-        if i % BATCH_SIZE == 0:
+        logger.info(f"\n{'='*10} PROCESSING URL {i+1}/{len(urls)} {'='*10}")
+        logger.info(f"Target: {url}")
+
+        current_driver = None
+        
+        try:
+            # 1. KHỞI TẠO DRIVER (Mới cho mỗi URL)
+            current_driver = init_driver_and_login(args)
+            
+            if not current_driver:
+                logger.error(f"[MAIN] Không thể khởi tạo driver cho URL {i+1}. Bỏ qua.")
+                continue
+
+            # 2. XỬ LÝ URL
+            process_url(url, args, current_driver)
+
+        except Exception as e:
+            logger.exception(f"[MAIN] Lỗi không mong muốn tại URL {url}: {e}")
+
+        finally:
+            # 3. DỌN DẸP (Quan trọng nhất để giải phóng RAM)
+            logger.info("[MAIN] Đang đóng driver và profile để giải phóng RAM...")
+            
+            # 3a. Đóng Selenium Driver
             if current_driver:
-                logger.info(f"[BATCH] Đã chạy xong {BATCH_SIZE} URL, restart driver...")
                 try:
                     current_driver.quit()
-                except:
+                except Exception:
                     pass
-                current_driver = None
             
-            current_driver = init_driver_and_login(args)
-            if not current_driver:
-                logger.error("[BATCH] Init driver fail. Skipping batch.")
-                continue 
-
-        logger.info(f"\n{'='*10} PROCESSING URL {i+1}/{len(urls)} {'='*10}")
-        try:
-            process_url(url, args, current_driver)
-        except Exception as e:
-            logger.exception(f"[BATCH] Error URL {url}: {e}")
+            # 3b. Gọi API MoreLogin để stop profile (Giải phóng process ngầm)
             try:
-                current_driver.title 
-            except:
-                logger.warning("[BATCH] Driver died. Resetting.")
-                current_driver = None
-        
-        if i < len(urls) - 1:
-            time.sleep(5)
+                close_profile(profile_id)
+            except Exception as e:
+                logger.warning(f"Lỗi khi đóng profile MoreLogin: {e}")
 
-    if current_driver:
-        logger.info("[BATCH] DONE. Closing driver.")
-        try:
-            current_driver.quit()
-        except:
-            pass
+            # 3c. Nghỉ một chút trước khi mở lại để tránh lỗi Port
+            if i < len(urls) - 1:
+                logger.info("Nghỉ 5s trước khi sang URL tiếp theo...")
+                time.sleep(5)
+
+    logger.info("[MAIN] HOÀN TẤT TOÀN BỘ DANH SÁCH.")
 
 if __name__ == "__main__":
     main()

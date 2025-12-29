@@ -1,6 +1,8 @@
-# comment\v3\main_batch.py
+# comment/v3/main_batch.py
 
-import sys, re, urllib
+import sys
+import re
+import urllib.parse
 from pathlib import Path
 
 import pandas as pd
@@ -16,28 +18,24 @@ if str(PROJECT_ROOT) not in sys.path:
 
 def safe_filename_from_url(url: str, max_len: int = 100) -> str:
     """
-    Biến URL thành tên file an toàn, không chứa ký tự cấm, giới hạn độ dài.
-    Ví dụ:
-      https://www.facebook.com/.../posts/12345?__cft__[...] -> 
-      https_www_facebook_com_..._posts_12345
+    Biến URL thành tên file an toàn.
     """
-    parsed = urllib.parse.urlparse(url)
-
-    # bỏ query + fragment cho đỡ rác
-    base = parsed._replace(query="", fragment="").geturl()
-
-    # thay mọi thứ không phải chữ/số bằng "_"
-    name = re.sub(r"[^A-Za-z0-9]+", "_", base).strip("_")
-
-    # cắt ngắn cho chắc (NTFS/EXT4 ko thích tên quá dài)
-    if len(name) > max_len:
-        name = name[-max_len:]  # lấy đoạn cuối (chứa post id / pfbid)
-
-    return name or "post"
+    try:
+        parsed = urllib.parse.urlparse(url)
+        # bỏ query + fragment
+        base = parsed._replace(query="", fragment="").geturl()
+        # thay ký tự lạ bằng "_"
+        name = re.sub(r"[^A-Za-z0-9]+", "_", base).strip("_")
+        # cắt ngắn
+        if len(name) > max_len:
+            name = name[-max_len:]
+        return name or "post"
+    except Exception:
+        return "unknown_post"
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Batch crawl comments cho danh sách link trong Excel.")
+    parser = argparse.ArgumentParser(description="Batch crawl comments using MoreLogin.")
 
     parser.add_argument(
         "--page-name",
@@ -51,33 +49,19 @@ def parse_args():
         required=True,
         help="Đường dẫn file Excel chứa cột 'link'.",
     )
+    # --- THAY ĐỔI: Dùng profile_id thay vì cookies_path ---
     parser.add_argument(
-        "--cookies-path",
-        dest="cookies_path",
+        "--profile-id",
+        dest="profile_id",
         required=True,
-        help="Đường dẫn file cookies.json để login Facebook.",
+        help="ID của Profile trong MoreLogin (VD: 12345).",
     )
     parser.add_argument(
         "--data-root",
         dest="data_root",
         default="/app/database",
-        help="Thư mục gốc lưu dữ liệu (mặc định /app/database).",
+        help="Thư mục gốc lưu dữ liệu.",
     )
-
-    # --headless / --no-headless
-    parser.add_argument(
-        "--headless",
-        dest="headless",
-        action="store_true",
-        help="Chạy headless (mặc định).",
-    )
-    parser.add_argument(
-        "--no-headless",
-        dest="headless",
-        action="store_false",
-        help="Tắt headless để debug.",
-    )
-    parser.set_defaults(headless=True)
 
     return parser.parse_args()
 
@@ -86,25 +70,24 @@ if __name__ == "__main__":
     args = parse_args()
 
     EXCEL_PATH = args.input_excel
-    COOKIES_PATH = args.cookies_path
+    PROFILE_ID = args.profile_id  # Lấy Profile ID từ tham số
     FANPAGE_NAME = args.page_name
 
     DATA_ROOT = Path(args.data_root)
+    # Cấu trúc folder: data_root/comment/page/fanpage_name
     BASE_DIR = DATA_ROOT / "comment" / "page"
     OUT_DIR = (BASE_DIR / FANPAGE_NAME).resolve()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     logger.info(
-        "[BATCH] START | EXCEL=%s | COOKIES=%s | OUT_DIR=%s | PAGE=%s | DATA_ROOT=%s | HEADLESS=%s",
+        "[BATCH] START | EXCEL=%s | PROFILE_ID=%s | OUT_DIR=%s | PAGE=%s",
         EXCEL_PATH,
-        COOKIES_PATH,
+        PROFILE_ID,
         OUT_DIR,
         FANPAGE_NAME,
-        DATA_ROOT,
-        args.headless,
     )
 
-    # Đọc excel
+    # Đọc Excel
     try:
         df = pd.read_excel(EXCEL_PATH)
     except Exception as e:
@@ -117,18 +100,18 @@ if __name__ == "__main__":
 
     links = df["link"].dropna().astype(str).tolist()
     logger.info(
-        "[BATCH] Excel: %s | Fanpage folder: %s | Tổng link: %s",
+        "[BATCH] Excel: %s | Tổng link cần crawl: %s",
         EXCEL_PATH,
-        OUT_DIR,
         len(links),
     )
 
+    # Duyệt từng link và crawl
     for idx, url in enumerate(links, start=1):
         fname = safe_filename_from_url(url) + ".ndjson"
         out_path = OUT_DIR / fname
 
         logger.info(
-            "[BATCH] (%s/%s) Crawl link: %s -> %s",
+            "[BATCH] (%s/%s) Crawling: %s -> %s",
             idx,
             len(links),
             url,
@@ -136,23 +119,28 @@ if __name__ == "__main__":
         )
 
         try:
+            # Gọi hàm crawl đã update MoreLogin
+            # Lưu ý: Hàm này sẽ tự mở profile -> crawl -> đóng profile cho TỪNG LINK.
+            # Điều này an toàn để tránh lỗi state giữa các lần crawl.
             rows = crawl_comments_for_post(
                 page_url=url,
-                cookies_path=COOKIES_PATH,
+                profile_id=PROFILE_ID,
                 max_rounds=200,
                 sleep_between_rounds=1.5,
-                headless=args.headless,
                 out_path=str(out_path),
             )
-            if rows == []:
-                logger.warning("[BATCH] Không tìm thấy bài viết: %s", url)
-            logger.info(
-                "[BATCH] Done file=%s, unique comments+replies=%s",
-                fname,
-                len(rows),
-            )
+
+            if not rows:
+                logger.warning("[BATCH] Không lấy được comment hoặc lỗi (rows empty): %s", url)
+            else:
+                logger.info(
+                    "[BATCH] Done file=%s, items=%s",
+                    fname,
+                    len(rows),
+                )
+
         except Exception as e:
-            logger.exception("[BATCH] Lỗi khi crawl %s: %s", url, e)
+            logger.exception("[BATCH] Lỗi ngoại lệ khi crawl %s: %s", url, e)
             continue
 
-    logger.info("[BATCH] Hoàn thành crawl cho file Excel: %s", EXCEL_PATH)
+    logger.info("[BATCH] Hoàn thành toàn bộ batch job.")
