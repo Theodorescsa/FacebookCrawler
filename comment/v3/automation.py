@@ -81,7 +81,7 @@ def choose_all_comments_unified(driver, timeout=10):
         raise ElementClickInterceptedException("Không click được option 'All comments' (global).")
     time.sleep(1)
     return True
-def open_reel_comments_if_present(driver, wait_after=0.6, timeout=6.0):
+def open_reel_comments_if_present(driver, wait_after=0.6, timeout=1.0):
     """
     Mở panel bình luận cho Reel nếu có.
     Ưu tiên click 'thật' bằng CDP (Input.dispatchMouseEvent) vào đúng tâm nút,

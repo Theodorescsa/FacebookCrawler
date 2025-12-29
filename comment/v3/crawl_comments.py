@@ -11,10 +11,6 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from utils import append_ndjson_texts
-from driver_morelogin import create_chrome_attach
-from morelogin_client import open_profile, close_profile
-
-from hook import install_early_hook
 from automation import (
     open_reel_comments_if_present,
     set_sort_to_all_comments_unified,
@@ -26,23 +22,6 @@ from extract import (
     extract_replies_from_depth_resp,
 )
 from logs.loging_config import logger
-
-# Selenium imports
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-def close_fb_login_popup(driver, timeout=5):
-    try:
-        close_btn = WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//div[@role='button' and @aria-label='Close']")
-            )
-        )
-        close_btn.click()
-        print("✅ Closed Facebook login popup")
-    except Exception as e:
-        print("⚠️ Close button not found:", e)
 
 def _pull_new_gql_reqs(driver, last_len: int):
     """
@@ -68,7 +47,6 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
     Đi qua list request, parse comment/reply, gom vào by_id (anti-dup).
     """
     added = 0
-
     for rec in reqs:
         resp_text = rec.get("responseText")
         if not resp_text or not isinstance(resp_text, str):
@@ -76,14 +54,11 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
 
         # 1) Comment chính
         rows, end_cursor, total, _ = extract_full_posts_from_resptext(resp_text)
-
         if rows:
             append_ndjson_texts(out_path, rows, page_no=round_idx, cursor_val=end_cursor)
-
             for row in rows:
                 cid = row.get("raw_comment_id") or row.get("id")
-                if not cid:
-                    continue
+                if not cid: continue
                 if cid not in by_id:
                     by_id[cid] = row
                     added += 1
@@ -92,90 +67,43 @@ def _extract_comments_from_requests(reqs, by_id: dict, out_path: str, round_idx:
 
         # 2) Reply depth-1
         replies, next_token = extract_replies_from_depth_resp(resp_text)
-
         if replies:
-            append_ndjson_texts(
-                out_path,
-                replies,
-                page_no=round_idx,
-                cursor_val=next_token or end_cursor,
-            )
-
+            append_ndjson_texts(out_path, replies, page_no=round_idx, cursor_val=next_token or end_cursor)
             for r in replies:
                 cid = r.get("raw_comment_id") or r.get("id")
-                if not cid:
-                    continue
+                if not cid: continue
                 if cid not in by_id:
                     by_id[cid] = r
                     added += 1
                 else:
                     by_id[cid].update({k: v for k, v in r.items() if v not in (None, "", [], {})})
-
     return added
 
 
 def crawl_comments_for_post(
+    driver,                      # 👈 Nhận driver từ bên ngoài
     page_url: str,
-    profile_id: str,              # 👈 Thay cookies_path bằng profile_id
     max_rounds: int = 1000,
     sleep_between_rounds: float = 1.5,
     out_path: str = "comments.ndjson",
 ):
     """
-    Mở Profile MoreLogin, attach Selenium, mở bài viết và crawl comment.
+    Dùng driver có sẵn để crawl comment. 
+    KHÔNG quit driver, KHÔNG close profile.
     """
-    logger.info("[CRAWLER] Start crawl comments for: %s | Profile: %s", page_url, profile_id)
-
-    # 1. Khởi động MoreLogin Profile
-    try:
-        # headless=False để debug cho dễ, cdp_evasion=True để tránh detect
-        debug_port = open_profile(profile_id, headless=False, cdp_evasion=True)
-        logger.info("[MORELOGIN] Started profile %s on port %s", profile_id, debug_port)
-    except Exception as e:
-        logger.error("[MORELOGIN] Failed to start profile: %s", e)
-        return []
-
-    # 2. Attach Selenium vào Chrome đã mở
-    try:
-        driver = create_chrome_attach(debug_port)
-        if not driver:
-            logger.error("[SELENIUM] Failed to attach to port %s", debug_port)
-            close_profile(profile_id)
-            return []
-    except Exception as e:
-        logger.error("[SELENIUM] Error attaching driver: %s", e)
-        close_profile(profile_id)
-        return []
+    logger.info("[CRAWLER] Start processing link: %s", page_url)
 
     try:
-        # Không cần bootstrap_auth vì Profile MoreLogin đã lưu cookie/session
-        logger.info("[AUTH] Using existing MoreLogin session.")
-
-        # Bật Network CDP (Optional)
-        try:
-            driver.execute_cdp_cmd("Network.enable", {})
-            driver.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
-        except Exception as e:
-            logger.warning("[CDP] Cannot enable network: %s", e)
-
-        # Gắn hook (quan trọng)
-        try:
-            install_early_hook(driver)
-            logger.info("[HOOK] install_early_hook OK")
-        except Exception as e:
-            logger.error("[HOOK] install_early_hook FAILED: %s", e)
-
         # Mở bài viết
         driver.get(page_url)
         time.sleep(2.5)
 
         # Xử lý Reel/Video mode
-        if "reel" in page_url:
-            try:
-                opened = open_reel_comments_if_present(driver)
-                logger.info("[CRAWLER] open_reel_comments_if_present -> %s", opened)
-            except Exception as e:
-                logger.warning("[CRAWLER] open_reel_comments_if_present error: %s", e)
+        try:
+            opened = open_reel_comments_if_present(driver)
+            logger.info("[CRAWLER] open_reel_comments_if_present -> %s", opened)
+        except Exception as e:
+            logger.warning("[CRAWLER] open_reel_comments_if_present error: %s", e)
 
         # Set sort = All comments
         try:
@@ -225,27 +153,17 @@ def crawl_comments_for_post(
             else:
                 rounds_no_new = 0
 
-            # Điều kiện dừng: 2 vòng không có comment mới, không scroll được, không click được
+            # Điều kiện dừng
             if rounds_no_new >= 2 and clicked == 0 and not scrolled:
                 logger.info("[CRAWLER] No more new comments -> Stop.")
                 break
 
         rows = list(by_id.values())
-        logger.info("[CRAWLER] Done. Total: %s", len(rows))
+        logger.info("[CRAWLER] Done link. Total items: %s", len(rows))
         return rows
 
     except Exception as e:
-        logger.error("[CRAWLER] Runtime error: %s", e)
+        logger.error("[CRAWLER] Runtime error processing link %s: %s", page_url, e)
         return []
 
-    finally:
-        # Cleanup
-        try:
-            if 'driver' in locals() and driver:
-                driver.quit() # Ngắt kết nối Selenium
-        except Exception:
-            pass
-        
-        # Đóng Profile MoreLogin để giải phóng RAM
-        logger.info("[MORELOGIN] Closing profile %s...", profile_id)
-        close_profile(profile_id)
+    # KHÔNG finally quit driver ở đây để giữ session cho link tiếp theo

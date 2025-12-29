@@ -97,8 +97,8 @@ def ndjson_to_excel(input_file, output_file):
 # Sử dụng script
 if __name__ == "__main__":
     # Thay đổi đường dẫn file của bạn ở đây
-    input_file = r"E:\NCS\fb-selenium\database\post\page\nvdai0906_done\ACC_nvdai0906\posts_all.ndjson"  # hoặc "input.jsonl"
-    output_file = r"E:\NCS\fb-selenium\database\post\page\nvdai0906.xlsx"
+    input_file = r"E:\NCS\fb-selenium\database\post\page\postall.ndjson"  # hoặc "input.jsonl"
+    output_file = r"E:\NCS\fb-selenium\database\post\page\postall.xlsx"
     
     try:
         df = ndjson_to_excel(input_file, output_file)
