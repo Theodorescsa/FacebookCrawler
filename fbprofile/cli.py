@@ -21,6 +21,7 @@ from .browser.login import fb_login
 from .storage.paths import compute_paths
 from .storage.checkpoint import save_checkpoint
 from . import pipeline
+from util.export_utils.export_fb_session import start_driver
 
 def add_common_args(ap):
     ap.add_argument("--group-url", type=str,
@@ -75,22 +76,23 @@ def _run_single_session(
     """
     Chạy 1 phiên Chrome: open, [scrape_profile], go_to_date, crawl_scroll_loop, quit.
     """
-    d = create_chrome(headless=make_headless(args))
-    if cookies and os.path.exists(cookies):
-        try:
-            login_status = bootstrap_auth(d, cookies)
-            logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies)
-        except Exception as e:
-            logger.error("[AUTH] bootstrap_auth FAILED: %s", e)
-    else:
-        logger.warning("[AUTH] Không tìm thấy cookies: %s", cookies)
-    try:
-        d.execute_cdp_cmd("Network.enable", {})
-        d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
-    except Exception as e:
-        logger.warning("[CDP] Cannot enable network/disable cache: %s", e)
-    if login_status == False:
-        return
+    # d = create_chrome(headless=make_headless(args))
+    d = start_driver("Profile 5")
+    # if cookies and os.path.exists(cookies):
+    #     try:
+    #         login_status = bootstrap_auth(d, cookies)
+    #         logger.info("[AUTH] bootstrap_auth OK with cookies %s", cookies)
+    #     except Exception as e:
+    #         logger.error("[AUTH] bootstrap_auth FAILED: %s", e)
+    # else:
+    #     logger.warning("[AUTH] Không tìm thấy cookies: %s", cookies)
+    # try:
+    #     d.execute_cdp_cmd("Network.enable", {})
+    #     d.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
+    # except Exception as e:
+    #     logger.warning("[CDP] Cannot enable network/disable cache: %s", e)
+    # if login_status == False:
+    #     return
     try:
         install_early_hook(d, keep_last=keep_last)
         logger.info("[HOOK] install_early_hook OK (keep_last=%s)", keep_last)

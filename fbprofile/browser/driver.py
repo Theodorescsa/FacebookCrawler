@@ -1,7 +1,6 @@
 # post/v3/browser/driver.py
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 from ..config import env
 
 
